@@ -102,6 +102,9 @@ interface EpkAdditionalResource {
 }
 
 export interface EpkConfig {
+  style: {
+    background: string;
+  };
   logo: string;
   subtitle: string;
   description: string;
