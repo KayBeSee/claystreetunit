@@ -49,8 +49,8 @@ function Card({
   button,
 }: CardProps) {
   return (
-    <li className="relative flex flex-col sm:flex-row xl:flex-col items-start">
-      <div className="order-1 sm:ml-6 xl:ml-0">
+    <li className="relative flex flex-col sm:flex-row xl:flex-col items-start hover:bg-slate-200 active:bg-slate-300 rounded-lg h-full">
+      <div className="order-1 sm:ml-6 xl:ml-0 px-4 py-2">
         <h3 className="font-serif mb-1 text-slate-900 font-semibold">
           {button ? (
             <>
@@ -97,9 +97,71 @@ function Card({
       <img
         src={image}
         alt=""
-        className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"
-        // width="1216"
-        // height="640"
+        className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full aspect-video object-cover"
+      />
+    </li>
+  );
+}
+
+function ResourceCard({
+  title,
+  superTitle,
+  href,
+  color,
+  body,
+  image,
+  button,
+}: CardProps) {
+  return (
+    <li className="relative flex flex-col sm:flex-row items-start">
+      <div className="order-1 sm:ml-6 ml-0">
+        <h3 className="font-serif mb-1 text-slate-900 font-semibold">
+          {button ? (
+            <>
+              <span
+                className={clsx(
+                  'font-sans mb-1 block text-sm leading-6',
+                  color
+                )}
+              >
+                {superTitle}
+              </span>
+              {title}
+            </>
+          ) : (
+            <a
+              href={href}
+              target="_blank"
+              className={clsx(
+                'before:absolute before:inset-0',
+                !button && 'hover:text-slate-600'
+              )}
+            >
+              <span
+                className={clsx(
+                  'font-sans mb-1 block text-sm leading-6',
+                  color
+                )}
+              >
+                {superTitle}
+              </span>
+              {title}
+            </a>
+          )}
+        </h3>
+        <div className="prose prose-slate prose-sm text-slate-600">
+          <p>{body}</p>
+        </div>
+        {button && (
+          <Button href={href} className="mt-6">
+            {button}
+          </Button>
+        )}
+      </div>
+      <img
+        src={image}
+        alt=""
+        className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 aspect-video object-cover"
       />
     </li>
   );
@@ -132,7 +194,9 @@ export default function PressKit({ config }: Props) {
       <Description>
         {`The electronic press kit (EPK) for ${config.artistName}.`}
       </Description>
-      <div className="bg-sicard-gold-300 pt-10 pb-12 overflow-y-scroll bg-fixed bg-no-repeat bg-cover bg-center h-screen w-screen relative px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+      <div
+        className={`${config.epk.style.background} pt-10 pb-12 overflow-y-scroll bg-fixed bg-no-repeat bg-cover bg-center h-screen w-screen relative px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8`}
+      >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-4xl flex flex-col mx-auto justify-center pt-10">
             <header className="mb-16 flex flex-col sm:flex-row">
@@ -303,9 +367,9 @@ export default function PressKit({ config }: Props) {
                   </p>
                 </div>
 
-                <CardGroup>
+                <div className="grid grid-cols-1 gap-y-10 gap-x-6 items-start">
                   {config.epk.additionalResources.map((card) => (
-                    <Card
+                    <ResourceCard
                       key={card.title}
                       button={
                         <>
@@ -316,7 +380,7 @@ export default function PressKit({ config }: Props) {
                       {...card}
                     />
                   ))}
-                </CardGroup>
+                </div>
               </section>
 
               <div className="border-t border-sicard-gold-500">
