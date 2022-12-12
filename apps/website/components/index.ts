@@ -7,3 +7,5 @@ export * from './layout/PageWithoutMenu';
 export * from './SplashPage';
 export * from './SocialLinks';
 export * from './Contact';
+export * from './PressTestimonial';
+export * from './EpkPressTestimonial';
