@@ -65,6 +65,12 @@ interface Contact {
   email: string;
 }
 
+interface ErrorConfig {
+  style: {
+    background: string;
+  };
+}
+
 export interface SocialMediaItem {
   icon: IconDefinition;
   url: string;
@@ -145,4 +151,5 @@ export interface DataConfig {
   info: InfoConfig;
   mailingList: MailingListConfig;
   epk: EpkConfig;
+  error: ErrorConfig;
 }
