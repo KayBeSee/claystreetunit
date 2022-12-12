@@ -4,6 +4,11 @@ interface StyleProps {
   backgroundImage?: string;
 }
 
+export interface TestimonialConfig {
+  quote: string;
+  author: string;
+}
+
 export interface Album {
   name: string;
   slug: string;
@@ -71,6 +76,7 @@ export interface InfoConfig {
   style: {
     backgroundImage: string;
   };
+  testimonials: TestimonialConfig[];
 }
 
 export interface MailingListConfig {

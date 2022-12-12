@@ -4,7 +4,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 
 import { data } from 'data';
-import { Agency, DataConfig, EpkConfig, SocialMediaItem } from 'types';
+import { DataConfig } from 'types';
 
 import { getDate } from 'pages/tour';
 
@@ -140,7 +140,7 @@ export default function PressKit({ config }: Props) {
                 <p className="mb-4 text-sm leading-6 font-semibold text-sicard-blue-400">
                   Press Kit
                 </p>
-                <h1 className="font-serif mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                <h1 className="font-serif mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap">
                   {config.artistName}
                 </h1>
                 <p className="font-sans text-lg text-slate-700">
