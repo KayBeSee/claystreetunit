@@ -1,5 +1,11 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const { data } = require('./data/index.js');
+
+const safelist = Object.values(data.music.items).map(
+  (item) => `marker:${item.pageStyle.primaryText}`
+);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,6 +13,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './data/**.ts',
   ],
+  safelist: safelist,
   theme: {
     extend: {
       colors: {

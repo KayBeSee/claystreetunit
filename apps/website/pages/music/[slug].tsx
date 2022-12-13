@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import clsx from 'clsx';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -124,8 +125,16 @@ export default function Music({
               <div
                 className={`${album.pageStyle.albumCoverBorderColor} prose font-serif px-4 py-4 w-full`}
               >
-                <h3>Track Listing</h3>
-                <ol className="list-decimal text-sicard-blue-700 columns-1 md:columns-2">
+                <h3 className={`${album.pageStyle.primaryText}`}>
+                  Track Listing
+                </h3>
+                <ol
+                  className={clsx(
+                    album.pageStyle.primaryText,
+                    `marker:${album.pageStyle.primaryText}`,
+                    'list-decimal columns-1 md:columns-2'
+                  )}
+                >
                   {album.trackList.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -151,6 +160,7 @@ export default function Music({
             albums={Object.values(config.music.items)}
             artistName={config.artistName}
             currentSlug={currentSlug}
+            className={album.pageStyle.primaryText}
           />
           <Copyright
             legalEntity={config.legalEntity}
