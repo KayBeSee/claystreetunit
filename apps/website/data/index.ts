@@ -12,21 +12,25 @@ import { music } from './music';
 import { DataConfig } from 'types';
 
 export const data: DataConfig = {
-  artistName: 'Sicard Hollow',
+  artistName: 'Airshow',
   artistDescription: 'bluegrass band from Nashville, TN',
-  legalEntity: 'Sicard Hollow, LLC',
+  legalEntity: 'Airshow, LLC',
   home: {
     logo: '/logo.png',
     ogImage: '/logo-circle-black.png',
-    splashVideoUrl:
-      'https://res.cloudinary.com/dyxybmew8/video/upload/v1669093366/sicard/bg_ui3bem.mp4',
+    splashVideoUrl: '',
+  },
+  error: {
+    style: {
+      background: './page-backgrounds/tour.jpg',
+    },
   },
   tour: {
     style: {
-      backgroundImage: '/resonance.jpg',
+      backgroundImage: '/page-backgrounds/tour.jpg',
     },
     bandsInTownApiEndpoint:
-      'https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070',
+      'https://rest.bandsintown.com/artists/id_1419648/events/?app_id=flatrockmgmt-44c07a11da396912929eb54883e70cfa',
   },
   music: {
     style: {
@@ -40,7 +44,7 @@ export const data: DataConfig = {
     style: {
       backgroundImage: '/page-backgrounds/news.jpg',
     },
-    dbName: 'sicard',
+    dbName: 'airshow',
   },
   info: {
     style: {
@@ -49,16 +53,12 @@ export const data: DataConfig = {
     contacts: [
       {
         title: 'Booking',
-        href: 'mailto:lmcdowell@teamwass.com; lhandelsman@teamwass.com;',
-        company: 'Wasserman Media Group',
+        href: 'mailto:cody.airshowband@gmail.com',
+        company: '',
         contacts: [
           {
-            name: 'Lindsay McDowell',
-            email: 'lmcdowell@teamwass.com',
-          },
-          {
-            name: 'Logan Handelsman',
-            email: 'lhandelsman@teamwass.com',
+            name: 'Cody Chelius',
+            email: 'cody.airshowband@gmail.com ',
           },
         ],
         icon: '/epk/brands/wasserman.png',
@@ -76,33 +76,37 @@ export const data: DataConfig = {
         icon: '/epk/brands/flatrock.png',
       },
     ],
+    testimonials: [],
     social: [
-      { icon: faInstagram, url: 'https://www.instagram.com/sicardhollowband/' },
+      { icon: faInstagram, url: 'https://www.instagram.com/airshowband/' },
       {
         icon: faYoutube,
-        url: 'https://www.youtube.com/channel/UCWnrFMwnaqiO8XQ0ABVQm1g',
+        url: 'https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw',
       },
-      { icon: faFacebook, url: 'https://www.facebook.com/SicardHollow/' },
+      { icon: faFacebook, url: 'https://www.facebook.com/Airshowband' },
       {
         icon: faSpotify,
-        url: 'https://open.spotify.com/album/6XAbKyGSuva1dtXhLIxMpH',
+        url: 'https://open.spotify.com/artist/2USLUiPGlv1amJy3gUszGw',
       },
       {
         icon: faItunesNote,
-        url: 'https://music.apple.com/us/album/secret-of-the-breeze/1501501721',
+        url: 'https://music.apple.com/us/artist/airshow/1235377961',
       },
       {
         icon: faTwitter,
-        url: 'https://twitter.com/sicardhollow',
+        url: 'http://%20https//twitter.com/airshowband',
       },
     ],
   },
   mailingList: {
     style: {
-      backgroundImage: '/page-backgrounds/info.jpg',
+      backgroundImage: '/page-backgrounds/mailing-list.jpg',
     },
   },
   epk: {
+    style: {
+      background: 'bg-slate-900',
+    },
     logo: '/logo-circle-black.png',
     subtitle:
       'Anything and everything there is to know about the up and coming four piece progressive bluegrass band from Nashville, TN.',
@@ -183,7 +187,7 @@ export const data: DataConfig = {
         color: 'text-sicard-blue-300',
       },
     ],
-    youtubeLink: 'https://www.youtube.com/channel/UCWnrFMwnaqiO8XQ0ABVQm1g',
+    youtubeLink: 'https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw',
   },
 };
 

@@ -54,7 +54,8 @@ export const SplashPage = ({ config, setIsOpen }: Props) => (
       >
         <source
           src={
-            process.env.NODE_ENV === 'production'
+            process.env.NODE_ENV === 'production' &&
+            !!config.home.splashVideoUrl
               ? config.home.splashVideoUrl
               : ''
           }
