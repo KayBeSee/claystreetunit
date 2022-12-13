@@ -8,11 +8,14 @@ interface Props {
   currentSlug: string;
   artistName: string;
   albums: Album[];
+  className: string;
 }
 
-const OtherAlbums = ({ currentSlug, artistName, albums }: Props) => {
+const OtherAlbums = ({ currentSlug, artistName, albums, className }: Props) => {
   return (
-    <section className="w-full md:max-w-prose space-y-6 mx-auto mt-10 ">
+    <section
+      className={`${className} w-full md:max-w-prose space-y-6 mx-auto mt-10`}
+    >
       <h4 className="font-serif text-xl px-4">Other music by {artistName}</h4>
 
       <ul
