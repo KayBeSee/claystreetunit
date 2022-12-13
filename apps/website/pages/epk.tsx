@@ -212,7 +212,7 @@ export default function PressKit({ config }: Props) {
                 </p>
               </div>
               <div className="flex justify-center items-center w-full pt-16 sm:pt-0">
-                <div className="relative h-40 w-48">
+                <div className="relative h-40 w-40">
                   <Image src={config.epk.logo} layout="fill" priority />
                 </div>
               </div>

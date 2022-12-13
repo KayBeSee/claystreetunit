@@ -25,10 +25,10 @@ export const music: Props = {
     As an album Shimmer highlights the individual members of Airshow like never before while simultaneously showcasing the bands ability to groove and improvise as a unit through different genres. All four members switch between lead and harmony vocals as well as lead and rhythm instruments to really showcase everyones talents.`,
     otherImages: [],
     streamingLinks: {
-      spotify: 'https://open.spotify.com/album/0NkeS2vYYXpm0iU2ecNXJA',
-      apple: 'https://music.apple.com/us/album/brightest-of-days/1648494974',
-      amazon: 'https://music.apple.com/us/album/brightest-of-days/1648494974',
-      youtube: 'https://www.youtube.com/watch?v=pPKujjf7bDQ',
+      spotify: 'https://open.spotify.com/album/6VQ4Y7U4KOqcU1l0wQ5WDe',
+      apple: 'https://music.apple.com/us/album/shimmer/1570183012?app=music',
+      amazon: 'https://music.amazon.com/albums/B0969456MR',
+      youtube: 'https://music.youtube.com/browse/MPREb_e0MbYmOxLuA',
     },
     pageStyle: {
       streamServiceColor: 'fill-sicard-blue-800',
@@ -54,10 +54,10 @@ export const music: Props = {
     description: ``,
     otherImages: [],
     streamingLinks: {
-      spotify: 'https://open.spotify.com/album/5M9CuVu051FU2OB9yNJKTV',
-      apple: 'https://music.apple.com/us/artist/sicard-hollow/1501501722',
-      amazon: 'https://music.amazon.com/albums/B0BJP77GPS',
-      youtube: 'https://music.youtube.com/watch?v=5KIM30M0K_o',
+      spotify: 'https://open.spotify.com/album/2tlVOad1zJLRU7wpGbToXf',
+      apple: 'https://music.apple.com/us/album/anubis-ep/1536838376?app=music',
+      amazon: 'https://music.amazon.com/albums/B08LMH7S6B',
+      youtube: 'https://music.youtube.com/browse/MPREb_KmafcKHKEUW',
     },
     pageStyle: {
       streamServiceColor: 'fill-[#E2E8F0]',
@@ -85,10 +85,11 @@ export const music: Props = {
     description: '',
     otherImages: [],
     streamingLinks: {
-      spotify: 'https://open.spotify.com/album/5NG6LepwVxFtLQtZtCe6qh',
-      apple: 'http://itunes.apple.com/album/id/1647043238',
-      amazon: 'https://www.amazon.com/music/player/albums/B0BGJRR1DG',
-      youtube: 'https://www.youtube.com/watch?v=78y8yWWxyg8',
+      spotify: 'https://open.spotify.com/album/0tmFc4yiSGO819x4WMWDsk',
+      apple:
+        'https://music.apple.com/us/album/up-in-the-clouds/1451537937?app=music',
+      amazon: 'https://music.amazon.com/albums/B07ND5SK4J',
+      youtube: 'https://music.youtube.com/browse/MPREb_553fPZmn4tZ',
     },
     pageStyle: {
       streamServiceColor: 'fill-[#F2E7DB]',
@@ -115,11 +116,11 @@ export const music: Props = {
     description: '',
     otherImages: [],
     streamingLinks: {
-      spotify: 'https://open.spotify.com/track/4WTKeiDj3ZnQzpOGEIL3V6',
+      spotify: 'https://open.spotify.com/album/02gd38SsTK9ouujUXmpTsm',
       apple:
-        'https://music.apple.com/us/album/mary-anne-and-conway-single/1641873316',
-      amazon: 'https://music.amazon.com/albums/B0BC21S1LT',
-      youtube: 'https://www.youtube.com/watch?v=syL1LY1aMuo',
+        'https://music.apple.com/us/album/lightbulb-ep/1235377323?app=music',
+      amazon: 'https://music.amazon.com/albums/B0719CC4N2',
+      youtube: 'https://music.youtube.com/browse/MPREb_ZU4Kc11dRcU',
     },
     pageStyle: {
       streamServiceColor: 'fill-[#F2E2D5]',
