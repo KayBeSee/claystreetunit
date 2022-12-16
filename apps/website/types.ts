@@ -127,10 +127,16 @@ export interface EpkConfig {
   youtubeLink: string;
 }
 
+interface MenuItem {
+  slug: string;
+  text: string;
+}
+
 interface HomeConfig {
   logo: string;
   ogImage: string;
   splashVideoUrl: string;
+  menu: MenuItem[];
 }
 
 export interface DataConfig {

@@ -4,40 +4,12 @@ import Link from 'next/link';
 
 import { SocialIcons } from 'components';
 
-import { data } from 'data';
 import { DataConfig } from 'types';
 
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   config: DataConfig;
 }
-
-const links = [
-  {
-    slug: '/tour',
-    text: 'Tour',
-  },
-  {
-    slug: `/music/${Object.keys(data.music.items)[0]}`,
-    text: 'Music',
-  },
-  {
-    slug: '/news',
-    text: 'News',
-  },
-  {
-    slug: '/info',
-    text: 'Info',
-  },
-  {
-    slug: '/mailing-list',
-    text: 'Mailing List',
-  },
-  {
-    slug: 'https://shop.sicardhollow.com/',
-    text: 'Shop',
-  },
-];
 
 export const SplashPage = ({ config, setIsOpen }: Props) => (
   <>
@@ -83,7 +55,7 @@ export const SplashPage = ({ config, setIsOpen }: Props) => (
           />
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center relative gap-x-6 gap-y-2 mb-6">
-          {links.map((link) => (
+          {config.home.menu.map((link) => (
             <Link
               href={link.slug}
               key={link.slug}
