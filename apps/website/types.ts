@@ -143,6 +143,9 @@ export interface DataConfig {
   artistName: string;
   artistDescription: string;
   legalEntity: string;
+  analytics: {
+    googleAnalyticsCode: string;
+  };
   home: HomeConfig;
   tour: TourConfig;
   music: {
