@@ -5,9 +5,8 @@ function classNames(...classes) {
 }
 
 export const Tabs = () => {
-  const rooter = useRouter();
-  console.log('rooter: ', rooter);
-  const { pathname, query } = rooter;
+  const router = useRouter();
+  const { pathname, query } = router;
 
   const tabs = [
     {

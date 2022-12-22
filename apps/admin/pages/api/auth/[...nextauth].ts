@@ -3,6 +3,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { MongoClient } from 'mongodb';
 import { compare } from 'bcryptjs';
 
+import { config } from 'data';
+
 export default NextAuth({
   session: {
     strategy: 'jwt',
@@ -49,7 +51,7 @@ export default NextAuth({
         }?retryWrites=true&w=majority`;
         const client = await MongoClient.connect(MONGODB_CONNECTION_STRING);
         //Get all the users
-        const users = await client.db('sicard').collection('users');
+        const users = await client.db(config.dbName).collection('users');
         //Find user with the email
         const result = await users.findOne({
           email: credentials.email,

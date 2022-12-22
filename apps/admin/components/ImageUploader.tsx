@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 
 import { LoadingSpinner } from 'components';
+import { DataConfig } from 'types';
 
 const url = 'https://api.cloudinary.com/v1_1/dyxybmew8/image/upload';
 
@@ -9,12 +10,14 @@ interface Props {
   onImageUpload: (url: string) => void;
   onImageDelete: () => void;
   currentImageUrl: string;
+  config: DataConfig;
 }
 
 export const ImageUploader = ({
   onImageUpload,
   onImageDelete,
   currentImageUrl,
+  config,
 }: Props) => {
   const drop = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +49,7 @@ export const ImageUploader = ({
     const formData = new FormData();
     formData.append('file', files[0]);
     formData.append('upload_preset', 'lmicqrpq');
-    formData.append('folder', 'sicard/news');
+    formData.append('folder', `${config.dbName}/news`);
 
     try {
       const resp = await fetch(url, {

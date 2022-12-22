@@ -19,6 +19,10 @@ export const data: DataConfig = {
     logo: '/logo.png',
     ogImage: '/logo-circle-black.png',
     splashVideoUrl: '',
+    menu: [],
+  },
+  analytics: {
+    googleAnalyticsCode: '',
   },
   error: {
     style: {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { DataConfig } from 'types';
 
 const getDate = (date) => {
   const dateObj = new Date(date);
@@ -18,17 +19,18 @@ const getDate = (date) => {
   return `${month} ${day}, ${year}`;
 };
 
-export const EventsPanel = () => {
-  const BandsInTownEndpoint =
-    'https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070';
+interface Props {
+  config: DataConfig;
+}
 
+export const EventsPanel = ({ config }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
     const fetchTourDates = async () => {
       try {
-        const { data } = await axios.get(BandsInTownEndpoint);
+        const { data } = await axios.get(config.bandsInTownApiEndpoint);
         setShows(data);
       } catch (e) {
         console.log('e: ', e);

@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import { client } from 'middleware/database';
 
+import { config } from 'data';
+
 import {
   CalendarIcon,
   ChevronRightIcon,
@@ -111,6 +113,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: JSON.parse(JSON.stringify(items)),
+      config,
     },
   };
 }

@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
+import { config } from 'data';
+
 import { NewsProps, PageWidthWrapper } from 'components';
 import AddNewsForm from 'components/AddNewsForm';
 import { useRouter } from 'next/router';
@@ -26,6 +28,7 @@ const AddNewsPage = () => {
     <PageWidthWrapper>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9 pt-8 pb-24">
         <AddNewsForm
+          config={config}
           onSave={savePost}
           post={{
             title: '',
@@ -44,6 +47,13 @@ const AddNewsPage = () => {
   );
 };
 
-AddNewsPage.auth = true;
+export async function getStaticProps(context) {
+  return {
+    props: {
+      config,
+    },
+  };
+}
 
+AddNewsPage.auth = true;
 export default AddNewsPage;

@@ -2,9 +2,16 @@ import React from 'react';
 import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 
+import { config } from 'data';
+import { DataConfig } from 'types';
+
 import { PageWidthWrapper, EventsPanel, ActionsPanel } from 'components';
 
-const Home = () => {
+interface Props {
+  config: DataConfig;
+}
+
+const Home = ({ config }: Props) => {
   const {
     data: { user },
   } = useSession();
@@ -12,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <Head>
-        <title>Sicard Hollow | Admin</title>
+        <title>{config.artistName} | Admin</title>
       </Head>
 
       <header className="pb-24 bg-gradient-to-r from-sicard-blue-800 to-sicard-blue-600"></header>
@@ -46,7 +53,7 @@ const Home = () => {
                           </p>
                           <p className="text-sm font-medium text-gray-600">
                             {/* {user.role} */}
-                            Band Manager
+                            {config.artistName}
                           </p>
                         </div>
                       </div>
@@ -66,7 +73,7 @@ const Home = () => {
               <ActionsPanel />
             </div>
             <div className="grid grid-cols-1 gap-4">
-              <EventsPanel />
+              <EventsPanel config={config} />
             </div>
           </div>
         </PageWidthWrapper>
@@ -74,6 +81,14 @@ const Home = () => {
     </div>
   );
 };
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      config,
+    },
+  };
+}
 
 Home.auth = true;
 export default Home;

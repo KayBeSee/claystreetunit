@@ -2,12 +2,16 @@ import { useState } from 'react';
 
 import { NewsPreview, NewsProps, ImageUploader } from 'components';
 
+import { config } from 'data';
+import { DataConfig } from 'types';
+
 interface Props {
   onSave: (obj: NewsProps) => void;
   post?: Omit<NewsProps, 'datetime'>;
+  config: DataConfig;
 }
 
-const AddNewsForm = ({ onSave }: Props) => {
+const AddNewsForm = ({ onSave, config }: Props) => {
   const [title, setTitle] = useState('');
   const [linkUrl, setLinkUrl] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -43,7 +47,7 @@ const AddNewsForm = ({ onSave }: Props) => {
             <p className="mt-1 text-sm text-gray-500">
               This information will be displayed as a news article on{' '}
               <a href="#" className="underlined text-sicard-blue-200">
-                https://sicardhollow.com/news
+                {config.websiteUrl}
               </a>
               .
             </p>
@@ -121,6 +125,7 @@ const AddNewsForm = ({ onSave }: Props) => {
                       onImageUpload={setImageUrl}
                       currentImageUrl={imageUrl}
                       onImageDelete={() => setImageUrl('')}
+                      config={config}
                     />
                   </div>
                 </div>
@@ -163,6 +168,7 @@ const AddNewsForm = ({ onSave }: Props) => {
                       onImageUpload={setAuthorImageUrl}
                       currentImageUrl={authorImageUrl}
                       onImageDelete={() => setAuthorImageUrl('')}
+                      config={config}
                     />
                   </div>
                 </div>
@@ -204,5 +210,13 @@ const AddNewsForm = ({ onSave }: Props) => {
     </>
   );
 };
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      config,
+    },
+  };
+}
 
 export default AddNewsForm;

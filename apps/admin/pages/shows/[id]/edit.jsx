@@ -133,9 +133,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const EditShowPage = () => {
   const { query } = useRouter();
-  console.log('query: ', query);
   const data = shows.filter((item) => item._id === Number(query.id))[0];
-  console.log('data: ', data);
 
   if (!data) {
     return (

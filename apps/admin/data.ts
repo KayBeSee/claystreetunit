@@ -1,53 +1,11 @@
-export interface Show {
-  _id: number;
-  date: string;
-  status: 'approved' | 'pending' | 'proposed';
-  name: string;
-  venue: Venue;
-  deal: number;
-}
+import { DataConfig } from 'types';
 
-export interface Venue {
-  name: string;
-  city: string;
-  state: string;
-}
-
-export const shows: Show[] = [
-  {
-    _id: 1,
-    date: '7/9/2022',
-    status: 'approved',
-    name: 'Bear Mountain Fest',
-    deal: 2500,
-    venue: {
-      name: 'Bear Mountain',
-      city: 'Radford',
-      state: 'VA',
-    },
-  },
-  {
-    _id: 2,
-    date: '7/29/2022',
-    status: 'approved',
-    name: 'Rumble Down Festival',
-    deal: 1500,
-    venue: {
-      name: 'The Kampground',
-      city: 'Mechanicsburg',
-      state: 'IL',
-    },
-  },
-  {
-    _id: 3,
-    date: '8/18/2022',
-    status: 'approved',
-    name: 'w/ PPPP',
-    deal: 500,
-    venue: {
-      name: 'The Burl',
-      city: 'Lexington',
-      state: 'KY',
-    },
-  },
-];
+export const config: DataConfig = {
+  artistName: 'Sicard Hollow',
+  logoUrl: '/text-horizontal-black.png',
+  websiteUrl: '',
+  adminUrl: '',
+  dbName: 'sicard',
+  bandsInTownApiEndpoint:
+    'https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070',
+};

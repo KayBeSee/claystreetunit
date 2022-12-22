@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
+import { config } from 'data';
+
 import { PageWidthWrapper, LoadingSpinner } from 'components';
 import EditNewsForm from 'components/EditNewsForm';
 import { useRouter } from 'next/router';
@@ -35,6 +37,14 @@ const EditNewsPage = () => {
     </PageWidthWrapper>
   );
 };
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      config,
+    },
+  };
+}
 
 EditNewsPage.auth = true;
 

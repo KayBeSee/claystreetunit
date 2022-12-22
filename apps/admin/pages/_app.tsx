@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: Props) {
       <SessionProvider session={pageProps.session}>
         {Component.auth ? (
           <Auth>
-            <Navbar />
+            <Navbar {...pageProps} />
             {/* <Layout> */}
             {/* <main className="flex-1">
               <div className="py-6">

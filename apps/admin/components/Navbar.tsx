@@ -5,12 +5,17 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
+import { DataConfig } from 'types';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export const Navbar = () => {
+interface Props {
+  config: DataConfig;
+}
+
+export const Navbar = ({ config }: Props) => {
   const { pathname } = useRouter();
   const {
     data: { user },
@@ -18,19 +23,9 @@ export const Navbar = () => {
 
   const navItems = [
     {
-      text: 'Shows',
-      href: '/shows',
-      current: pathname.includes('/shows'),
-    },
-    {
       text: 'News',
       href: '/news',
       current: pathname.includes('/news'),
-    },
-    {
-      text: 'Media',
-      href: '/media',
-      current: pathname.includes('/media'),
     },
   ];
 
@@ -57,8 +52,8 @@ export const Navbar = () => {
                     <a>
                       <img
                         className="block lg:hidden h-12 w-auto"
-                        src="/logo-circle-black.png"
-                        alt="Sicard Hollow"
+                        src={config.logoUrl}
+                        alt={`${config.artistName} Logo`}
                       />
                     </a>
                   </Link>
@@ -66,13 +61,8 @@ export const Navbar = () => {
                     <a className="flex">
                       <img
                         className="hidden lg:block h-12 w-auto"
-                        src="/logo-circle-black.png"
-                        alt="Sicard Hollow"
-                      />
-                      <img
-                        className="hidden lg:block h-12 w-auto"
-                        src="/text-horizontal-black.png"
-                        alt="Sicard Hollow"
+                        src={config.logoUrl}
+                        alt={`${config.artistName} Logo`}
                       />
                     </a>
                   </Link>

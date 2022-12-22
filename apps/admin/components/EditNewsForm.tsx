@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { NewsPreview, NewsProps, ImageUploader } from 'components';
+import { DataConfig } from 'types';
 
 interface Props {
   post?: NewsProps;
+  config: DataConfig;
 }
 
-const EditNewsForm = ({ post }: Props) => {
+const EditNewsForm = ({ post, config }: Props) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(post.title);
@@ -57,7 +59,7 @@ const EditNewsForm = ({ post }: Props) => {
           <p className="mt-1 text-sm text-gray-500">
             This information will be displayed as a news article on{' '}
             <a href="#" className="underlined text-sicard-blue-200">
-              https://sicardhollow.com/news
+              {config.websiteUrl}/news
             </a>
             .
           </p>
@@ -135,6 +137,7 @@ const EditNewsForm = ({ post }: Props) => {
                     onImageUpload={setImageUrl}
                     currentImageUrl={imageUrl}
                     onImageDelete={() => setImageUrl('')}
+                    config={config}
                   />
                 </div>
               </div>
@@ -177,6 +180,7 @@ const EditNewsForm = ({ post }: Props) => {
                     onImageUpload={setAuthorImageUrl}
                     currentImageUrl={authorImageUrl}
                     onImageDelete={() => setAuthorImageUrl('')}
+                    config={config}
                   />
                 </div>
               </div>
