@@ -104,7 +104,7 @@ const News = ({ data = [] }: Props) => {
 export async function getServerSideProps(context) {
   await client.connect();
   const items = await client
-    .db('sicard')
+    .db(config.dbName)
     .collection('news')
     .find()
     .sort({ datetime: -1 })
