@@ -199,21 +199,20 @@ export default function PressKit({ config }: Props) {
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-4xl flex flex-col mx-auto justify-center pt-10">
-            <header className="mb-16 flex flex-col sm:flex-row">
-              <div className="max-w-xl">
-                <p className="mb-4 text-sm leading-6 font-semibold text-sicard-blue-400">
-                  Press Kit
-                </p>
-                <h1 className="font-serif mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap">
-                  {config.artistName}
-                </h1>
-                <p className="font-sans text-lg text-slate-700">
-                  {config.epk.subtitle}
-                </p>
-              </div>
-              <div className="flex justify-center items-center w-full pt-16 sm:pt-0">
-                <div className="relative h-40 w-40">
-                  <Image src={config.epk.logo} layout="fill" priority />
+            <header className="flex flex-col sm:flex-row">
+              <div className="flex items-center space-between max-w-3xl w-full">
+                <div className="flex flex-col flex-1 flex-wrap">
+                  <p className="mb-4 text-sm leading-6 font-semibold text-sicard-blue-400">
+                    Press Kit
+                  </p>
+                  <h1 className="font-serif mb-8 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap">
+                    {config.artistName}
+                  </h1>
+                </div>
+                <div className="py-0 px-2">
+                  <div className="relative h-40 w-40">
+                    <Image src={config.epk.logo} layout="fill" priority />
+                  </div>
                 </div>
               </div>
             </header>
