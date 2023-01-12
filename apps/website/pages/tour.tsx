@@ -7,6 +7,8 @@ import { Title, Description } from 'utils/Meta';
 import { data } from 'data';
 import { DataConfig } from 'types';
 
+import * as ga from 'utils/gtag';
+
 export const getDate = (date) => {
   const dateObj = new Date(date);
   const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(
@@ -22,6 +24,18 @@ export const getDate = (date) => {
     dateObj
   );
   return `${month} ${day}, ${year}`;
+};
+
+const logTicketClickEvent = (show) => {
+  if (process.env.NODE_ENV === 'production') {
+    const formattedDate = show.datetime.slice(0, show.datetime.indexOf('T'));
+    ga.event({
+      action: 'buy_ticket',
+      params: {
+        id: `${formattedDate} - ${show.venue.name}`,
+      },
+    });
+  }
 };
 
 interface Props {
@@ -95,6 +109,7 @@ export default function Tour({ config }: Props) {
                     {show.offers[0] ? (
                       <a
                         href={show.offers[0].url}
+                        onClick={() => logTicketClickEvent(show)}
                         target="_blank"
                         rel="noreferrer"
                         // passHref={true}
