@@ -31,7 +31,12 @@ export const Menu = ({ config }: Props) => {
         </button>
       ) : null}
       <Transition show={isOpen} unmount={false} as={Fragment}>
-        <Dialog onClose={() => setIsOpen(false)} as="div" className="z-40">
+        <Dialog
+          unmount={false}
+          onClose={() => setIsOpen(false)}
+          as="div"
+          className="z-40"
+        >
           <Transition.Child
             enter="transition-opacity duration-500"
             enterFrom="opacity-0"
@@ -39,6 +44,7 @@ export const Menu = ({ config }: Props) => {
             leave="transition-opacity duration-300"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
+            unmount={false}
           >
             <Dialog.Panel className="w-full h-full">
               <SplashPage config={config} setIsOpen={setIsOpen} />
