@@ -19,3 +19,7 @@ body {
 .pintura-editor {
   height: 600px;
 }
+
+/*! purgecss start ignore */
+@import './bar-of-progress.css';
+/*! purgecss end ignore */

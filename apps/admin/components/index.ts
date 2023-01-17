@@ -8,3 +8,7 @@ export * from './PageWidthWrapper';
 export * from './EventsPanel';
 export * from './ActionsPanel';
 export * from './ImageEditor';
+export * from './Input';
+export * from './archive';
+export * from './SetlistForm';
+export * from './SetlistView';

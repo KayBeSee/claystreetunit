@@ -36,6 +36,7 @@ module.exports = {
           800: '#142635',
           900: '#05090C',
         },
+        display: ['group-hover', 'group-active'],
       },
       fontFamily: {
         serif: ['Raleway', ...defaultTheme.fontFamily.sans],
@@ -43,5 +44,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
