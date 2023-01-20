@@ -9,7 +9,7 @@ export const SetlistView = ({ show }: Props) => {
   const notesAggregate = [];
 
   return (
-    <div className="p-4 flex flex-col">
+    <div className="flex flex-col max-w-prose">
       <div className="space-y-6 mt-4 text-slate-700 leading-7 text-base">
         {show.setlist.map((set) => (
           <div>

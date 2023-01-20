@@ -19,7 +19,7 @@ export const data: DataConfig = {
     logo: '/logo.png',
     ogImage: '/logo-circle-black.png',
     splashVideoUrl: '',
-    menu: [],
+    menu: [{ slug: '/archive', text: 'Archive' }],
   },
   analytics: {
     googleAnalyticsCode: '',

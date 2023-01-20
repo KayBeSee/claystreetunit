@@ -1,12 +1,17 @@
-import nextConnect from 'next-connect';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ontour } from '@ontour/archive';
 
-const handler = nextConnect();
+export default async function venueHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { method } = req;
 
-handler.get(async (req, res) => {
-  const venues = await ontour.venue.findMany();
-  res.json(venues);
-});
-
-export default handler;
+  switch (method) {
+    case 'GET': {
+      const venues = await ontour.venue.findMany();
+      res.json(venues);
+    }
+  }
+}

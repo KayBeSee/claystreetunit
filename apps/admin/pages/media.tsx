@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import { ImageEditor } from 'components';
 
@@ -12,7 +11,7 @@ const Media = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
       <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
         <div className="space-y-6 lg:col-start-1 lg:col-span-2 bg-white shadow sm:rounded-lg sm:px-1">
-          <ImageEditor backgroundImage={currentBackground} />
+          {/* <ImageEditor backgroundImage={currentBackground} /> */}
         </div>
         <div className="lg:col-start-3 lg:col-span-1 bg-white shadow rounded-lg px-3 py-5">
           <h3 className="text-lg font-medium">Background image</h3>

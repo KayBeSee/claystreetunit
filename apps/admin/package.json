@@ -5,8 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "prisma": {
+    "schema": "../archive/prisma/schema.prisma"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.2",

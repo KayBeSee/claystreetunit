@@ -1,10 +1,10 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-const { data } = require('./data/index.js');
+// const { data } = require('./data/index.js');
 
-const safelist = Object.values(data.music.items).map(
-  (item) => `marker:${item.pageStyle.primaryText}`
-);
+// const safelist = Object.values(data.music.items).map(
+//   (item) => `marker:${item.pageStyle.primaryText}`
+// );
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './data/**.ts',
   ],
-  safelist: safelist,
+  // safelist: safelist,
   theme: {
     extend: {
       colors: {
@@ -50,5 +50,11 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
+  corePlugins: {
+    aspectRatio: false,
+  },
 };

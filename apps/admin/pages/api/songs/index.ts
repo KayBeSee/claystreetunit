@@ -1,13 +1,17 @@
-import nextConnect from 'next-connect';
-import { Prisma } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ontour } from '@ontour/archive';
 
-const handler = nextConnect();
+export default async function songHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { method } = req;
 
-handler.get(async (req, res) => {
-  const songs = await ontour.song.findMany();
-  res.json(songs);
-});
-
-export default handler;
+  switch (method) {
+    case 'GET': {
+      const songs = await ontour.song.findMany();
+      res.json(songs);
+    }
+  }
+}

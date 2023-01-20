@@ -1,53 +1,53 @@
-import nextConnect from 'next-connect';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { CreateShowFormInput, ontour, Prisma } from '@ontour/archive';
 import { getSetlistQuery, getVenueQuery } from './util';
 
-const handler = nextConnect();
+export default async function showHandler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { method, body } = req;
 
-handler.get(async (req, res) => {
-  const shows = await ontour.show.findMany();
-  res.json(shows);
-});
+  switch (method) {
+    case 'GET': {
+      const shows = await ontour.show.findMany();
+      res.json(shows);
+      break;
+    }
+    case 'POST': {
+      try {
+        const show: CreateShowFormInput = JSON.parse(body);
 
-handler.post(async (req, res) => {
-  try {
-    const show: CreateShowFormInput = JSON.parse(req.body);
+        const venueQuery = getVenueQuery(show.venue);
 
-    const venueQuery = getVenueQuery(show.venue);
+        const setlistQuery = getSetlistQuery(show.setlist);
 
-    const setlistQuery = getSetlistQuery(show.setlist);
+        const showData: Prisma.ShowCreateInput = {
+          date: new Date(show.date),
+          eventName: show.eventName,
+          notes: show.notes,
+          venue: venueQuery,
+          setlist: setlistQuery,
+        };
 
-    const showData: Prisma.ShowCreateInput = {
-      date: new Date(show.date),
-      eventName: show.eventName,
-      notes: show.notes,
-      venue: venueQuery,
-      setlist: setlistQuery,
-    };
+        const createdShow = await ontour.show.create({
+          data: showData,
+          include: {
+            venue: true,
+            setlist: true,
+          },
+        });
 
-    const createdShow = await ontour.show.create({
-      data: showData,
-      include: {
-        venue: true,
-        setlist: true,
-      },
-    });
-
-    res.json(createdShow);
-  } catch (e) {
-    console.log('error: ', e);
-    console.log('error message: ', e.message);
+        res.json(createdShow);
+        break;
+      } catch (e) {
+        console.log('error: ', e);
+        console.log('error message: ', e.message);
+      }
+    }
+    default:
+      res.setHeader('Allow', ['GET', 'POST']);
+      res.status(405).end(`Method ${method} Not Allowed`);
   }
-});
-
-// handler.put(async (req, res) => {
-//   const data = JSON.parse(req.body);
-//   const doc = await req.db
-//     .collection('news')
-//     .updateOne({ id: data.id }, { $set: data }, { upsert: true });
-
-//   res.json({ message: 'ok' });
-// });
-
-export default handler;
+}

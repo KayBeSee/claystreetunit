@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { NextComponentType } from 'next';
 import Head from 'next/head';
 import Script from 'next/script';
+import ProgressBar from '@badrap/bar-of-progress';
+
 import { ogImage } from 'utils/ogImage';
 import '../styles/globals.css';
 
@@ -16,9 +18,31 @@ interface Props {
   pageProps: any;
 }
 
+const progress = new ProgressBar({
+  size: 2,
+  color: '#38bdf8',
+  className: 'bar-of-progress',
+  delay: 100,
+});
+
+// this fixes safari jumping to the bottom of the page
+// when closing the search modal using the `esc` key
+if (typeof window !== 'undefined') {
+  progress.start();
+  progress.finish();
+}
+
+Router.events.on('routeChangeStart', () => progress.start());
+Router.events.on('routeChangeComplete', () => progress.finish());
+Router.events.on('routeChangeError', () => progress.finish());
+
 export default function MyApp({ Component, pageProps }: Props) {
   const { config }: { config: DataConfig } = pageProps;
   const latestReleaseTitle = Object.values(config.music.items)[0];
+
+  // Use the layout defined at the page level, if available
+  // @ts-ignore
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   const router = useRouter();
 
@@ -69,14 +93,14 @@ export default function MyApp({ Component, pageProps }: Props) {
         }}
       />
       <PageWithMenu config={config}>
-        <div className="overflow-y-scroll bg-sicard-blue-800 h-full">
+        <div className="overflow-y-scroll h-full">
           <CornerRibbon
             link={`/music/${latestReleaseTitle.slug}`}
             className="bg-gradient-to-r from-sicard-gold-500 to-sicard-gold-700 text-xs"
           >
             Listen to "{latestReleaseTitle.name}"
           </CornerRibbon>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </div>
       </PageWithMenu>
     </>
