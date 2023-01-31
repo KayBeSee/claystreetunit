@@ -90,40 +90,57 @@ export default function Tour({ config }: Props) {
                     <div className="h-8 bg-slate-300 rounded col-span-1"></div>
                   </li>
                 ))
-              : shows.map((show) => (
-                  <li
-                    className="flex justify-between py-6 items-center"
-                    key={show.id}
-                  >
-                    <div className="flex flex-col">
-                      <time className="font-sans text-md text-slate-600">
-                        {getDate(show.datetime)}
-                      </time>
-                      <span className="text-3xl font-serif text-slate-700">
-                        {show.venue.city}, {show.venue.region}
-                      </span>
-                      <span className="font-sans text-md text-slate-700">
-                        {show.venue.name}
-                      </span>
-                    </div>
-                    {show.offers[0] ? (
-                      <a
-                        href={show.offers[0].url}
-                        onClick={() => logTicketClickEvent(show)}
-                        target="_blank"
-                        rel="noreferrer"
-                        // passHref={true}
-                        className="border border-sicard-blue-200 text-sicard-blue-200 flex py-2 px-4 font-medium font-serif"
-                      >
-                        Tickets
-                      </a>
-                    ) : (
-                      <div className="border border-sicard-blue-200 text-sicard-blue-200 flex py-2 px-4 font-medium font-serif">
-                        Free show!
+              : shows.map((show) => {
+                  const primaryText = show.title
+                    ? show.title
+                    : `${show.venue.city}, ${show.venue.region}`;
+                  const secondaryText = show.title
+                    ? `${show.venue.city}, ${show.venue.region}`
+                    : show.venue.name;
+                  const lineup =
+                    show.lineup.length > 1 && !show.title
+                      ? show.lineup.slice(1).join(', ')
+                      : [];
+                  return (
+                    <li
+                      className="flex justify-between py-6 items-center"
+                      key={show.id}
+                    >
+                      <div className="flex flex-col">
+                        <time className="font-sans text-md text-slate-600">
+                          {getDate(show.datetime)}
+                        </time>
+                        <span className="text-3xl font-serif text-slate-700">
+                          {primaryText}
+                        </span>
+                        <span className="font-sans text-md text-slate-700">
+                          {secondaryText}
+                        </span>
+                        {lineup.length ? (
+                          <span className="font-sans text-md text-slate-500">
+                            with {lineup}
+                          </span>
+                        ) : null}
                       </div>
-                    )}
-                  </li>
-                ))}
+                      {show.offers[0] ? (
+                        <a
+                          href={show.offers[0].url}
+                          onClick={() => logTicketClickEvent(show)}
+                          target="_blank"
+                          rel="noreferrer"
+                          // passHref={true}
+                          className="rounded-md bg-sicard-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-sicard-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sicard-blue-600"
+                        >
+                          Tickets
+                        </a>
+                      ) : (
+                        <div className="rounded-md bg-sicard-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-sicard-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sicard-blue-600">
+                          Free show!
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
           </ul>
           <Copyright
             legalEntity={config.legalEntity}
