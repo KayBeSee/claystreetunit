@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import { PageWithSidebar, SetlistView } from 'components';
+import { PageWithSidebar } from 'components';
+import { SetlistView } from '@ontour/components';
+import { ontour } from '@ontour/archive';
+
 import { data } from 'data';
 import { client } from 'middleware/database';
-import { ontour } from '@ontour/archive';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-const Archive = ({ data, ...rest }) => {
-  console.log('data: ', data);
-  console.log('rest: ', rest);
+const Archive = ({ data }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
       <div className="">
@@ -30,6 +30,7 @@ const Archive = ({ data, ...rest }) => {
                   </p>
                   <div>
                     <Link
+                      prefetch
                       href={`/archive/${show.id}`}
                       className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900"
                     >
@@ -71,7 +72,6 @@ const Archive = ({ data, ...rest }) => {
 };
 
 Archive.getLayout = function getLayout(page: React.ReactElement) {
-  console.log('page: ', page);
   return (
     <PageWithSidebar>
       {/* <NestedLayout>{page}</NestedLayout> */}

@@ -45,7 +45,17 @@ model Show {
   relisten String?
   nugsNetId String?
   bandcampAlbumId String?
+  audioSources AudioSource[]
   // comments: [Comment!]! @relation("CommentToShow", onDelete: Cascade)
+}
+
+model AudioSource {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String // provider specific identifier (i.e. AIRSHOW2022-04-28 in https://archive.org/details/AIRSHOW2022-04-28 or 6hIXXfYPaU1YLPfmCOhHd3 in https://open.spotify.com/album/6hIXXfYPaU1YLPfmCOhHd3)
+  provider AudioSourceProvider
+  show Show @relation(fields: [showId], references: [id]) // onDelete: SetNull
+  showId String @db.ObjectId
+  // TODO: eventually tracks would be sweet
 }
 
 model Set {
@@ -93,3 +103,11 @@ model Video {
 //    text: String
 //    rating: Int
 //  }
+
+enum AudioSourceProvider {
+  archive
+  spotify
+  youtube
+  amazon
+  apple
+}

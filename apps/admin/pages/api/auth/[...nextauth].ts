@@ -40,6 +40,7 @@ export default NextAuth({
         email: { type: 'email' },
         password: { type: 'password' },
       },
+      // @ts-ignore
       async authorize(credentials) {
         //Connect to DB
         const MONGODB_CONNECTION_STRING = `mongodb+srv://${

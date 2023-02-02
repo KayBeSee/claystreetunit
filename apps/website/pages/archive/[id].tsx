@@ -2,34 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import {
   PageWithSidebar,
-  SetlistView,
   AttendanceSelect,
   ContributeDropdown,
 } from 'components';
 import { data } from 'data';
 import { client } from 'middleware/database';
 import { ontour } from '@ontour/archive';
+import { SetlistView, StreamLogo } from '@ontour/components';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-import {
-  AppleMusic,
-  AmazonMusic,
-  Spotify,
-  YoutubeMusic,
-} from 'components/logos';
-import { CheckIcon } from '@heroicons/react/solid';
-
-const streamingProviders = {
-  apple: AppleMusic,
-  amazon: AmazonMusic,
-  spotify: Spotify,
-  youtube: YoutubeMusic,
-};
-
-const ArchiveItem = ({ data: show, config }) => {
-  console.log('data: ', data);
-  console.log('config.music.items.shimmer: ', config.music.items.shimmer);
+const ArchiveItem = ({ data: show }) => {
   return (
     <>
       <div className="flex px-4 pb-10 lg:px-8">
@@ -91,24 +74,9 @@ const ArchiveItem = ({ data: show, config }) => {
               Listen on...
             </h2>
             <div className="md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6 items-center justify-center flex flex-col">
-              {Object.keys(config.music.items.shimmer.streamingLinks).map(
-                (service) => {
-                  const StreamLogo = streamingProviders[service];
-
-                  return (
-                    <a
-                      // href={config.music[0].streamingLinks[service]}
-                      target="_blank"
-                      className="flex items-center justify-center w-40 h-16 md:w-28 md:h-12 relative"
-                      key={service}
-                    >
-                      <StreamLogo
-                        className={`w-40 h-16 md:w-28 md:h-12 fill-slate-600 hover:fill-slate-800 hover:scale-110 transition duration-300 cursor-pointer`}
-                      />
-                    </a>
-                  );
-                }
-              )}
+              {show.audioSources.map((source) => (
+                <StreamLogo source={source} />
+              ))}
             </div>
           </div>
           <div className="py-16">
@@ -147,7 +115,6 @@ const ArchiveItem = ({ data: show, config }) => {
 };
 
 ArchiveItem.getLayout = function getLayout(page: React.ReactElement) {
-  console.log('page: ', page);
   return (
     <PageWithSidebar>
       {/* <NestedLayout>{page}</NestedLayout> */}
@@ -163,8 +130,6 @@ export async function getStaticPaths() {
       id: item.id,
     },
   }));
-  console.log('items: ', items);
-  console.log('formattedIds: ', formattedIds);
 
   return {
     paths: formattedIds,
@@ -189,6 +154,7 @@ export async function getStaticProps(context) {
         },
       },
       venue: true,
+      audioSources: true,
     },
   });
 

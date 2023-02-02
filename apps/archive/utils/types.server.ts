@@ -1,4 +1,4 @@
-import { Prisma, Show } from "@prisma/client";
+import { AudioSource, Prisma } from "@prisma/client";
 
 export type ShowWithSetlist = Prisma.ShowGetPayload<{
   include: {
@@ -8,8 +8,14 @@ export type ShowWithSetlist = Prisma.ShowGetPayload<{
       };
     };
     venue: true;
+    audioSources: true;
   };
 }>;
+
+export interface DecoratedAudioSource extends AudioSource {
+  name: string;
+  imageUrl: string;
+}
 
 export type TrackWithSong = Prisma.TrackGetPayload<{
   include: {

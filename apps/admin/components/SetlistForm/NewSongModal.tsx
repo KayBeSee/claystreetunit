@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
-import { Prisma, Song } from '@ontour/archive';
+import { Prisma } from '@ontour/archive';
 import { Input } from 'components';
 
 interface Props {

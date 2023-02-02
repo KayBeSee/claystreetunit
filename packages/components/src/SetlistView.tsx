@@ -1,15 +1,15 @@
+import { ShowWithSetlist } from '@ontour/archive';
 import React from 'react';
 
 interface Props {
-  show: any;
+  show: ShowWithSetlist;
 }
 
 export const SetlistView = ({ show }: Props) => {
-  const date = new Date(show.date);
   const notesAggregate = [];
 
   return (
-    <div className="flex flex-col max-w-prose">
+    <div className="p-4 flex flex-col">
       <div className="space-y-6 mt-4 text-slate-700 leading-7 text-base">
         {show.setlist.map((set) => (
           <div>

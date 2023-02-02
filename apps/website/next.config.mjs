@@ -1,5 +1,8 @@
 import nextMDX from '@next/mdx';
 import { withPlaiceholder } from '@plaiceholder/next';
+import nextTranspileModules from 'next-transpile-modules';
+
+const withTM = nextTranspileModules(['@ontour/components']);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -52,4 +55,4 @@ const withMDX = nextMDX({
   options: {},
 });
 
-export default withMDX(withPlaiceholder(nextConfig));
+export default withTM(withMDX(withPlaiceholder(nextConfig)));

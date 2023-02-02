@@ -34,7 +34,7 @@ export const data: DataConfig = {
       backgroundImage: '/page-backgrounds/tour.jpg',
     },
     bandsInTownApiEndpoint:
-      'https://rest.bandsintown.com/artists/id_1419648/events/?app_id=flatrockmgmt-44c07a11da396912929eb54883e70cfa',
+      'https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070',
   },
   music: {
     style: {

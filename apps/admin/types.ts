@@ -6,3 +6,10 @@ export interface DataConfig {
   dbName: string;
   bandsInTownApiEndpoint: string;
 }
+
+export interface AudioSuggestion {
+  identifier: string;
+  name: string;
+  provider: string;
+  imageUrl: string;
+}

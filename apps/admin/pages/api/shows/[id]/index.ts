@@ -1,16 +1,9 @@
-import nextConnect from 'next-connect';
-import {
-  CreateShowFormInput,
-  ontour,
-  Prisma,
-  ShowWithSetlist,
-  UpdateShowFormInput,
-} from '@ontour/archive';
+import { ontour, UpdateShowFormInput } from '@ontour/archive';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSetlistQuery, getVenueQuery, exclude } from './util';
+import { getSetlistQuery, getVenueQuery } from '../util';
 
-export default async function userHandler(
+export default async function showHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -31,6 +24,7 @@ export default async function userHandler(
             },
           },
           venue: true,
+          audioSources: true,
         },
       });
 
@@ -49,8 +43,7 @@ export default async function userHandler(
       break;
     }
     case 'PUT': {
-      //  TODO: implement
-      const show: UpdateShowFormInput = JSON.parse(req.body);
+      const show: UpdateShowFormInput = JSON.parse(body);
 
       const venueQuery = getVenueQuery(show.venue);
       const setlistQuery = getSetlistQuery(show.setlist);

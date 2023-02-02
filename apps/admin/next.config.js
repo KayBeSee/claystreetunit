@@ -3,6 +3,8 @@
 //   '@pqina/react-pintura',
 // ]);
 
+const withTM = require('next-transpile-modules')(['@ontour/components']);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['jsx', 'tsx', 'ts', 'mdx'],
@@ -32,4 +34,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withTM(nextConfig);

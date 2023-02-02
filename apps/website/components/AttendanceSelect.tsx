@@ -29,15 +29,26 @@ export function AttendanceSelect() {
       onClick={() => setSelected(!selected)}
       type="button"
       className={clsx(
-        selected ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-500',
-        'transition-all duration-200 inline-flex items-center justify-center sm:justify-start rounded-md border border-transparent  px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2'
+        selected
+          ? 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500'
+          : 'bg-gray-500 focus:ring-gray-400',
+        'transition-all duration-200 inline-flex items-center justify-center sm:justify-start rounded-md border border-transparent  px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'
       )}
     >
-      {selected ? (
-        <CheckIcon className="-ml-4 sm:-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-      ) : (
-        <div className="border-white rounded-sm border -ml-4 sm:-ml-1 mr-5 h-3 w-3" />
-      )}
+      <div className="shrink-0 text-white mr-2 -ml-2">
+        <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+          <circle cx="12" cy="12" r="12" fill="#fff" opacity="0.2"></circle>
+          {selected ? (
+            <path
+              d="M7 13l3 3 7-7"
+              stroke="#fff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          ) : null}
+        </svg>
+      </div>
       I was there
     </button>
   );
