@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   PageWithSidebar,
   AttendanceSelect,
@@ -7,12 +8,48 @@ import {
 } from 'components';
 import { data } from 'data';
 import { client } from 'middleware/database';
-import { ontour } from '@ontour/archive';
-import { SetlistView, StreamLogo } from '@ontour/components';
+import { ontour, Prisma } from '@ontour/archive';
+import {
+  Photo,
+  PhotoEmptyState,
+  SetlistView,
+  StreamLogo,
+} from '@ontour/components';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
-const ArchiveItem = ({ data: show }) => {
+import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
+
+import { useAppContext } from 'context/state';
+import { getSlug } from 'utils/getSlug';
+
+const REPLACE_ZERO = 0;
+
+type ShowWithSetListAudio = Prisma.ShowGetPayload<{
+  include: {
+    setlist: {
+      include: {
+        tracks: {
+          include: {
+            song: true;
+          };
+        };
+      };
+    };
+    venue: true;
+    audioSources: true;
+  };
+}>;
+
+interface Props {
+  show: ShowWithSetListAudio;
+  photos: ResourceApiResponse['resources'];
+}
+
+const ArchiveItem = ({ show, photos }: Props) => {
+  const { state, setState } = useAppContext();
+  const router = useRouter();
+
   return (
     <>
       <div className="flex px-4 pb-10 lg:px-8">
@@ -84,28 +121,36 @@ const ArchiveItem = ({ data: show }) => {
               <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
                 Photos
               </h2>
-              <ContributeDropdown />
+              {REPLACE_ZERO === 0 ? null : <ContributeDropdown />}
             </div>
             <section className="mt-8 pb-16">
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                {Array.from(Array(10).keys()).map((item) => (
-                  <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
-                    <Image
-                      className="group-hover:opacity-75 object-cover pointer-events-none"
-                      src="/page-backgrounds/info.jpg"
-                      layout="fill"
-                    />
-                    <button
-                      type="button"
-                      className="absolute inset-0 focus:outline-none"
-                    >
-                      <span className="sr-only">
-                        View details for IMG_5214.HEIC
-                      </span>
-                    </button>
-                  </div>
-                ))}
-              </ul>
+              <PhotoEmptyState
+                show={show}
+                onChange={(files) => {
+                  Object.keys(files).forEach((i) => {
+                    const fileReader = new FileReader();
+                    fileReader.onload = (e) => {
+                      const content = e.target.result;
+                      setState((state) => {
+                        if (state.files) {
+                          return { files: [...state.files, content] };
+                        } else {
+                          return { files: [content] };
+                        }
+                      });
+                    };
+                    fileReader.readAsDataURL(files[i]);
+                  });
+                  router.push(`./${show.id}/upload`);
+                }}
+              />
+              <div className="py-12">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                  {photos.map((photo) => {
+                    return <Photo src={photo.secure_url} />;
+                  })}
+                </ul>
+              </div>
             </section>
           </div>
         </div>
@@ -140,8 +185,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { id } = context.params;
 
-  await client.connect();
-  const items = await ontour.show.findFirst({
+  const show = await ontour.show.findFirst({
     where: { id },
     include: {
       setlist: {
@@ -158,10 +202,22 @@ export async function getStaticProps(context) {
     },
   });
 
+  cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET,
+  });
+
+  const { resources } = await cloudinary.api.resources_by_asset_folder(
+    `airshow/shows/${getSlug(show)}`,
+    { transformation: 'f_jpg,w_8,q_70' }
+  );
+
   return {
     props: {
-      data: JSON.parse(JSON.stringify(items)),
+      show: JSON.parse(JSON.stringify(show)),
       config: data,
+      photos: resources,
     },
   };
 }

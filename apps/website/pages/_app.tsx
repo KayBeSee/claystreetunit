@@ -13,6 +13,8 @@ import { DataConfig } from 'types';
 
 import * as ga from 'utils/gtag';
 
+import { AppWrapper } from 'context/state';
+
 interface Props {
   Component: NextComponentType;
   pageProps: any;
@@ -100,7 +102,7 @@ export default function MyApp({ Component, pageProps }: Props) {
           >
             Listen to "{latestReleaseTitle.name}"
           </CornerRibbon>
-          {getLayout(<Component {...pageProps} />)}
+          <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
         </div>
       </PageWithMenu>
     </>

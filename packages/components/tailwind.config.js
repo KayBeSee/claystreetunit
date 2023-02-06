@@ -1,20 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-// const { data } = require('./data/index.js');
-
-// const safelist = Object.values(data.music.items).map(
-//   (item) => `marker:${item.pageStyle.primaryText}`
-// );
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    './data/**.ts',
-    '../../packages/components/**/*.{js,ts,jsx,tsx}',
+    './data.ts',
   ],
-  // safelist: safelist,
   theme: {
     extend: {
       colors: {
@@ -44,6 +36,7 @@ module.exports = {
           800: '#142635',
           900: '#05090C',
         },
+        display: ['group-hover', 'group-active'],
       },
       fontFamily: {
         serif: ['Raleway', ...defaultTheme.fontFamily.sans],
@@ -51,11 +44,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
-  corePlugins: {
-    aspectRatio: false,
-  },
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };

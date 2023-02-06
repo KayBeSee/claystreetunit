@@ -193,6 +193,9 @@ export const data: DataConfig = {
     ],
     youtubeLink: 'https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw',
   },
+  archive: {
+    cloudinary_root_folder: 'airshow',
+  },
 };
 
 export default data;

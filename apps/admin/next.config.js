@@ -7,7 +7,7 @@ const withTM = require('next-transpile-modules')(['@ontour/components']);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['jsx', 'tsx', 'ts', 'mdx'],
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({

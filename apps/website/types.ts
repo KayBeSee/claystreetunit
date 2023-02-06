@@ -160,5 +160,8 @@ export interface DataConfig {
   info: InfoConfig;
   mailingList: MailingListConfig;
   epk: EpkConfig;
+  archive: {
+    cloudinary_root_folder: string;
+  };
   error: ErrorConfig;
 }

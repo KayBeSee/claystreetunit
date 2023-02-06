@@ -40,3 +40,5 @@ export const StreamLogo = ({ source }: Props) => {
     </a>
   );
 };
+
+export * from "./logos";
