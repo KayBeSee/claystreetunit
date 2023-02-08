@@ -31,6 +31,8 @@
     "cloudinary": "^1.33.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
+    "imagemin": "^8.0.1",
+    "imagemin-jpegtran": "^7.0.0",
     "isomorphic-unfetch": "^3.1.0",
     "mongodb": "^4.7.0",
     "multer": "^1.4.5-lts.1",

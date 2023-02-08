@@ -7,7 +7,6 @@ import {
   ContributeDropdown,
 } from 'components';
 import { data } from 'data';
-import { client } from 'middleware/database';
 import { ontour, Prisma } from '@ontour/archive';
 import {
   Photo,
@@ -22,6 +21,7 @@ import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 
 import { useAppContext } from 'context/state';
 import { getSlug } from 'utils/getSlug';
+import getBase64ImageUrl, { ImageProps } from 'utils/generateBlurPlaceholder';
 
 const REPLACE_ZERO = 0;
 
@@ -47,7 +47,7 @@ interface Props {
 }
 
 const ArchiveItem = ({ show, photos }: Props) => {
-  const { state, setState } = useAppContext();
+  const { setState } = useAppContext();
   const router = useRouter();
 
   return (
@@ -224,7 +224,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  let photos = [];
   const { id } = context.params;
 
   const show = await ontour.show.findFirst({
@@ -255,7 +254,37 @@ export async function getStaticProps(context) {
       `airshow/shows/${getSlug(show)}`,
       { transformation: 'f_jpg,w_8,q_70' }
     );
-    photos = resources;
+
+    let reducedResults: ImageProps[] = [];
+
+    let i = 0;
+    for (let result of resources) {
+      reducedResults.push({
+        id: i,
+        height: result.height,
+        width: result.width,
+        public_id: result.public_id,
+        format: result.format,
+      });
+      i++;
+    }
+
+    const blurImagePromises = reducedResults.map((image: ImageProps) => {
+      return getBase64ImageUrl(image);
+    });
+    const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
+
+    for (let i = 0; i < resources.length; i++) {
+      resources[i].blurDataUrl = imagesWithBlurDataUrls[i];
+    }
+
+    return {
+      props: {
+        show: JSON.parse(JSON.stringify(show)),
+        config: data,
+        photos: resources,
+      },
+    };
   } catch (e) {
     console.log('e: ', e);
   }
@@ -264,7 +293,6 @@ export async function getStaticProps(context) {
     props: {
       show: JSON.parse(JSON.stringify(show)),
       config: data,
-      photos: photos,
     },
   };
 }

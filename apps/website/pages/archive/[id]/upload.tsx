@@ -122,7 +122,6 @@ const ShowUpload = ({ data: show }: Props) => {
                 const response = await signIn('spotify', {
                   redirect: false,
                 });
-                console.log('response: ', response);
               }}
               className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-green-500 text-white hover:bg-green-700"
             >
