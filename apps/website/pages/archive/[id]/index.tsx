@@ -51,13 +51,13 @@ const ArchiveItem = ({ show, photos }: Props) => {
   const router = useRouter();
 
   return (
-    <>
-      <div className="flex px-4 pb-10 lg:px-8">
+    <div className="overflow-y-auto h-screen bg-gray-50">
+      <div className="px-4 pb-10 pt-10 lg:px-8 z-10 hidden md:block">
         <Link href="/archive">
-          <a className="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white">
+          <a className="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900">
             <svg
               viewBox="0 -9 3 24"
-              className="overflow-visible mr-3 text-slate-400 w-auto h-6 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+              className="overflow-visible mr-3 text-slate-400 w-auto h-6 group-hover:text-slate-600"
             >
               <path
                 d="M3 0L0 3L3 6"
@@ -72,9 +72,47 @@ const ArchiveItem = ({ show, photos }: Props) => {
           </a>
         </Link>
       </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+      <div className="w-full h-56 relative flex flex-col md:hidden justify-end">
+        <Image
+          src="/page-backgrounds/info.jpg"
+          className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom"
+          layout="fill"
+        />
+        <div className="flex px-4 py-2 lg:px-8 z-10 items-end">
+          <Link href="/archive">
+            <a className="group flex font-semibold text-sm leading-6 text-slate-100 hover:text-slate-200">
+              <svg
+                viewBox="0 -9 3 24"
+                className="overflow-visible mr-3 text-slate-100 w-auto h-6 group-hover:text-slate-200"
+              >
+                <path
+                  d="M3 0L0 3L3 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Back to setlists
+            </a>
+          </Link>
+        </div>
+        <div className="flex flex-col z-10 px-4 py-6 max-w-7xl mx-auto w-full justify-end md:hidden">
+          <time className="font-sans text-sm text-slate-100">
+            {format(new Date(show.date), 'MMMM d, y')}
+          </time>
+          <span className="text-3xl font-serif text-slate-100">
+            {show.venue.name}
+          </span>
+          <span className="font-sans text-lg text-slate-100">
+            {show.venue.city}, {show.venue.state}
+          </span>
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-10">
         <div className="text-white divide-y divide-slate-200">
-          <div className="flex flex-col sm:flex-row md:items-center justify-between">
+          <div className="flex-col sm:flex-row md:items-center justify-between space-y-8 hidden md:flex">
             <h1 className="text-black font-semibold text-3xl py-8 font-serif">
               <p className="font-serif text-md sm:text-xl font-semibold tracking-tight text-slate-500">
                 {format(new Date(show.date), 'MMMM d, y')}
@@ -96,7 +134,10 @@ const ArchiveItem = ({ show, photos }: Props) => {
 
               <SetlistView show={show} />
             </div>
-            <div className="relative col-span-3 lg:col-span-1">
+            <div className="md:hidden flex flex-col">
+              <AttendanceSelect />
+            </div>
+            <div className="relative col-span-3 lg:col-span-1 hidden md:block">
               <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
                 <Image
                   className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl object-cover"
@@ -155,7 +196,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

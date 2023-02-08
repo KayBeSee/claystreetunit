@@ -19,7 +19,7 @@ const Archive = ({ data }) => {
         </h1>
         <ul className="space-y-8">
           {data.map((show) => (
-            <li className="py-10 grid grid-cols-1 gap-8 lg:grid-cols-3 group relative rounded-3xl bg-slate-50 p-6 dark:bg-slate-800/80 dark:highlight-white/5 hover:bg-slate-100 dark:hover:bg-slate-700/50">
+            <li className="py-10 grid grid-cols-1 gap-8 lg:grid-cols-3 group relative rounded-3xl bg-slate-50 p-6 hover:bg-slate-100">
               <div className="flex flex-col flex-1 flex-wrap mb-4 col-span-3 lg:col-span-2">
                 <p className="mb-2 text-sm leading-6 font-semibold text-sicard-blue-400">
                   Setlist
