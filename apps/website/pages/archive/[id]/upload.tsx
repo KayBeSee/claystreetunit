@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { format } from 'date-fns';
 
-import { ontour, Prisma, Show } from '@ontour/archive';
+import { ontour, Prisma } from '@ontour/archive';
 import { data } from 'data';
 import { useAppContext } from 'context/state';
 import { LoadingSpinner, Photo, PhotoEmptyState } from '@ontour/components';
-import { LinkIcon } from '@heroicons/react/outline';
+
 import { useRouter } from 'next/router';
 import { getSlug } from 'utils/getSlug';
-import { signIn, useSession } from 'next-auth/react';
-import clsx from 'clsx';
 
 type ShowWithVenue = Prisma.ShowGetPayload<{
   include: {
@@ -26,7 +25,6 @@ const ShowUpload = ({ data: show }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { state, setState } = useAppContext();
-  const { data: session } = useSession();
 
   const uploadFile = async (files, show) => {
     try {
@@ -95,47 +93,6 @@ const ShowUpload = ({ data: show }: Props) => {
       />
     </div>
   );
-  const SessionLogin = ({ className }) => {
-    if (!session) {
-      return (
-        <div
-          className={clsx(
-            className,
-            'mt-8 flex-col col-span-1 py-6 bg-white px-4 md:rounded-2xl w-full shadow border border-slate-900/20'
-          )}
-        >
-          <div>
-            <div className="flex items-center text-base font-semibold leading-7 text-slate-900">
-              <LinkIcon className="h-7 w-7 flex-none rounded-full border border-emerald-400 bg-emerald-50 fill-emerald-50 stroke-emerald-400 p-[0.2rem]" />
-              <h4 className="ml-3">Want credit for these photos?</h4>
-            </div>
-            <div className="mt-3 max-w-none prose-sm prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
-              <p className="text-slate-500">
-                Connect a social account to receive credit for your photos,
-                track your shows, and sign up for our mailing list.
-              </p>
-            </div>
-          </div>
-          <div className="space-y-3 mt-8 flex flex-col items-start">
-            <button
-              onClick={async () => {
-                const response = await signIn('spotify', {
-                  redirect: false,
-                });
-              }}
-              className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-green-500 text-white hover:bg-green-700"
-            >
-              Connect with Spotify
-            </button>
-            <button className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-700 text-white hover:bg-slate-700">
-              Connect with AppleID
-            </button>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
 
   const Preview = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 md:px-4 py-6 px-4">
@@ -146,7 +103,6 @@ const ShowUpload = ({ data: show }: Props) => {
           Thanks for snapping these. After you submit them, we’ll review them
           and add our favorite’s to the show page.
         </p>
-        <SessionLogin className="hidden md:flex" />
       </div>
       <div className="md:col-span-2">
         <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6">
@@ -160,7 +116,6 @@ const ShowUpload = ({ data: show }: Props) => {
             }
           })}
         </ul>
-        <SessionLogin className="flex md:hidden" />
       </div>
 
       <div className="py-6 space-y-1 md:col-span-2 px-4 md:col-start-2">
@@ -198,13 +153,31 @@ const ShowUpload = ({ data: show }: Props) => {
 
   return (
     <div className="overflow-y-auto h-screen bg-gray-50">
-      <div className="w-full h-48 relative flex">
+      <div className="w-full h-56 relative flex flex-col justify-end z-0">
         <Image
           src="/page-backgrounds/info.jpg"
-          className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom"
+          className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom z-0"
           layout="fill"
         />
-        <div className="flex flex-col z-10 px-4 py-6 max-w-7xl mx-auto w-full justify-end">
+        <div className="flex flex-col px-4 py-6 max-w-7xl mx-auto w-full justify-end z-[1]">
+          <Link href={`/archive/${show.id}`}>
+            <a className="group flex font-semibold text-sm leading-6 text-slate-100 hover:text-slate-200 py-4">
+              <svg
+                viewBox="0 -9 3 24"
+                className="overflow-visible mr-3 text-slate-100 w-auto h-6 group-hover:text-slate-200"
+              >
+                <path
+                  d="M3 0L0 3L3 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Back to show
+            </a>
+          </Link>
           <time className="font-sans text-sm text-slate-100">
             {format(new Date(show.date), 'MMMM d, y')}
           </time>
@@ -216,7 +189,7 @@ const ShowUpload = ({ data: show }: Props) => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col z-10 max-w-7xl w-full mx-auto flex-1">
+      <div className="flex flex-col max-w-7xl w-full mx-auto flex-1">
         {state.files ? <Preview /> : <EmptyStateWrapped />}
       </div>
     </div>

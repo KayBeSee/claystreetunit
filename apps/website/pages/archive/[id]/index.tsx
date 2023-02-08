@@ -52,7 +52,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
 
   return (
     <div className="overflow-y-auto h-screen bg-gray-50">
-      <div className="px-4 pb-10 pt-10 lg:px-8 z-10 hidden md:block">
+      <div className="px-4 pb-10 pt-10 lg:px-8 hidden md:block">
         <Link href="/archive">
           <a className="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900">
             <svg
@@ -72,13 +72,13 @@ const ArchiveItem = ({ show, photos }: Props) => {
           </a>
         </Link>
       </div>
-      <div className="w-full h-56 relative flex flex-col md:hidden justify-end">
+      <div className="w-full h-56 relative flex flex-col md:hidden justify-end z-0">
         <Image
           src="/page-backgrounds/info.jpg"
           className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom"
           layout="fill"
         />
-        <div className="flex px-4 py-2 lg:px-8 z-10 items-end">
+        <div className="flex px-4 py-2 lg:px-8 z-[1] items-end">
           <Link href="/archive">
             <a className="group flex font-semibold text-sm leading-6 text-slate-100 hover:text-slate-200">
               <svg
@@ -98,7 +98,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
             </a>
           </Link>
         </div>
-        <div className="flex flex-col z-10 px-4 py-6 max-w-7xl mx-auto w-full justify-end md:hidden">
+        <div className="flex flex-col z-[1] px-4 py-6 max-w-7xl mx-auto w-full justify-end md:hidden">
           <time className="font-sans text-sm text-slate-100">
             {format(new Date(show.date), 'MMMM d, y')}
           </time>
@@ -110,7 +110,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
           </span>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-[1]">
         <div className="text-white divide-y divide-slate-200">
           <div className="flex-col sm:flex-row md:items-center justify-between space-y-8 hidden md:flex">
             <h1 className="text-black font-semibold text-3xl py-8 font-serif">
@@ -293,6 +293,7 @@ export async function getStaticProps(context) {
     props: {
       show: JSON.parse(JSON.stringify(show)),
       config: data,
+      photos: [],
     },
   };
 }
