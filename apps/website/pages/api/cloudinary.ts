@@ -22,9 +22,15 @@ export default async function handler(
 
   switch (method) {
     case 'POST': {
-      const { folder } = JSON.parse(body);
-      const result = await createImageUpload(folder);
-      res.json(result);
+      try {
+        const { folder } = JSON.parse(body);
+        const result = await createImageUpload(folder);
+        console.log('result: ', result);
+        res.json(result);
+      } catch (e) {
+        console.log('e: ', e);
+        console.log('e.message: ', e.message);
+      }
     }
     default:
       res.setHeader('Allow', ['POST']);
