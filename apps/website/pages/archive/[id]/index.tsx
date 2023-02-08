@@ -126,16 +126,16 @@ const ArchiveItem = ({ show, photos }: Props) => {
             </h1>
             <AttendanceSelect />
           </div>
-          <div className="py-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="md:hidden flex flex-col col-span-3 py-4">
+            <AttendanceSelect />
+          </div>
+          <div className="py-8 md:py-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="flex flex-col flex-1 flex-wrap mb-4 col-span-3 lg:col-span-2 pr-4">
               <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700 mb-4">
                 Setlist
               </h2>
 
               <SetlistView show={show} />
-            </div>
-            <div className="md:hidden flex flex-col">
-              <AttendanceSelect />
             </div>
             <div className="relative col-span-3 lg:col-span-1 hidden md:block">
               <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
@@ -147,7 +147,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
               </div>
             </div>
           </div>
-          <div className="py-16 space-y-6">
+          <div className="py-8 md:py-16 space-y-6">
             <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
               Listen on...
             </h2>
@@ -157,7 +157,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
               ))}
             </div>
           </div>
-          <div className="py-16">
+          <div className="py-8 md:py-16">
             <div className="flex flex-col sm:flex-row md:items-center justify-between">
               <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
                 Photos

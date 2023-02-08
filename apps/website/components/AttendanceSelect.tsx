@@ -32,7 +32,7 @@ export function AttendanceSelect() {
         selected
           ? 'bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500'
           : 'bg-gray-500 focus:ring-gray-400',
-        'transition-all duration-200 inline-flex items-center justify-center sm:justify-start rounded-md border border-transparent  px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'
+        'transition-all duration-200 inline-flex items-center justify-center rounded-md border border-transparent  px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'
       )}
     >
       <div className="shrink-0 text-white mr-2 -ml-2">
