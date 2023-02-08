@@ -11,7 +11,7 @@
     "prebuild": "tsc ./data/index.ts --baseUrl ."
   },
   "prisma": {
-    "schema": "../archive/prisma/schema.prisma"
+    "schema": "../../packages/archive/prisma/schema.prisma"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.2",
