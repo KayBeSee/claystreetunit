@@ -162,6 +162,7 @@ export interface DataConfig {
   epk: EpkConfig;
   archive: {
     cloudinary_root_folder: string;
+    dbName: 'airshow';
   };
   error: ErrorConfig;
 }

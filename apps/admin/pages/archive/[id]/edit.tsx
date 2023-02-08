@@ -5,8 +5,9 @@ import fetch from 'isomorphic-unfetch';
 import { config } from 'data';
 
 import { ontour, CreateShowFormInput } from '@ontour/archive';
+import { LoadingSpinner } from '@ontour/components';
 
-import { PageWidthWrapper, LoadingSpinner, SetlistForm } from 'components';
+import { PageWidthWrapper, SetlistForm } from 'components';
 import { fetcher } from 'lib/fetcher';
 
 const EditArchivePage = () => {

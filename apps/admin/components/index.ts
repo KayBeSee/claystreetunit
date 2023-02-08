@@ -2,7 +2,6 @@ export * from './Layout';
 export * from './NewsPreview';
 export * from './auth';
 export * from './ImageUploader';
-export * from './LoadingSpinner';
 export * from './Navbar';
 export * from './PageWidthWrapper';
 export * from './EventsPanel';

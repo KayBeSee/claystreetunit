@@ -10,7 +10,9 @@ import {
   DecoratedAudioSource,
 } from '@ontour/archive';
 
-import { PageWidthWrapper, LoadingSpinner } from 'components';
+import { LoadingSpinner } from '@ontour/components';
+
+import { PageWidthWrapper } from 'components';
 import { createAudioSource } from 'components/AudioForm/util';
 import { fetcher } from 'lib/fetcher';
 

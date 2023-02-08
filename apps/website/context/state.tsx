@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 interface KeyValuePairs {
   [key: string]: any;
@@ -11,6 +12,8 @@ const AppContext = createContext({
 
 export function AppWrapper({ children }) {
   const [state, setState] = useState<KeyValuePairs>({});
+  const { data: session, status } = useSession();
+  console.log('session: ', session);
 
   let value = {
     state,

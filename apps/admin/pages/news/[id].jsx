@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-unfetch';
 
 import { config } from 'data';
-
-import { PageWidthWrapper, LoadingSpinner } from 'components';
+import { LoadingSpinner } from '@ontour/components';
+import { PageWidthWrapper } from 'components';
 import EditNewsForm from 'components/EditNewsForm';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';

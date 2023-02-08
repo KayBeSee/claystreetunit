@@ -4,6 +4,7 @@ import { NextComponentType } from 'next';
 import Head from 'next/head';
 import Script from 'next/script';
 import ProgressBar from '@badrap/bar-of-progress';
+import { SessionProvider } from 'next-auth/react';
 
 import { ogImage } from 'utils/ogImage';
 import '../styles/globals.css';
@@ -94,17 +95,19 @@ export default function MyApp({ Component, pageProps }: Props) {
         `,
         }}
       />
-      <PageWithMenu config={config}>
-        <div className="overflow-y-scroll h-full">
-          <CornerRibbon
-            link={`/music/${latestReleaseTitle.slug}`}
-            className="bg-gradient-to-r from-sicard-gold-500 to-sicard-gold-700 text-xs"
-          >
-            Listen to "{latestReleaseTitle.name}"
-          </CornerRibbon>
-          <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
-        </div>
-      </PageWithMenu>
+      <SessionProvider session={pageProps.session}>
+        <PageWithMenu config={config}>
+          <div className="overflow-y-scroll h-full">
+            <CornerRibbon
+              link={`/music/${latestReleaseTitle.slug}`}
+              className="bg-gradient-to-r from-sicard-gold-500 to-sicard-gold-700 text-xs"
+            >
+              Listen to "{latestReleaseTitle.name}"
+            </CornerRibbon>
+            <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
+          </div>
+        </PageWithMenu>
+      </SessionProvider>
     </>
   );
 }

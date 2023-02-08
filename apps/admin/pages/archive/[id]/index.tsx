@@ -7,8 +7,8 @@ import { config } from 'data';
 import { ontour, ShowWithSetlist } from '@ontour/archive';
 import { StreamLogo } from '@ontour/components';
 
-import { PageWidthWrapper, LoadingSpinner } from 'components';
-import { SetlistView } from '@ontour/components';
+import { PageWidthWrapper } from 'components';
+import { SetlistView, LoadingSpinner } from '@ontour/components';
 import { fetcher } from 'lib/fetcher';
 import Link from 'next/link';
 

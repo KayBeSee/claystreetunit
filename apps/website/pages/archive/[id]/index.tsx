@@ -183,6 +183,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+  let photos = [];
   const { id } = context.params;
 
   const show = await ontour.show.findFirst({
@@ -208,16 +209,21 @@ export async function getStaticProps(context) {
     api_secret: process.env.CLOUDINARY_SECRET,
   });
 
-  const { resources } = await cloudinary.api.resources_by_asset_folder(
-    `airshow/shows/${getSlug(show)}`,
-    { transformation: 'f_jpg,w_8,q_70' }
-  );
+  try {
+    const { resources } = await cloudinary.api.resources_by_asset_folder(
+      `airshow/shows/${getSlug(show)}`,
+      { transformation: 'f_jpg,w_8,q_70' }
+    );
+    photos = resources;
+  } catch (e) {
+    console.log('e: ', e);
+  }
 
   return {
     props: {
       show: JSON.parse(JSON.stringify(show)),
       config: data,
-      photos: resources,
+      photos: photos,
     },
   };
 }
