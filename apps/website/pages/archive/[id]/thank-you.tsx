@@ -59,9 +59,9 @@ const ThankYou = ({ data: show }: Props) => {
 };
 
 ThankYou.getLayout = function getLayout(page: React.ReactElement) {
-  const { data } = page.props;
+  const { data, config } = page.props;
   return (
-    <ShowArchiveWrapper show={data} alwaysShowImage={true}>
+    <ShowArchiveWrapper config={config} show={data} alwaysShowImage={true}>
       {page}
     </ShowArchiveWrapper>
   );

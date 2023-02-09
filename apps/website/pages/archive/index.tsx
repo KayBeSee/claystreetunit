@@ -2,15 +2,31 @@ import React from 'react';
 import Link from 'next/link';
 import { PageWithSidebar } from 'components';
 import { SetlistView } from '@ontour/components';
-import { ontour } from '@ontour/archive';
+import { ontour, Prisma } from '@ontour/archive';
 
 import { data } from 'data';
 import { client } from 'middleware/database';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/solid';
+import { DataConfig } from 'types';
 
-const Archive = ({ data }) => {
+interface Props {
+  data: Prisma.ShowGetPayload<{
+    include: {
+      setlist: {
+        include: {
+          tracks: { include: { song: { select: { id: true; name: true } } } };
+        };
+      };
+      venue: true;
+      audioSources: true;
+    };
+  }>[];
+  config: DataConfig;
+}
+
+const Archive = ({ data, config }: Props) => {
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 md:px-8">
       <div className="">
@@ -54,11 +70,11 @@ const Archive = ({ data }) => {
                   </Link>
                 </div>
               </div>
-              <div className="relative col-span-3 lg:col-span-1 flex items-center">
+              <div className="relative col-span-3 lg:col-span-1 items-center hidden md:flex">
                 <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-3xl">
                   <Image
                     className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-3xl object-cover"
-                    src="/page-backgrounds/info.jpg"
+                    src={show.imageUrl || config.info.style.backgroundImage}
                     layout="fill"
                   />
                 </div>
@@ -72,12 +88,7 @@ const Archive = ({ data }) => {
 };
 
 Archive.getLayout = function getLayout(page: React.ReactElement) {
-  return (
-    <PageWithSidebar>
-      {/* <NestedLayout>{page}</NestedLayout> */}
-      {page}
-    </PageWithSidebar>
-  );
+  return <PageWithSidebar>{page}</PageWithSidebar>;
 };
 
 export async function getStaticProps(context) {

@@ -1,5 +1,5 @@
-import { ShowWithSetlist } from '@ontour/archive';
-import React from 'react';
+import { ShowWithSetlist } from "@ontour/archive";
+import React from "react";
 
 interface Props {
   show: ShowWithSetlist;
@@ -9,7 +9,7 @@ export const SetlistView = ({ show }: Props) => {
   const notesAggregate = [];
 
   return (
-    <div className="p-4 flex flex-col">
+    <div className="px-0 md:px-2 py-4 flex flex-col">
       <div className="space-y-6 mt-4 text-slate-700 leading-7 text-base">
         {show.setlist.map((set) => (
           <div>
@@ -27,7 +27,7 @@ export const SetlistView = ({ show }: Props) => {
                       </sup>
                     );
                   })}
-                  {track.segue ? ' > ' : isLastSong ? '' : ', '}
+                  {track.segue ? " > " : isLastSong ? "" : ", "}
                 </span>
               );
             })}

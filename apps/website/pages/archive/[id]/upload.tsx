@@ -173,10 +173,10 @@ const ShowUpload = ({ data: show }: Props) => {
 };
 
 ShowUpload.getLayout = function getLayout(page: React.ReactElement) {
-  console.log('page: ', page);
-  const { data } = page.props;
+  const { data, config } = page.props;
   return (
     <ShowArchiveWrapper
+      config={config}
       alwaysShowImage={true}
       show={data}
       navBackOptions={{ text: 'Back to show', href: `/archive/${data.id}` }}

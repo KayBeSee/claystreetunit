@@ -22,6 +22,7 @@ import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 import { useAppContext } from 'context/state';
 import { getSlug } from 'utils/getSlug';
 import getBase64ImageUrl, { ImageProps } from 'utils/generateBlurPlaceholder';
+import { DataConfig } from 'types';
 
 const REPLACE_ZERO = 0;
 
@@ -44,9 +45,10 @@ type ShowWithSetListAudio = Prisma.ShowGetPayload<{
 interface Props {
   show: ShowWithSetListAudio;
   photos: ResourceApiResponse['resources'];
+  config: DataConfig;
 }
 
-const ArchiveItem = ({ show, photos }: Props) => {
+const ArchiveItem = ({ show, photos, config }: Props) => {
   const { setState } = useAppContext();
   const router = useRouter();
 
@@ -82,7 +84,7 @@ const ArchiveItem = ({ show, photos }: Props) => {
             <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
               <Image
                 className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl object-cover"
-                src="/page-backgrounds/info.jpg"
+                src={show.imageUrl || config.info.style.backgroundImage}
                 layout="fill"
               />
             </div>
@@ -140,10 +142,11 @@ const ArchiveItem = ({ show, photos }: Props) => {
 };
 
 ArchiveItem.getLayout = function getLayout(page: React.ReactElement) {
-  const { show } = page.props;
+  const { show, config } = page.props;
   return (
     <PageWithSidebar>
       <ShowArchiveWrapper
+        config={config}
         show={show}
         navBackOptions={{ text: 'Back to setlists', href: '/archive' }}
       >

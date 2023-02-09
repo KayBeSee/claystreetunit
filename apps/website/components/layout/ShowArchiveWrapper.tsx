@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { Prisma } from '@ontour/archive';
 import clsx from 'clsx';
+import { DataConfig } from 'types';
 
 type ShowWithVenue = Prisma.ShowGetPayload<{
   include: {
@@ -15,6 +16,7 @@ type ShowWithVenue = Prisma.ShowGetPayload<{
 interface Props {
   children: React.ReactElement;
   show: ShowWithVenue;
+  config: DataConfig;
   navBackOptions?: {
     text: string;
     href: string;
@@ -25,6 +27,7 @@ interface Props {
 export function ShowArchiveWrapper({
   children,
   show,
+  config,
   navBackOptions,
   alwaysShowImage = false,
 }: Props) {
@@ -64,7 +67,7 @@ export function ShowArchiveWrapper({
         )}
       >
         <Image
-          src="/page-backgrounds/info.jpg"
+          src={show.imageUrl || config.info.style.backgroundImage}
           className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom"
           layout="fill"
         />

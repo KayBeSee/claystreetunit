@@ -25,7 +25,6 @@ export default async function handler(
       try {
         const { folder } = JSON.parse(body);
         const result = await createImageUpload(folder);
-        console.log('result: ', result);
         return res.json(result);
       } catch (e) {
         console.log('e: ', e);
