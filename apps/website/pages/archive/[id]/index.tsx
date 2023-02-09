@@ -1,9 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 import {
   PageWithSidebar,
   AttendanceSelect,
-  ContributeDropdown,
   ShowArchiveWrapper,
 } from 'components';
 import { data } from 'data';
@@ -51,6 +52,37 @@ interface Props {
 const ArchiveItem = ({ show, photos, config }: Props) => {
   const { setState } = useAppContext();
   const router = useRouter();
+
+  <Head>
+    <meta
+      name="og:title"
+      content={`${format(new Date(show.date), 'MMMM d, y')} - ${
+        show.venue.name
+      } - ${show.venue.city}, ${show.venue.state} - ${config.artistName}`}
+    />
+    <meta
+      name="og:description"
+      content={`Setlist, audio, photos and more from ${
+        config.artistName
+      }'s show on ${format(new Date(show.date), 'MMMM d, y')} at ${
+        show.venue.name
+      } in ${show.venue.city}, ${show.venue.state}`}
+    />
+    <meta
+      name="og:image"
+      content={
+        // Because OG images must have a absolute URL, we use the
+        // `VERCEL_URL` environment variable to get the deployment’s URL.
+        // More info:
+        // https://vercel.com/docs/concepts/projects/environment-variables
+        `${
+          process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+        }/api/og?date=${show.date}&venueName=${show.venue.name}&venueCity=${
+          show.venue.city
+        }&venueState=${show.venue.state}&imageUrl=${show.imageUrl}`
+      }
+    />
+  </Head>;
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-[1]">
