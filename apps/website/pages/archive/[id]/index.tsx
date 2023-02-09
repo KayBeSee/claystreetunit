@@ -53,6 +53,16 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
   const { setState } = useAppContext();
   const router = useRouter();
 
+  const ogObject = {
+    date: show.date.toString(),
+    venueName: show.venue.name,
+    venueCity: show.venue.city,
+    venueState: show.venue.state,
+    imageUrl: show.imageUrl,
+  };
+
+  const queryParams = new URLSearchParams(ogObject);
+
   return (
     <>
       <Head>
@@ -87,9 +97,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               process.env.NEXT_PUBLIC_VERCEL_URL
                 ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
                 : ''
-            }/api/og?date=${show.date}&venueName=${show.venue.name}&venueCity=${
-              show.venue.city
-            }&venueState=${show.venue.state}&imageUrl=${show.imageUrl}`
+            }/api/og?${queryParams}`
           }
         />
       </Head>
