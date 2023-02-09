@@ -15,7 +15,7 @@ export const PhotoEmptyState = ({ show, onChange }: Props) => {
 
   return (
     <div className="w-full relative">
-      <div className="opacity-10 md:opacity-100 -mt-10 md:mt-0 absolute right-0 md:right-0 top-10 md:-top-6 z-[-1]">
+      <div className="opacity-10 md:opacity-100 -mt-10 md:mt-0 absolute right-0 md:right-0 top-10 md:-top-6">
         <div className="flex transform rotate-12">
           <Image
             className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl shadow"
@@ -25,7 +25,7 @@ export const PhotoEmptyState = ({ show, onChange }: Props) => {
           />
         </div>
       </div>
-      <div className="invisible md:visible absolute right-0 md:right-8 top-10 md:-top-6 z-[-1]">
+      <div className="invisible md:visible absolute right-0 md:right-8 top-10 md:-top-6">
         <div className="flex transform rotate-6">
           <Image
             className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl shadow"
@@ -35,7 +35,7 @@ export const PhotoEmptyState = ({ show, onChange }: Props) => {
           />
         </div>
       </div>
-      <div className="invisible md:visible absolute right-0 md:right-20 top-10 md:-top-6 z-[-1]">
+      <div className="invisible md:visible absolute right-0 md:right-20 top-10 md:-top-6">
         <div className="flex transform rotate-3">
           <Image
             className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl shadow"

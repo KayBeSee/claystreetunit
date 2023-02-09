@@ -12,14 +12,14 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 
 const Archive = ({ data }) => {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+    <div className="mx-auto max-w-7xl px-2 sm:px-6 md:px-8">
       <div className="">
         <h1 className="text-black font-semibold text-3xl py-8 font-serif">
           Latest from the road...
         </h1>
         <ul className="space-y-8">
           {data.map((show) => (
-            <li className="py-10 grid grid-cols-1 gap-8 lg:grid-cols-3 group relative rounded-3xl bg-slate-50 p-6 hover:bg-slate-100">
+            <li className="py-6 px-4 md:px-7 grid grid-cols-1 gap-8 lg:grid-cols-3 group relative rounded-3xl bg-slate-50 hover:bg-slate-100 border border-slate-900/10">
               <div className="flex flex-col flex-1 flex-wrap mb-4 col-span-3 lg:col-span-2">
                 <p className="mb-2 text-sm leading-6 font-semibold text-sicard-blue-400">
                   Setlist

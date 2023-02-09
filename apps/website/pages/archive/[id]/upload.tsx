@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { format } from 'date-fns';
 
 import { ontour, Prisma } from '@ontour/archive';
 import { data } from 'data';
@@ -10,6 +7,8 @@ import { LoadingSpinner, Photo, PhotoEmptyState } from '@ontour/components';
 
 import { useRouter } from 'next/router';
 import { getSlug } from 'utils/getSlug';
+import clsx from 'clsx';
+import { PageWithSidebar, ShowArchiveWrapper } from 'components';
 
 type ShowWithVenue = Prisma.ShowGetPayload<{
   include: {
@@ -24,11 +23,13 @@ interface Props {
 const ShowUpload = ({ data: show }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setError] = useState(false);
   const { state, setState } = useAppContext();
 
   const uploadFile = async (files, show) => {
     try {
       setIsLoading(true);
+      setError(false);
 
       const folderPath = `${
         data.archive.cloudinary_root_folder
@@ -66,6 +67,8 @@ const ShowUpload = ({ data: show }: Props) => {
       setState({ files: [] });
       setIsLoading(false);
     } catch (e) {
+      setIsLoading(false);
+      setError(true);
       console.log('e: ', e);
     }
   };
@@ -96,7 +99,7 @@ const ShowUpload = ({ data: show }: Props) => {
 
   const Preview = () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 md:px-4 py-6 px-4">
-      <div className="col-span-1">
+      <div className="md:col-span-2">
         <h2 className="text-slate-700 font-bold text-3xl">Submit photos</h2>
 
         <p className="text-slate-500 text-sm mt-1">
@@ -104,7 +107,7 @@ const ShowUpload = ({ data: show }: Props) => {
           and add our favorite’s to the show page.
         </p>
       </div>
-      <div className="md:col-span-2">
+      <div className="md:col-span-2 md:col-start-2">
         <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6">
           {state.files.map((item) => {
             if (item) {
@@ -130,9 +133,14 @@ const ShowUpload = ({ data: show }: Props) => {
               onClick={async () => {
                 await uploadFile(state.files, show);
               }}
-              className="w-full inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-700 text-white hover:bg-slate-700 mt-4"
+              className={clsx(
+                hasError
+                  ? 'bg-red-700 hover:bg-slate-800'
+                  : 'bg-slate-700 hover:bg-slate-800',
+                'w-full inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-white mt-4'
+              )}
             >
-              Submit photos
+              {hasError ? 'Try again' : 'Submit photos'}
             </button>
             <p className="text-xs text-gray-400 text-center py-2">
               By submitting, you agree to the{' '}
@@ -152,56 +160,30 @@ const ShowUpload = ({ data: show }: Props) => {
   );
 
   return (
-    <div className="overflow-y-auto h-screen bg-gray-50">
-      <div className="w-full h-56 relative flex flex-col justify-end z-0">
-        <Image
-          src="/page-backgrounds/info.jpg"
-          className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom z-0"
-          layout="fill"
-        />
-        <div className="flex flex-col px-4 py-6 max-w-7xl mx-auto w-full justify-end z-[1]">
-          <Link href={`/archive/${show.id}`}>
-            <a className="group flex font-semibold text-sm leading-6 text-slate-100 hover:text-slate-200 py-4">
-              <svg
-                viewBox="0 -9 3 24"
-                className="overflow-visible mr-3 text-slate-100 w-auto h-6 group-hover:text-slate-200"
-              >
-                <path
-                  d="M3 0L0 3L3 6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Back to show
-            </a>
-          </Link>
-          <time className="font-sans text-sm text-slate-100">
-            {format(new Date(show.date), 'MMMM d, y')}
-          </time>
-          <span className="text-3xl font-serif text-slate-100">
-            {show.venue.city}, {show.venue.state}
-          </span>
-          <span className="font-sans text-lg text-slate-100">
-            {show.venue.name}
-          </span>
+    <div className="flex flex-col max-w-7xl w-full mx-auto flex-1">
+      {state.files ? (
+        <Preview />
+      ) : (
+        <div className="py-8">
+          <EmptyStateWrapped />
         </div>
-      </div>
-      <div className="flex flex-col max-w-7xl w-full mx-auto flex-1">
-        {state.files ? <Preview /> : <EmptyStateWrapped />}
-      </div>
+      )}
     </div>
   );
 };
 
 ShowUpload.getLayout = function getLayout(page: React.ReactElement) {
-  return page;
-  // <PageWithSidebar>
-  // <NestedLayout>{page}</NestedLayout>
-  // {page}
-  // </PageWithSidebar>
+  console.log('page: ', page);
+  const { data } = page.props;
+  return (
+    <ShowArchiveWrapper
+      alwaysShowImage={true}
+      show={data}
+      navBackOptions={{ text: 'Back to show', href: `/archive/${data.id}` }}
+    >
+      {page}
+    </ShowArchiveWrapper>
+  );
 };
 
 export async function getStaticPaths() {

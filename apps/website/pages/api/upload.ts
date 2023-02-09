@@ -19,12 +19,14 @@ cloudinary.config({
 
 const apiRoute = nextConnect({
   onError(error, req, res) {
-    res
+    return res
       .status(501)
       .json({ error: `Sorry something Happened! ${error.message}` });
   },
   onNoMatch(req, res) {
-    res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+    return res
+      .status(405)
+      .json({ error: `Method '${req.method}' Not Allowed` });
   },
 });
 
@@ -35,7 +37,7 @@ apiRoute.post(async (req, res) => {
   const result = await cloudinary.uploader.upload(file, {
     folder: `${data.archive.cloudinary_root_folder}/shows/foo_bar`,
   });
-  res.status(200).json({ data: 'success' });
+  return res.status(200).json({ data: 'success' });
 });
 
 export default apiRoute;
