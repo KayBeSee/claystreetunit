@@ -53,123 +53,130 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
   const { setState } = useAppContext();
   const router = useRouter();
 
-  <Head>
-    <meta
-      name="og:title"
-      content={`${format(new Date(show.date), 'MMMM d, y')} - ${
-        show.venue.name
-      } - ${show.venue.city}, ${show.venue.state} - ${config.artistName}`}
-    />
-    <meta
-      name="og:description"
-      content={`Setlist, audio, photos and more from ${
-        config.artistName
-      }'s show on ${format(new Date(show.date), 'MMMM d, y')} at ${
-        show.venue.name
-      } in ${show.venue.city}, ${show.venue.state}`}
-    />
-    <meta
-      name="og:image"
-      content={
-        // Because OG images must have a absolute URL, we use the
-        // `VERCEL_URL` environment variable to get the deployment’s URL.
-        // More info:
-        // https://vercel.com/docs/concepts/projects/environment-variables
-        `${
-          process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
-        }/api/og?date=${show.date}&venueName=${show.venue.name}&venueCity=${
-          show.venue.city
-        }&venueState=${show.venue.state}&imageUrl=${show.imageUrl}`
-      }
-    />
-  </Head>;
-
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-[1]">
-      <div className="text-white divide-y divide-slate-200">
-        <div className="flex-col sm:flex-row md:items-center justify-between space-y-8 hidden md:flex">
-          <h1 className="text-black font-semibold text-3xl py-8 font-serif">
-            <p className="font-serif text-md sm:text-xl font-semibold tracking-tight text-slate-500">
-              {format(new Date(show.date), 'MMMM d, y')}
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-              {show.venue.name}
-            </h2>
-            <p className="mt-1 font-serif text-xl sm:text-xl font-semibold tracking-tight text-slate-500">
-              {show.venue.city}, {show.venue.state}
-            </p>
-          </h1>
-          <AttendanceSelect />
-        </div>
-        <div className="md:hidden flex flex-col col-span-3 py-4">
-          <AttendanceSelect />
-        </div>
-        <div className="py-8 md:py-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col flex-1 flex-wrap mb-4 col-span-3 lg:col-span-2 pr-4">
-            <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700 mb-4">
-              Setlist
-            </h2>
+    <>
+      <Head>
+        <meta
+          name="og:title"
+          property="og:title"
+          key="og:title"
+          content={`${format(new Date(show.date), 'MMMM d, y')} - ${
+            show.venue.name
+          } - ${show.venue.city}, ${show.venue.state} - ${config.artistName}`}
+        />
+        <meta
+          name="og:description"
+          property="og:description"
+          key="og:description"
+          content={`Setlist, audio, photos and more from ${
+            config.artistName
+          }'s show on ${format(new Date(show.date), 'MMMM d, y')} at ${
+            show.venue.name
+          } in ${show.venue.city}, ${show.venue.state}`}
+        />
+        <meta
+          property="og:image"
+          key="og:image"
+          name="og:image"
+          content={
+            // Because OG images must have a absolute URL, we use the
+            // `VERCEL_URL` environment variable to get the deployment’s URL.
+            // More info:
+            // https://vercel.com/docs/concepts/projects/environment-variables
+            `${
+              process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+            }/api/og?date=${show.date}&venueName=${show.venue.name}&venueCity=${
+              show.venue.city
+            }&venueState=${show.venue.state}&imageUrl=${show.imageUrl}`
+          }
+        />
+      </Head>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-[1]">
+        <div className="text-white divide-y divide-slate-200">
+          <div className="flex-col sm:flex-row md:items-center justify-between space-y-8 hidden md:flex">
+            <h1 className="text-black font-semibold text-3xl py-8 font-serif">
+              <p className="font-serif text-md sm:text-xl font-semibold tracking-tight text-slate-500">
+                {format(new Date(show.date), 'MMMM d, y')}
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                {show.venue.name}
+              </h2>
+              <p className="mt-1 font-serif text-xl sm:text-xl font-semibold tracking-tight text-slate-500">
+                {show.venue.city}, {show.venue.state}
+              </p>
+            </h1>
+            <AttendanceSelect />
+          </div>
+          <div className="md:hidden flex flex-col col-span-3 py-4">
+            <AttendanceSelect />
+          </div>
+          <div className="py-8 md:py-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col flex-1 flex-wrap mb-4 col-span-3 lg:col-span-2 pr-4">
+              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700 mb-4">
+                Setlist
+              </h2>
 
-            <SetlistView show={show} />
-          </div>
-          <div className="relative col-span-3 lg:col-span-1 hidden md:block">
-            <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
-              <Image
-                className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl object-cover"
-                src={show.imageUrl || config.info.style.backgroundImage}
-                layout="fill"
-              />
+              <SetlistView show={show} />
+            </div>
+            <div className="relative col-span-3 lg:col-span-1 hidden md:block">
+              <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
+                <Image
+                  className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl object-cover"
+                  src={show.imageUrl || config.info.style.backgroundImage}
+                  layout="fill"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="py-8 md:py-16 space-y-6">
-          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
-            Listen on...
-          </h2>
-          <div className="md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6 items-center justify-center flex flex-col">
-            {show.audioSources.map((source) => (
-              <StreamLogo source={source} />
-            ))}
-          </div>
-        </div>
-        <div className="py-8 md:py-16">
-          <div className="flex flex-col sm:flex-row md:items-center justify-between">
+          <div className="py-8 md:py-16 space-y-6">
             <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
-              Photos
+              Listen on...
             </h2>
-          </div>
-          <section className="mt-8 pb-16">
-            <PhotoEmptyState
-              show={show}
-              onChange={(files) => {
-                Object.keys(files).forEach((i) => {
-                  const fileReader = new FileReader();
-                  fileReader.onload = (e) => {
-                    const content = e.target.result;
-                    setState((state) => {
-                      if (state.files) {
-                        return { files: [...state.files, content] };
-                      } else {
-                        return { files: [content] };
-                      }
-                    });
-                  };
-                  fileReader.readAsDataURL(files[i]);
-                });
-                router.push(`./${show.id}/upload`);
-              }}
-            />
-            <div className="py-12">
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                {photos.map((photo) => {
-                  return <Photo src={photo.secure_url} />;
-                })}
-              </ul>
+            <div className="md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6 items-center justify-center flex flex-col">
+              {show.audioSources.map((source) => (
+                <StreamLogo source={source} />
+              ))}
             </div>
-          </section>
+          </div>
+          <div className="py-8 md:py-16">
+            <div className="flex flex-col sm:flex-row md:items-center justify-between">
+              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-700">
+                Photos
+              </h2>
+            </div>
+            <section className="mt-8 pb-16">
+              <PhotoEmptyState
+                show={show}
+                onChange={(files) => {
+                  Object.keys(files).forEach((i) => {
+                    const fileReader = new FileReader();
+                    fileReader.onload = (e) => {
+                      const content = e.target.result;
+                      setState((state) => {
+                        if (state.files) {
+                          return { files: [...state.files, content] };
+                        } else {
+                          return { files: [content] };
+                        }
+                      });
+                    };
+                    fileReader.readAsDataURL(files[i]);
+                  });
+                  router.push(`./${show.id}/upload`);
+                }}
+              />
+              <div className="py-12">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                  {photos.map((photo) => {
+                    return <Photo src={photo.secure_url} />;
+                  })}
+                </ul>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
