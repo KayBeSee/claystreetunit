@@ -84,7 +84,9 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
             // More info:
             // https://vercel.com/docs/concepts/projects/environment-variables
             `${
-              process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+              process.env.NEXT_PUBLIC_VERCEL_URL
+                ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
+                : ''
             }/api/og?date=${show.date}&venueName=${show.venue.name}&venueCity=${
               show.venue.city
             }&venueState=${show.venue.state}&imageUrl=${show.imageUrl}`
