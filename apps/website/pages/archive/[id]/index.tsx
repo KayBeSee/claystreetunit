@@ -58,7 +58,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
     venueName: show.venue.name,
     venueCity: show.venue.city,
     venueState: show.venue.state,
-    imageUrl: show.imageUrl,
+    imageUrl: encodeURIComponent(show.imageUrl),
   };
 
   const queryParams = new URLSearchParams(ogObject);
@@ -97,7 +97,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               process.env.NEXT_PUBLIC_VERCEL_URL
                 ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
                 : ''
-            }/api/og?${queryParams}`
+            }/api/og?${queryParams.toString()}`
           }
         />
       </Head>
