@@ -67,7 +67,7 @@ export default async function handler(req: NextRequest) {
           tw="absolute inset-0"
         />
 
-        <div tw="flex flex-col z-[1] px-4 py-6 w-full h-screen justify-between">
+        <div tw="flex flex-col z-10 px-4 py-6 w-full h-screen justify-between">
           <div tw="flex justify-between w-full">
             <div tw="flex flex-col">
               <time
