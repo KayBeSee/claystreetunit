@@ -195,6 +195,8 @@ export const data: DataConfig = {
   },
   archive: {
     cloudinary_root_folder: 'airshow',
+    dbName: 'airshow',
+    ogImageLogo: 'logo-circle-white.png',
   },
 };
 

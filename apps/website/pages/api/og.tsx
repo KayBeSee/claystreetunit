@@ -1,6 +1,7 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 import { format } from 'date-fns';
+import data from 'data';
 
 export const config = {
   runtime: 'experimental-edge',
@@ -110,7 +111,7 @@ export default async function handler(req: NextRequest) {
               </svg>
             </div>
             <img
-              src={`http://localhost:3000//logo-circle.png`}
+              src={`${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
               style={{ width: 100, height: 100 }}
               tw="flex opacity-75"
             />
