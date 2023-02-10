@@ -58,7 +58,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
     venueName: show.venue.name,
     venueCity: show.venue.city,
     venueState: show.venue.state,
-    imageUrl: encodeURIComponent(show.imageUrl),
+    imageUrl: show.imageUrl,
   };
 
   const queryParams = new URLSearchParams(ogObject);
