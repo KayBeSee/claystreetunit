@@ -26,21 +26,20 @@ const ralewayMediumLoader = fetch(
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
+  console.log('searchParams: ', searchParams);
   const date = searchParams.get('date');
+  console.log('date: ', date);
   const venueName = searchParams.get('venueName');
+  console.log('venueName: ', venueName);
   const venueCity = searchParams.get('venueCity');
+  console.log('venueCity: ', venueCity);
   const venueState = searchParams.get('venueState');
+  console.log('venueState ', venueState);
   const imageUrl = searchParams.get('imageUrl');
+  console.log('imageUrl: ', imageUrl);
 
   const ralewayBold = await ralewayBoldLoader;
   const ralewayMedium = await ralewayMediumLoader;
-
-  if (!imageUrl) {
-    return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
-      width: 1200,
-      height: 630,
-    });
-  }
 
   return new ImageResponse(
     (
@@ -67,7 +66,7 @@ export default async function handler(req: NextRequest) {
           tw="absolute inset-0"
         />
 
-        <div tw="flex flex-col z-10 px-4 py-6 w-full h-screen justify-between">
+        <div tw="flex flex-col px-4 py-6 w-full h-screen justify-between">
           <div tw="flex justify-between w-full">
             <div tw="flex flex-col">
               <time
@@ -111,7 +110,7 @@ export default async function handler(req: NextRequest) {
               </svg>
             </div>
             <img
-              src={`${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
+              src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
               style={{ width: 100, height: 100 }}
               tw="flex opacity-75"
             />
