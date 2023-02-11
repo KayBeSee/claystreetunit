@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-
 import Image from 'next/image';
-import { format } from 'date-fns';
-import { Prisma } from '@ontour/archive';
 import clsx from 'clsx';
+import { format } from 'date-fns';
+
+import { Prisma } from '@ontour/archive';
 import { DataConfig } from 'types';
+
+import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 type ShowWithVenue = Prisma.ShowGetPayload<{
   include: {
@@ -67,7 +69,10 @@ export function ShowArchiveWrapper({
         )}
       >
         <Image
-          src={show.imageUrl || config.info.style.backgroundImage}
+          src={
+            getImageUrlFromPublicId(show.imagePublicId) ||
+            config.info.style.backgroundImage
+          }
           className="absolute inset-0 brightness-50 object-cover object-center md:object-bottom"
           layout="fill"
         />

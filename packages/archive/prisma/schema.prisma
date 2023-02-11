@@ -67,14 +67,14 @@ model Song {
 }
 
 model Show {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  date      DateTime
-  eventName String
-  imageUrl  String?
-  notes     String
-  venue     Venue    @relation(fields: [venueId], references: [id]) // onDelete: Cascade
-  venueId   String   @db.ObjectId
-  setlist   Set[]
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  date          DateTime
+  eventName     String
+  imagePublicId String?
+  notes         String
+  venue         Venue    @relation(fields: [venueId], references: [id]) // onDelete: Cascade
+  venueId       String   @db.ObjectId
+  setlist       Set[]
 
   attendeeIDs     String[]      @db.ObjectId
   attendees       User[]        @relation(fields: [attendeeIDs], references: [id])

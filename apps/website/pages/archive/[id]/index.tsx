@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 
 import {
   PageWithSidebar,
@@ -16,7 +17,7 @@ import {
   StreamLogo,
 } from '@ontour/components';
 import { format } from 'date-fns';
-import Image from 'next/image';
+import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 
@@ -58,7 +59,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
     venueName: show.venue.name,
     venueCity: show.venue.city,
     venueState: show.venue.state,
-    imageUrl: show.imageUrl,
+    imagePublicId: show.imagePublicId,
   };
 
   const queryParams = new URLSearchParams(ogObject);
@@ -97,7 +98,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               process.env.NEXT_PUBLIC_VERCEL_URL
                 ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
                 : ''
-            }/api/og?${queryParams.toString()}`
+            }/api/og?${queryParams}`
           }
         />
       </Head>
@@ -132,7 +133,10 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-2xl">
                 <Image
                   className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl object-cover"
-                  src={show.imageUrl || config.info.style.backgroundImage}
+                  src={
+                    getImageUrlFromPublicId(show.imagePublicId) ||
+                    config.info.style.backgroundImage
+                  }
                   layout="fill"
                 />
               </div>

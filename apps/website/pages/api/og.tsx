@@ -2,6 +2,7 @@ import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 import { format } from 'date-fns';
 import data from 'data';
+import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 export const config = {
   runtime: 'experimental-edge',
@@ -26,17 +27,11 @@ const ralewayMediumLoader = fetch(
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  console.log('searchParams: ', searchParams);
   const date = searchParams.get('date');
-  console.log('date: ', date);
   const venueName = searchParams.get('venueName');
-  console.log('venueName: ', venueName);
   const venueCity = searchParams.get('venueCity');
-  console.log('venueCity: ', venueCity);
   const venueState = searchParams.get('venueState');
-  console.log('venueState ', venueState);
-  const imageUrl = searchParams.get('imageUrl');
-  console.log('imageUrl: ', imageUrl);
+  const imagePublicId = searchParams.get('imagePublicId');
 
   const ralewayBold = await ralewayBoldLoader;
   const ralewayMedium = await ralewayMediumLoader;
@@ -62,7 +57,10 @@ export default async function handler(req: NextRequest) {
             objectFit: 'cover',
             objectPosition: 'center',
           }}
-          src={imageUrl}
+          src={
+            getImageUrlFromPublicId(imagePublicId) ||
+            data.info.style.backgroundImage
+          }
           tw="absolute inset-0"
         />
 
