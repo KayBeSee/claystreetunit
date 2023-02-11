@@ -3,5 +3,5 @@ export const getImageUrlFromPublicId = (publicId: string) => {
     return '';
   }
   // TODO: make cloudinary bucket dynamic
-  return `https://res.cloudinary.com/dyxybmew8/image/upload/${publicId}`;
+  return `https://res.cloudinary.com/dyxybmew8/image/upload/${publicId}.jpg`;
 };

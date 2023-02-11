@@ -35,7 +35,8 @@ export default async function handler(req: NextRequest) {
   console.log('imagePublicId: ', imagePublicId);
 
   const imgSrc =
-    getImageUrlFromPublicId(imagePublicId) || data.info.style.backgroundImage;
+    getImageUrlFromPublicId(imagePublicId) ||
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
   console.log('imgSrc: ', imgSrc);
 
   const ralewayBold = await ralewayBoldLoader;
