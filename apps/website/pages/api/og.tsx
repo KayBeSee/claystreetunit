@@ -32,6 +32,11 @@ export default async function handler(req: NextRequest) {
   const venueCity = searchParams.get('venueCity');
   const venueState = searchParams.get('venueState');
   const imagePublicId = searchParams.get('imagePublicId');
+  console.log('imagePublicId: ', imagePublicId);
+
+  const imgSrc =
+    getImageUrlFromPublicId(imagePublicId) || data.info.style.backgroundImage;
+  console.log('imgSrc: ', imgSrc);
 
   const ralewayBold = await ralewayBoldLoader;
   const ralewayMedium = await ralewayMediumLoader;
@@ -57,10 +62,7 @@ export default async function handler(req: NextRequest) {
             objectFit: 'cover',
             objectPosition: 'center',
           }}
-          src={
-            getImageUrlFromPublicId(imagePublicId) ||
-            data.info.style.backgroundImage
-          }
+          src={imgSrc}
           tw="absolute inset-0"
         />
 
