@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { DataConfig } from 'types';
+import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 interface Props {
   data: Prisma.ShowGetPayload<{
@@ -74,7 +75,10 @@ const Archive = ({ data, config }: Props) => {
                 <div className="aspect-w-1 aspect-h-1 mx-auto block w-full h-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:rounded-xl lg:rounded-3xl">
                   <Image
                     className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-3xl object-cover"
-                    src={show.imageUrl || config.info.style.backgroundImage}
+                    src={
+                      getImageUrlFromPublicId(show.imagePublicId) ||
+                      config.info.style.backgroundImage
+                    }
                     layout="fill"
                   />
                 </div>
