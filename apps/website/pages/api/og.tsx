@@ -37,7 +37,7 @@ export default async function handler(req: NextRequest) {
 
   const imgSrc =
     getImageUrlFromPublicId(imagePublicId) ||
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
 
   console.log('imgSrc: ', imgSrc);
 
