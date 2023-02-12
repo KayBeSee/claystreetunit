@@ -5,7 +5,7 @@ import data from 'data';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 };
 
 function getFontSize(length) {
