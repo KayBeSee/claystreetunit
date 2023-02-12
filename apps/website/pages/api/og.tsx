@@ -5,15 +5,15 @@ import data from 'data';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 export const config = {
-  runtime: 'edge',
+  runtime: 'experimental-edge',
 };
 
-function getFontSize(length) {
-  if (length > 32) {
-    return `text-6xl`;
-  }
-  return `text-8xl`;
-}
+// function getFontSize(length) {
+//   if (length > 32) {
+//     return 'text-6xl';
+//   }
+//   return 'text-8xl';
+// }
 
 // Make sure the font exists in the specified path:
 const ralewayBoldLoader = fetch(
@@ -35,7 +35,7 @@ export default async function handler(req: NextRequest) {
   console.log('imagePublicId: ', imagePublicId);
 
   const imgSrc =
-    'https://res.cloudinary.com/dyxybmew8/image/upload/v1675902700/airshow/shows/may-05-2022-hifi-clyde%27s-chattanooga-tn/fsumwwchsq1wdoeyzkh7.jpg';
+    'https://res.cloudinary.com/dyxybmew8/image/upload/q_50/airshow/shows/may-05-2022-hifi-clyde%27s-chattanooga-tn/fsumwwchsq1wdoeyzkh7.jpg';
   // getImageUrlFromPublicId(imagePublicId) ||
   // `${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
   console.log('imgSrc: ', imgSrc);
@@ -79,9 +79,7 @@ export default async function handler(req: NextRequest) {
               </time>
               <span
                 style={{ fontFamily: '"Raleway-Bold"' }}
-                tw={`${getFontSize(
-                  venueName.length
-                )} font-serif text-slate-200 mb-2`}
+                tw={'text-6xl font-serif text-slate-200 mb-2'}
               >
                 {venueName}
               </span>
@@ -111,11 +109,11 @@ export default async function handler(req: NextRequest) {
                 />
               </svg>
             </div>
-            <img
+            {/* <img
               src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
               style={{ width: 100, height: 100 }}
               tw="flex opacity-75"
-            />
+            /> */}
           </div>
         </div>
       </div>
