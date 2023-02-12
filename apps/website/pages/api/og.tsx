@@ -16,15 +16,15 @@ function getFontSize(length) {
   return 'text-8xl';
 }
 
-// Make sure the font exists in the specified path:
-const ralewayBoldLoader = fetch(
-  new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// // Make sure the font exists in the specified path:
+// const ralewayBoldLoader = fetch(
+//   new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
-// Make sure the font exists in the specified path:
-const ralewayMediumLoader = fetch(
-  new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// // Make sure the font exists in the specified path:
+// const ralewayMediumLoader = fetch(
+//   new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
@@ -41,8 +41,8 @@ export default async function handler(req: NextRequest) {
 
   console.log('imgSrc: ', imgSrc);
 
-  const ralewayBold = await ralewayBoldLoader;
-  const ralewayMedium = await ralewayMediumLoader;
+  // const ralewayBold = await ralewayBoldLoader;
+  // const ralewayMedium = await ralewayMediumLoader;
 
   return new ImageResponse(
     (
@@ -126,16 +126,16 @@ export default async function handler(req: NextRequest) {
       width: 1200,
       height: 630,
       fonts: [
-        {
-          name: 'Raleway',
-          data: ralewayMedium,
-          style: 'normal',
-        },
-        {
-          name: 'Raleway-Bold',
-          data: ralewayBold,
-          style: 'normal',
-        },
+        // {
+        //   name: 'Raleway',
+        //   data: ralewayMedium,
+        //   style: 'normal',
+        // },
+        // {
+        //   name: 'Raleway-Bold',
+        //   data: ralewayBold,
+        //   style: 'normal',
+        // },
       ],
     }
   );
