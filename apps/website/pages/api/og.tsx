@@ -3,7 +3,6 @@ import { NextRequest } from 'next/server';
 import { format } from 'date-fns';
 import data from 'data';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
-import clsx from 'clsx';
 
 export const config = {
   runtime: 'experimental-edge',
@@ -11,23 +10,22 @@ export const config = {
 
 function getFontSize(length) {
   if (length > 32) {
-    return 'text-6xl';
+    return 'text-8xl';
   }
   return 'text-8xl';
 }
 
-// // Make sure the font exists in the specified path:
-// const ralewayBoldLoader = fetch(
-//   new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
+// Make sure the font exists in the specified path:
+const ralewayBoldLoader = fetch(
+  new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
 
-// // Make sure the font exists in the specified path:
-// const ralewayMediumLoader = fetch(
-//   new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
+// Make sure the font exists in the specified path:
+const ralewayMediumLoader = fetch(
+  new URL('../../assets/Raleway-Bold.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
-  console.log('hits');
   try {
     const { searchParams } = req.nextUrl;
     const date = searchParams.get('date');
@@ -44,8 +42,8 @@ export default async function handler(req: NextRequest) {
 
     console.log('imgSrc: ', imgSrc);
 
-    // const ralewayBold = await ralewayBoldLoader;
-    // const ralewayMedium = await ralewayMediumLoader;
+    const ralewayBold = await ralewayBoldLoader;
+    const ralewayMedium = await ralewayMediumLoader;
 
     return new ImageResponse(
       (
@@ -83,10 +81,8 @@ export default async function handler(req: NextRequest) {
                 </time>
                 <span
                   style={{ fontFamily: '"Raleway-Bold"' }}
-                  tw={clsx(
-                    (getFontSize(venueName.length),
-                    'font-serif text-slate-200 mb-2')
-                  )}
+                  tw={`${getFontSize(venueName.length)}
+                    font-serif text-slate-200 mb-2`}
                 >
                   {venueName}
                 </span>
@@ -128,18 +124,18 @@ export default async function handler(req: NextRequest) {
       {
         width: 1200,
         height: 630,
-        // fonts: [
-        //   {
-        //     name: 'Raleway',
-        //     data: ralewayMedium,
-        //     style: 'normal',
-        //   },
-        //   {
-        //     name: 'Raleway-Bold',
-        //     data: ralewayBold,
-        //     style: 'normal',
-        //   },
-        // ],
+        fonts: [
+          {
+            name: 'Raleway',
+            data: ralewayMedium,
+            style: 'normal',
+          },
+          {
+            name: 'Raleway-Bold',
+            data: ralewayBold,
+            style: 'normal',
+          },
+        ],
       }
     );
   } catch (e) {
