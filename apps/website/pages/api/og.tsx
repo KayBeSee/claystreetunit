@@ -112,11 +112,11 @@ export default async function handler(req: NextRequest) {
                   />
                 </svg>
               </div>
-              {/* <img
+              <img
                 src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
                 style={{ width: 100, height: 100 }}
                 tw="flex opacity-75"
-              /> */}
+              />
             </div>
           </div>
         </div>
