@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { signIn, getCsrfToken } from 'next-auth/react';
 
-import data from 'data';
+import { data } from '@ontour/data';
 
 export default function Login({ csrfToken }) {
   const [email, setEmail] = useState('');

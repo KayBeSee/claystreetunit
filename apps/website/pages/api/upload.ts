@@ -2,7 +2,7 @@
 import nextConnect from 'next-connect';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
-import data from 'data';
+import { data } from '@ontour/data';
 
 const upload = multer({
   storage: multer.diskStorage({

@@ -1,7 +1,7 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
 import { format } from 'date-fns';
-import data from 'data';
+import { data } from '@ontour/data';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 export const config = {

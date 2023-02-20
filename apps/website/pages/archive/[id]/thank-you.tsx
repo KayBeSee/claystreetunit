@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ontour, Prisma } from '@ontour/archive';
 
-import data from 'data';
+import { data } from '@ontour/data';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { ShowArchiveWrapper } from 'components';
