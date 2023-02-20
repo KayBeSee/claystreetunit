@@ -6,6 +6,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './data.ts',
+    '../../packages/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -44,5 +45,12 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
+  corePlugins: {
+    aspectRatio: false,
+  },
 };

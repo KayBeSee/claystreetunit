@@ -9,6 +9,9 @@ const withTM = require('next-transpile-modules')(['@ontour/components']);
 const nextConfig = {
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
