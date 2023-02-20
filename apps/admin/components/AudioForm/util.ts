@@ -11,17 +11,13 @@ export const createAudioSource = async ({
   provider,
   showId,
 }: AddAudioSourceProps): Promise<DecoratedAudioSource> => {
-  const response = await fetch(
-    // @ts-ignore
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/shows/${showId}/audio`,
-    {
-      method: 'post',
-      body: JSON.stringify({
-        identifier,
-        provider,
-      }),
-    }
-  ).then((response) => response.json());
+  const response = await fetch(`/api/shows/${showId}/audio`, {
+    method: 'post',
+    body: JSON.stringify({
+      identifier,
+      provider,
+    }),
+  }).then((response) => response.json());
   return response;
 };
 

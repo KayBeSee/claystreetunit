@@ -19,7 +19,7 @@ const EditArchivePage = () => {
   const updateShow = async (show: CreateShowFormInput) => {
     const response = await fetch(
       // @ts-ignore
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/shows/${show.id}`,
+      `/api/shows/${show.id}`,
       {
         method: 'put',
         body: JSON.stringify(show),

@@ -17,13 +17,9 @@ export const StreamItem = ({
   const deleteAudioSource = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        // @ts-ignore
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/audio/${id}`,
-        {
-          method: 'delete',
-        }
-      );
+      const response = await fetch(`/api/audio/${id}`, {
+        method: 'delete',
+      });
       onDelete(id);
       setIsLoading(false);
     } catch (e) {}

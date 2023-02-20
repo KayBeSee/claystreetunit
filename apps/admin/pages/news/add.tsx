@@ -11,13 +11,10 @@ const AddNewsPage = () => {
 
   const savePost = async (post: NewsProps) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/news`,
-        {
-          method: 'post',
-          body: JSON.stringify(post),
-        }
-      );
+      const response = await fetch(`/api/news`, {
+        method: 'post',
+        body: JSON.stringify(post),
+      });
       router.push('/news');
     } catch (e) {
       console.log('savePost e: ', e);

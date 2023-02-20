@@ -23,13 +23,10 @@ const NewShow = () => {
 
   const addShow = async (show: CreateShowFormInput) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/shows`,
-        {
-          method: 'post',
-          body: JSON.stringify(show),
-        }
-      );
+      const response = await fetch(`/api/shows`, {
+        method: 'post',
+        body: JSON.stringify(show),
+      });
       router.push('/archive');
     } catch (e) {
       console.log('e: ', e);
