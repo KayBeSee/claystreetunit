@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-import { getShows, CreateShowFormInput } from '@ontour/archive';
-import { config } from 'data';
-import useSWR from 'swr';
+import { CreateShowFormInput } from '@ontour/archive';
+import { data } from '@ontour/data';
 
 import { PageWidthWrapper, SetlistForm } from 'components';
 
@@ -45,7 +44,7 @@ const NewShow = () => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

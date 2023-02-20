@@ -8,7 +8,7 @@ import {
   AttendanceSelect,
   ShowArchiveWrapper,
 } from 'components';
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { ontour, Prisma } from '@ontour/archive';
 import {
   Photo,

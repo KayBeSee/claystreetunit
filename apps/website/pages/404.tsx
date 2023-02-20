@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { DataConfig } from 'types';
 
 interface Props {

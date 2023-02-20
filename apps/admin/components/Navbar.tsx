@@ -5,7 +5,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -58,7 +58,7 @@ export const Navbar = ({ config }: Props) => {
                     <a>
                       <img
                         className="block lg:hidden h-12 w-auto"
-                        src={config.logoUrl}
+                        src={config.admin.logoUrl}
                         alt={`${config.artistName} Logo`}
                       />
                     </a>
@@ -67,7 +67,7 @@ export const Navbar = ({ config }: Props) => {
                     <a className="flex">
                       <img
                         className="hidden lg:block h-12 w-auto"
-                        src={config.logoUrl}
+                        src={config.admin.logoUrl}
                         alt={`${config.artistName} Logo`}
                       />
                     </a>

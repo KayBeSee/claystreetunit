@@ -5,7 +5,7 @@ import { client } from 'middleware/database';
 
 import { Title, Description } from 'utils/Meta';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 import { Copyright } from 'components';
 import { DataConfig } from 'types';

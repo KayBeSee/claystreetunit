@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@ontour/data": ["../../data"],
+      "@ontour/types": ["../../types"]
+    },
     "target": "es2015",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],

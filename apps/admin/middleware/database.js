@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 const mongodbPasswordEncoded = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
@@ -15,7 +15,7 @@ export const client = new MongoClient(CONNECTION_STRING, {
 async function database(req, res, next) {
   await client.connect();
   req.dbClient = client;
-  req.db = client.db(config.dbName);
+  req.db = client.db(data.dbName);
   return next();
 }
 

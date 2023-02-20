@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 
-import { config } from 'data';
-import { DataConfig } from 'types';
+import { data } from '@ontour/data';
+import { DataConfig } from '@ontour/types';
 
 import { PageWidthWrapper, EventsPanel, ActionsPanel } from 'components';
 
@@ -85,7 +85,7 @@ const Home = ({ config }: Props) => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

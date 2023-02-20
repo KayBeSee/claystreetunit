@@ -4,7 +4,7 @@ import { PageWithSidebar } from 'components';
 import { SetlistView } from '@ontour/components';
 import { ontour, Prisma } from '@ontour/archive';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { client } from 'middleware/database';
 import { format } from 'date-fns';
 import Image from 'next/image';

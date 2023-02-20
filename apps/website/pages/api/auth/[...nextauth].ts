@@ -7,7 +7,7 @@ import { compare } from 'bcryptjs';
 
 import * as Prisma from '@ontour/archive';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 const prisma = new Prisma.PrismaClient();
 

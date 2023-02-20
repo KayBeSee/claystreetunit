@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 import { NewsProps, PageWidthWrapper } from 'components';
 import AddNewsForm from 'components/AddNewsForm';
@@ -47,7 +47,7 @@ const AddNewsPage = () => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

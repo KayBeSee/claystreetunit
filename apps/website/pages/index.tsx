@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { Description } from 'utils/Meta';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 import { SplashPage } from 'components';
 import { DataConfig } from 'types';

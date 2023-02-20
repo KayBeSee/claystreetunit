@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { Title, Description } from 'utils/Meta';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { DataConfig } from 'types';
 
 interface Props {

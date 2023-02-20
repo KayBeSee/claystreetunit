@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 import {
   ontour,
@@ -138,7 +138,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

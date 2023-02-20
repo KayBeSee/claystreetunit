@@ -3,7 +3,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import clsx from 'clsx';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { DataConfig } from 'types';
 
 import { getDate } from 'pages/tour';

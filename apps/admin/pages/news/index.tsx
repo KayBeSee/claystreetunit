@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { client } from 'middleware/database';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 import {
   CalendarIcon,
@@ -104,7 +104,7 @@ const News = ({ data = [] }: Props) => {
 export async function getServerSideProps(context) {
   await client.connect();
   const items = await client
-    .db(config.dbName)
+    .db(data.dbName)
     .collection('news')
     .find()
     .sort({ datetime: -1 })
@@ -113,7 +113,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: JSON.parse(JSON.stringify(items)),
-      config,
+      config: data,
     },
   };
 }

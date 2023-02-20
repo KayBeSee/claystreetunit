@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 import { ontour, CreateShowFormInput } from '@ontour/archive';
 import { LoadingSpinner } from '@ontour/components';
@@ -71,7 +71,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

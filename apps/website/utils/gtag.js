@@ -1,4 +1,4 @@
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 export const GA_MEASUREMENT_ID = data.analytics.googleAnalyticsCode;
 

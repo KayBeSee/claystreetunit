@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@ontour/data": ["../../data"],
-      "@ontour/types": ["../../types"]
-    },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
@@ -20,6 +16,6 @@
     "moduleResolution": "node",
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

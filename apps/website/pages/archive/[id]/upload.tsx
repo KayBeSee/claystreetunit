@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { ontour, Prisma } from '@ontour/archive';
-import { data } from 'data';
+import { data } from '@ontour/data';
 import { useAppContext } from 'context/state';
 import { LoadingSpinner, Photo, PhotoEmptyState } from '@ontour/components';
 

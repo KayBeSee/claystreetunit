@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 import { LoadingSpinner } from '@ontour/components';
 import { PageWidthWrapper } from 'components';
 import EditNewsForm from 'components/EditNewsForm';
@@ -48,7 +48,7 @@ export const getStaticPaths = async () => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

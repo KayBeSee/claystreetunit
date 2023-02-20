@@ -11,7 +11,7 @@ import {
 
 import { ChevronRightIcon, PlusCircleIcon } from '@heroicons/react/outline';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 interface Props {
   shows: ShowWithSetlist[];
@@ -85,7 +85,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       shows: JSON.parse(JSON.stringify(retrievedShows)),
-      config,
+      config: data,
     },
   };
 }
