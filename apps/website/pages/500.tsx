@@ -2,6 +2,7 @@ import React from 'react';
 
 import { data } from '@ontour/data';
 import { DataConfig } from '@ontour/types';
+import Link from 'next/link';
 
 interface Props {
   config: DataConfig;
@@ -10,14 +11,6 @@ interface Props {
 export default function Custom500({ config }: Props) {
   return (
     <>
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full">
-          <body class="h-full">
-          ```
-        */}
       <main
         className="min-h-full bg-cover bg-top sm:bg-top  h-screen"
         style={{
@@ -36,12 +29,12 @@ export default function Custom500({ config }: Props) {
             persists.
           </p>
           <div className="mt-6">
-            <a
-              href="#"
+            <Link
+              href={config.websiteUrl}
               className="inline-flex items-center rounded-md border border-transparent bg-white bg-opacity-75 px-4 py-2 text-sm font-medium text-black text-opacity-75 sm:bg-opacity-25 sm:hover:bg-opacity-50"
             >
               Go back home
-            </a>
+            </Link>
           </div>
         </div>
       </main>
