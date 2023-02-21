@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { SearchIcon, PlusIcon } from '@heroicons/react/solid';
 import { fetcher } from 'lib/fetcher';
-import { AudioSuggestion } from 'types';
+import { AudioSuggestion } from '@ontour/types';
 import { AudioSource } from '@ontour/archive';
 
 const people = [

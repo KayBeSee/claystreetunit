@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { SocialIcons } from 'components';
 
-import { Agency, SocialMediaItem } from 'types';
+import { Agency, SocialMediaItem } from '@ontour/types';
 
 interface Props {
   contacts: Agency[];

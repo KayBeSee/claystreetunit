@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ontour } from '@ontour/archive';
-import { AudioSuggestion } from 'types';
+import { AudioSuggestion } from '@ontour/types';
 import { format } from 'date-fns';
 
 const getArchiveOrgSuggestions = async (

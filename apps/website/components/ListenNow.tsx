@@ -8,7 +8,7 @@ import {
   YoutubeMusic,
 } from 'components/logos';
 
-import { Album } from 'types';
+import { Album } from '@ontour/types';
 
 const streamingProviders = {
   apple: AppleMusic,
