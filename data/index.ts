@@ -28,6 +28,7 @@ export const data: DataConfig = {
       { slug: `/music/${Object.keys(music)[0]}`, text: "Music" },
       { slug: "/info", text: "Info" },
       { slug: "/mailing-list", text: "Mailing List" },
+      { slug: "#", text: "Store" },
     ],
   },
   analytics: {
