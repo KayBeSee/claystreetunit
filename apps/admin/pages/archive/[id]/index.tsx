@@ -231,6 +231,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       config: data,
+      photos: [],
+      show: { ...show, date: JSON.parse(JSON.stringify(show.date)) },
     },
   };
 }
