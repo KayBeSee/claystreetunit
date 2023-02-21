@@ -1,0 +1,27 @@
+{
+  "name": "@ontour/monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:website": "npm run dev -w @ontour/website",
+    "dev:admin": "npm run dev -w @ontour/admin",
+    "build:website": "npm run build -w @ontour/website",
+    "build:admin": "npm run build -w @ontour/admin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KayBeSee/ontour.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KayBeSee/ontour/issues"
+  },
+  "homepage": "https://github.com/KayBeSee/ontour#readme",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {}
+}
