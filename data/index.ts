@@ -199,7 +199,7 @@ export const data: DataConfig = {
         color: "text-sicard-blue-300",
       },
     ],
-    youtubeLink: "https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw",
+    youtubeLink: "https://www.youtube.com/channel/UCQIU7lpzgyAx3e3LLmvQwKw",
   },
   archive: {
     cloudinary_root_folder: "claystreetunit",
