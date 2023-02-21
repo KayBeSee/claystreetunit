@@ -4,7 +4,6 @@ import {
   faFacebook,
   faYoutube,
   faItunesNote,
-  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
 import { music } from "./music";
@@ -78,7 +77,7 @@ export const data: DataConfig = {
       },
       {
         title: "Management",
-        href: "mailto:josh@luckymanmgmt.com",
+        href: "mailto:josh@luckymanmgmt.com; andy@luckymanmgmt.com;",
         company: "Lucky Man Management",
         contacts: [
           {
