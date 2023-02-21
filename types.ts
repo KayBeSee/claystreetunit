@@ -75,6 +75,12 @@ export interface SocialMediaItem {
   icon: IconDefinition;
   url: string;
 }
+export interface AudioSuggestion {
+  identifier: string;
+  name: string;
+  provider: string;
+  imageUrl: string;
+}
 
 export interface InfoConfig {
   contacts: Agency[];
