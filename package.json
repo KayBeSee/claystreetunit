@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/KayBeSee/ontour#readme",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "dependencies": {}
 }

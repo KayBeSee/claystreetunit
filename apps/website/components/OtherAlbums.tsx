@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Album } from 'types';
+import { Album } from '@ontour/types';
 
 interface Props {
   currentSlug: string;

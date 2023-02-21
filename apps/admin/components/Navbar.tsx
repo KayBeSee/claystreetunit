@@ -5,7 +5,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -26,6 +26,12 @@ export const Navbar = ({ config }: Props) => {
       text: 'News',
       href: '/news',
       current: pathname.includes('/news'),
+    },
+    {
+      text: 'Archive',
+      href: '/archive',
+      beta: true,
+      current: pathname.includes('/archive'),
     },
   ];
 
@@ -52,7 +58,7 @@ export const Navbar = ({ config }: Props) => {
                     <a>
                       <img
                         className="block lg:hidden h-12 w-auto"
-                        src={config.logoUrl}
+                        src={config.admin.logoUrl}
                         alt={`${config.artistName} Logo`}
                       />
                     </a>
@@ -61,7 +67,7 @@ export const Navbar = ({ config }: Props) => {
                     <a className="flex">
                       <img
                         className="hidden lg:block h-12 w-auto"
-                        src={config.logoUrl}
+                        src={config.admin.logoUrl}
                         alt={`${config.artistName} Logo`}
                       />
                     </a>
@@ -69,17 +75,24 @@ export const Navbar = ({ config }: Props) => {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {navItems.map((item) => (
-                    <Link href={item.href}>
-                      <a
-                        className={classNames(
-                          item.current
-                            ? 'border-sicard-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-                        )}
-                      >
-                        {item.text}
-                      </a>
-                    </Link>
+                    <div className="relative flex items-center">
+                      <Link href={item.href}>
+                        <a
+                          className={classNames(
+                            item.current
+                              ? 'border-sicard-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                              : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                          )}
+                        >
+                          {item.text}
+                        </a>
+                      </Link>
+                      {item.beta ? (
+                        <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 -translate-y-2">
+                          Beta
+                        </span>
+                      ) : null}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -142,6 +155,11 @@ export const Navbar = ({ config }: Props) => {
                   )}
                 >
                   {item.text}
+                  {item.beta ? (
+                    <span className="ml-1 inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 -translate-y-2">
+                      Beta
+                    </span>
+                  ) : null}
                 </Disclosure.Button>
               ))}
             </div>

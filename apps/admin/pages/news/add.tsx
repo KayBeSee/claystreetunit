@@ -1,23 +1,20 @@
 import fetch from 'isomorphic-unfetch';
 
-import { config } from 'data';
+import { data } from '@ontour/data';
 
 import { NewsProps, PageWidthWrapper } from 'components';
 import AddNewsForm from 'components/AddNewsForm';
 import { useRouter } from 'next/router';
 
-const AddNewsPage = () => {
+const AddNewsPage = ({ config }) => {
   const router = useRouter();
 
   const savePost = async (post: NewsProps) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/news`,
-        {
-          method: 'post',
-          body: JSON.stringify(post),
-        }
-      );
+      const response = await fetch(`/api/news`, {
+        method: 'post',
+        body: JSON.stringify(post),
+      });
       router.push('/news');
     } catch (e) {
       console.log('savePost e: ', e);
@@ -50,7 +47,7 @@ const AddNewsPage = () => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

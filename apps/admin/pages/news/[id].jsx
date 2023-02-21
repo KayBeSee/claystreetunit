@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-unfetch';
 
-import { config } from 'data';
-
-import { PageWidthWrapper, LoadingSpinner } from 'components';
+import { data } from '@ontour/data';
+import { LoadingSpinner } from '@ontour/components';
+import { PageWidthWrapper } from 'components';
 import EditNewsForm from 'components/EditNewsForm';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -38,10 +38,17 @@ const EditNewsPage = () => {
   );
 };
 
+export const getStaticPaths = async () => {
+  return {
+    paths: [], //indicates that no page needs be created at build time
+    fallback: 'blocking', //indicates the type of fallback
+  };
+};
+
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

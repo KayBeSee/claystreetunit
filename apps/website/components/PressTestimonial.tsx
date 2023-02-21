@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TestimonialConfig } from 'types';
+import { TestimonialConfig } from '@ontour/types';
 
 interface Props {
   testimonials: TestimonialConfig[];

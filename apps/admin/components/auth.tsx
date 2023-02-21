@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
-import { LoadingSpinner } from 'components';
+import { LoadingSpinner } from '@ontour/components';
 
 export const Auth = ({ children }) => {
   const { data: session, status } = useSession();

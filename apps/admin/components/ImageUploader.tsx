@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 
-import { LoadingSpinner } from 'components';
-import { DataConfig } from 'types';
+import { LoadingSpinner } from '@ontour/components';
+import { DataConfig } from '@ontour/types';
 
 const url = 'https://api.cloudinary.com/v1_1/dyxybmew8/image/upload';
 
@@ -49,7 +49,7 @@ export const ImageUploader = ({
     const formData = new FormData();
     formData.append('file', files[0]);
     formData.append('upload_preset', 'lmicqrpq');
-    formData.append('folder', `${config.dbName}/news`);
+    formData.append('folder', `${config.archive.dbName}/news`);
 
     try {
       const resp = await fetch(url, {

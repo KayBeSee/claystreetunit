@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { NewsPreview, NewsProps, ImageUploader } from 'components';
 
-import { config } from 'data';
-import { DataConfig } from 'types';
+import { data } from '@ontour/data';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   onSave: (obj: NewsProps) => void;
@@ -214,7 +214,7 @@ const AddNewsForm = ({ onSave, config }: Props) => {
 export async function getStaticProps(context) {
   return {
     props: {
-      config,
+      config: data,
     },
   };
 }

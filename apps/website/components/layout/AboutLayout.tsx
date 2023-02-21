@@ -1,7 +1,7 @@
 import { Prose } from 'components/layout';
 import { Contact, Copyright, PressTestimonial } from 'components';
 import { Title, Description } from 'utils/Meta';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   children: any;

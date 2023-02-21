@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { NewsPreview, NewsProps, ImageUploader } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   post?: NewsProps;
@@ -22,13 +22,10 @@ const EditNewsForm = ({ post, config }: Props) => {
 
   const savePost = async (updatedPost: NewsProps) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/news/${post._id}`,
-        {
-          method: 'put',
-          body: JSON.stringify(updatedPost),
-        }
-      );
+      const response = await fetch(`/api/news/${post._id}`, {
+        method: 'put',
+        body: JSON.stringify(updatedPost),
+      });
       router.push('/news');
     } catch (e) {
       console.log('savePost e: ', e);
@@ -37,12 +34,9 @@ const EditNewsForm = ({ post, config }: Props) => {
 
   const deletePost = async () => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/news/${post._id}`,
-        {
-          method: 'delete',
-        }
-      );
+      const response = await fetch(`/api/news/${post._id}`, {
+        method: 'delete',
+      });
       router.push('/news');
     } catch (e) {
       console.log('savePost e: ', e);

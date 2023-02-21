@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
 
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 const mongodbPasswordEncoded = encodeURIComponent(process.env.MONGODB_PASSWORD);
 

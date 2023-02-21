@@ -1,10 +1,6 @@
 import {
-  AcademicCapIcon,
-  BadgeCheckIcon,
   CashIcon,
-  ClockIcon,
   ReceiptRefundIcon,
-  UsersIcon,
   NewspaperIcon,
   TicketIcon,
   PhotographIcon,

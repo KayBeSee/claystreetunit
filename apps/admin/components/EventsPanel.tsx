@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 const getDate = (date) => {
   const dateObj = new Date(date);
@@ -30,7 +30,7 @@ export const EventsPanel = ({ config }: Props) => {
   useEffect(() => {
     const fetchTourDates = async () => {
       try {
-        const { data } = await axios.get(config.bandsInTownApiEndpoint);
+        const { data } = await axios.get(config.tour.bandsInTownApiEndpoint);
         setShows(data);
       } catch (e) {
         console.log('e: ', e);

@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 import { Title, Description } from 'utils/Meta';
 
-import { data } from 'data';
-import { DataConfig } from 'types';
+import { data } from '@ontour/data';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   config: DataConfig;

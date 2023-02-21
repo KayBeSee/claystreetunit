@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { data } from 'data';
+import { data } from '@ontour/data';
 
 interface TitleProps {
   children: string;

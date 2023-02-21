@@ -12,8 +12,8 @@ import { Title, Description } from 'utils/Meta';
 import ListenNow from 'components/ListenNow';
 import OtherAlbums from 'components/OtherAlbums';
 
-import { data } from 'data';
-import { Album, DataConfig } from 'types';
+import { data } from '@ontour/data';
+import { Album, DataConfig } from '@ontour/types';
 import { Copyright } from 'components';
 
 export function classNames(...classes) {
