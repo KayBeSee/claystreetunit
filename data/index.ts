@@ -13,7 +13,6 @@ import { DataConfig } from "@ontour/types";
 
 export const data: DataConfig = {
   artistName: "Airshow",
-  artistDescription: "bluegrass band from Nashville, TN",
   legalEntity: "Airshow, LLC",
   websiteUrl: "https://airshowband.com",
   admin: {
