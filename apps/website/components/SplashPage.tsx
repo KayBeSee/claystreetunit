@@ -12,9 +12,9 @@ interface Props {
 }
 
 export const SplashPage = ({ config, setIsOpen }: Props) => (
-  <div className="w-screen h-screen object-cover inset-0 bg-slate-900">
+  <div className="w-screen h-screen object-cover inset-0 bg-gradient-to-b from-slate-700 to-slate-900">
     <video
-      className="aspect-video fixed w-screen h-screen object-cover inset-0 brightness-50 bg-slate-900"
+      className="aspect-video fixed w-screen h-screen object-cover inset-0 brightness-50 bg-gradient-to-b from-slate-700 to-slate-900"
       preload="auto"
       autoPlay={true}
       muted={true}
