@@ -49,7 +49,7 @@ export const ImageUploader = ({
     const formData = new FormData();
     formData.append('file', files[0]);
     formData.append('upload_preset', 'lmicqrpq');
-    formData.append('folder', `${config.dbName}/news`);
+    formData.append('folder', `${config.archive.dbName}/news`);
 
     try {
       const resp = await fetch(url, {
