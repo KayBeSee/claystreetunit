@@ -30,9 +30,7 @@ export default function MailingList({ config }: Props) {
   return (
     <div>
       <Title>Mailing List</Title>
-      <Description>
-        {`Mailing list for ${config.artistName} ${config.artistDescription}`}
-      </Description>
+      <Description>{`Mailing list for ${config.artistName}`}</Description>
 
       <Image
         alt="Mailing List background image"

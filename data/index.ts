@@ -13,7 +13,6 @@ import { DataConfig } from "@ontour/types";
 
 export const data: DataConfig = {
   artistName: "Clay Street Unit",
-  artistDescription: "bluegrass band from Nashville, TN",
   legalEntity: "Clay Street Records",
   websiteUrl: "https://claystreetunit.com",
   admin: {

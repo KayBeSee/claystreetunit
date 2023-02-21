@@ -151,7 +151,6 @@ interface AdminConfig {
 
 export interface DataConfig {
   artistName: string;
-  artistDescription: string;
   legalEntity: string;
   websiteUrl: string;
   analytics: {

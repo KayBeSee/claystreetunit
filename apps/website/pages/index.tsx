@@ -18,7 +18,6 @@ export default function Home({ config }: Props) {
       <Head>
         <title key="title">{config.artistName}</title>
       </Head>
-      <Description>{`${config.artistName} is ${config.artistDescription}`}</Description>
       <div>
         <SplashPage config={config} setIsOpen={() => {}} />
       </div>
