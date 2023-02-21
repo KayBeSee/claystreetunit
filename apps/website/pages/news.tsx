@@ -8,7 +8,7 @@ import { Title, Description } from 'utils/Meta';
 import { data } from '@ontour/data';
 
 import { Copyright } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface NewsItem {
   _id: string;

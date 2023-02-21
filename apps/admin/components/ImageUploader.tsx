@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 
 import { LoadingSpinner } from '@ontour/components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 const url = 'https://api.cloudinary.com/v1_1/dyxybmew8/image/upload';
 

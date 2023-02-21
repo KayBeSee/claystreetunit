@@ -24,7 +24,7 @@ import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 import { useAppContext } from 'context/state';
 import { getSlug } from 'utils/getSlug';
 import getBase64ImageUrl, { ImageProps } from 'utils/generateBlurPlaceholder';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 const REPLACE_ZERO = 0;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Menu } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   children: JSX.Element;

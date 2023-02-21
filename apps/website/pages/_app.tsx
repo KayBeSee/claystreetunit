@@ -10,7 +10,7 @@ import { ogImage } from 'utils/ogImage';
 import '../styles/globals.css';
 
 import { PageWithMenu, CornerRibbon } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 import * as ga from 'utils/gtag';
 

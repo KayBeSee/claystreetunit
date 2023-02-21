@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { SocialIcons } from 'components';
 
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

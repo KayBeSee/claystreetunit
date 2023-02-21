@@ -10,7 +10,7 @@ import {
   NewspaperIcon,
 } from '@heroicons/react/outline';
 import { signOut } from 'next-auth/react';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');

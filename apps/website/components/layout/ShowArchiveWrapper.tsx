@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { format } from 'date-fns';
 
 import { Prisma } from '@ontour/archive';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 

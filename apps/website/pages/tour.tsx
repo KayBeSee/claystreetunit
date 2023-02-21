@@ -5,7 +5,7 @@ import { Copyright } from 'components';
 import { Title, Description } from 'utils/Meta';
 
 import { data } from '@ontour/data';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 import * as ga from 'utils/gtag';
 

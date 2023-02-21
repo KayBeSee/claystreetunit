@@ -9,7 +9,7 @@ import { client } from 'middleware/database';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 interface Props {

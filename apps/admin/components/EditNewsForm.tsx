@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { NewsPreview, NewsProps, ImageUploader } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   post?: NewsProps;

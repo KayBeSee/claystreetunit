@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { data } from '@ontour/data';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   config: DataConfig;

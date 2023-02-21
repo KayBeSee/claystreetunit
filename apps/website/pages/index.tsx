@@ -6,7 +6,7 @@ import { Description } from 'utils/Meta';
 import { data } from '@ontour/data';
 
 import { SplashPage } from 'components';
-import { DataConfig } from 'types';
+import { DataConfig } from '@ontour/types';
 
 interface Props {
   config: DataConfig;
