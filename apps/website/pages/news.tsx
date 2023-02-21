@@ -184,6 +184,10 @@ export default function News({ data, config }: Props) {
 }
 
 export async function getServerSideProps(context) {
+  return {
+    notFound: true,
+  };
+
   await client.connect();
   const items = await client
     .db(data.news.dbName)

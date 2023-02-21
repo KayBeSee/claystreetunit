@@ -96,6 +96,10 @@ Archive.getLayout = function getLayout(page: React.ReactElement) {
 };
 
 export async function getStaticProps(context) {
+  return {
+    notFound: true,
+  };
+
   await client.connect();
   const items = await ontour.show.findMany({
     include: {

@@ -12,10 +12,10 @@ import { music } from "./music";
 import { DataConfig } from "@ontour/types";
 
 export const data: DataConfig = {
-  artistName: "Airshow",
+  artistName: "Clay Street Unit",
   artistDescription: "bluegrass band from Nashville, TN",
-  legalEntity: "Airshow, LLC",
-  websiteUrl: "https://airshowband.com",
+  legalEntity: "Clay Street Records",
+  websiteUrl: "https://claystreetunit.com",
   admin: {
     logoUrl: "/text-horizontal-black.png",
   },
@@ -23,7 +23,12 @@ export const data: DataConfig = {
     logo: "/logo.png",
     ogImage: "/logo-circle-black.png",
     splashVideoUrl: "",
-    menu: [{ slug: "/archive", text: "Archive" }],
+    menu: [
+      { slug: "/tour", text: "Tour" },
+      { slug: `/music/${Object.keys(music)[0]}`, text: "Music" },
+      { slug: "/info", text: "Info" },
+      { slug: "/mailing-list", text: "Mailing List" },
+    ],
   },
   analytics: {
     googleAnalyticsCode: "",
@@ -38,11 +43,11 @@ export const data: DataConfig = {
       backgroundImage: "/page-backgrounds/tour.jpg",
     },
     bandsInTownApiEndpoint:
-      "https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070",
+      "https://rest.bandsintown.com/artists/id_15516947/events/?app_id=flatrockmgmt-44c07a11da396912929eb54883e70cfa",
   },
   music: {
     style: {
-      leftSideBackground: "/tree-texture-bg.jpg",
+      leftSideBackground: "/road-bg.jpg",
     },
     items: {
       ...music,
@@ -52,7 +57,7 @@ export const data: DataConfig = {
     style: {
       backgroundImage: "/page-backgrounds/news.jpg",
     },
-    dbName: "airshow",
+    dbName: "claystreetunit",
   },
   info: {
     style: {
@@ -61,48 +66,51 @@ export const data: DataConfig = {
     contacts: [
       {
         title: "Booking",
-        href: "mailto:cody.airshowband@gmail.com",
-        company: "",
+        href: "mailto:harry@madison-house.com",
+        company: "Madison House",
         contacts: [
           {
-            name: "Cody Chelius",
-            email: "cody.airshowband@gmail.com ",
+            name: "Harry Woosley",
+            email: "harry@madison-house.com",
           },
         ],
-        icon: "/epk/brands/wasserman.png",
+        icon: "/epk/brands/madison-house.png",
       },
       {
         title: "Management",
-        href: "mailto:tim@flatrockmgmt.com",
-        company: "Flat Rock Entertainment",
+        href: "mailto:josh@luckymanmgmt.com",
+        company: "Lucky Man Management",
         contacts: [
           {
-            name: "Tim Coughlin",
-            email: "tim@flatrockmgmt.com",
+            name: "Josh Nicotra",
+            email: "josh@luckymanmgmt.com",
+          },
+          {
+            name: "Andy Mertz",
+            email: "andy@luckymanmgmt.com",
           },
         ],
-        icon: "/epk/brands/flatrock.png",
+        icon: "/epk/brands/lucky-man.png",
       },
     ],
     testimonials: [],
     social: [
-      { icon: faInstagram, url: "https://www.instagram.com/airshowband/" },
+      { icon: faInstagram, url: "https://www.instagram.com/claystreetunit/" },
       {
         icon: faYoutube,
-        url: "https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw",
+        url: "https://www.youtube.com/channel/UCQIU7lpzgyAx3e3LLmvQwKw",
       },
-      { icon: faFacebook, url: "https://www.facebook.com/Airshowband" },
+      {
+        icon: faFacebook,
+        url: "https://www.facebook.com/profile.php?id=100063863959988",
+      },
       {
         icon: faSpotify,
-        url: "https://open.spotify.com/artist/2USLUiPGlv1amJy3gUszGw",
+        url: "https://open.spotify.com/artist/0HmpQ609wnu7isR6i96CWb",
       },
       {
         icon: faItunesNote,
-        url: "https://music.apple.com/us/artist/airshow/1235377961",
-      },
-      {
-        icon: faTwitter,
-        url: "http://%20https//twitter.com/airshowband",
+        url: "https://music.apple.com/us/artist/clay-street-unit/1648140695",
       },
     ],
   },
@@ -118,55 +126,50 @@ export const data: DataConfig = {
     logo: "/logo-circle-black.png",
     subtitle:
       "Anything and everything there is to know about the high-flying, bluegrass-influenced jamband from Nashville, TN.",
-    description: `Airshow is a high-flying, bluegrass-influenced jamband that’s sure to soar to the top of every music fans priority list this year. Having originally formed in Reading, PA, childhood best friends, Steve Gallagher (guitar/vocals) and Cody Chelius (mandolin/vocals), spread their wings and migrated to Nashville, TN in 2015. There they met Bill Baker (bass/vocals) and John Rodrigue (drums/vocals) and immediately started their ascension towards the top of Nashville’s jamband scene— and they won’t be landing anytime soon.
-      \nFlash forward to 2022 and Airshow is poised for liftoff. Having released two studio albums, ‘Shimmer’ (2021) and ‘Up in the Clouds’ (2019), as well as two EPs, ‘Anubis’ (2020) and ‘Lightbulb’ (2017), this fleet has enough studio material to keep your ears occupied for a 747 trip from JFK to O’Hare. After extensively touring the Northeast and Southeast, the band has their navigation set for everywhere in 2022. Keep your eyes peeled for the one and only Airshow in your town soon!`,
+    description: `Based out of Denver, CO, Clay Street Unit is a seven piece group rooted deep in homegrown southern folk/country and branches into the bluegrass sound that’s heard throughout the Appalachian hills.
+    \nForming in early 2021, the band just recently released their first EP and is working on developing and pushing their own unique sound, with a high energy, fresh take on the tradition of American folk and country music that is sure to keep you moving.`,
     videos: [
       {
         superTitle: "Pro Shot",
-        title: '"Feel Like a Stranger" (Grateful Dead cover)',
-        body: "March 1st, 2020 at Hidden River Brewing Company in Douglassville, PA",
-        href: "https://www.youtube.com/watch?v=GK_Y2z95IaA",
-        image: "https://img.youtube.com/vi/GK_Y2z95IaA/0.jpg",
+        title: "Engine Trouble - Live From The Bluebird Theater",
+        body: "October 29th, 2021 at The Bluebird Theater in Denver, CO ft. Jon Neimann",
+        href: "https://www.youtube.com/watch?v=SGHUtYwPR88",
+        image: "https://img.youtube.com/vi/SGHUtYwPR88/0.jpg",
         color: "text-sicard-gold-800",
       },
-      {
-        superTitle: "Cover Set",
-        title: "Airshow - 9/24/21 - Phish Themed Second Set",
-        body: "Airshow - September 24, 2021 at Fretboard Brewing (Cincinnati, OH)",
-        href: "https://www.youtube.com/watch?v=AgLnKSSLjKw",
-        image: "https://img.youtube.com/vi/AgLnKSSLjKw/0.jpg",
-        color: "text-pink-500",
-      },
-      {
-        superTitle: "Live",
-        title: `Airshow - 4/24/2022 (Full Set)`,
-        body: `Airshow's 4/24/22 performance at Brooklyn Bowl in Nashville, TN supporting Pigeons Playing Ping Pong.`,
-        href: "https://www.youtube.com/watch?v=drCl8nTdSiY",
-        image: "https://img.youtube.com/vi/drCl8nTdSiY/0.jpg",
-        color: "text-indigo-500",
-      },
+      // {
+      //   superTitle: "Cover Set",
+      //   title: "Airshow - 9/24/21 - Phish Themed Second Set",
+      //   body: "Airshow - September 24, 2021 at Fretboard Brewing (Cincinnati, OH)",
+      //   href: "https://www.youtube.com/watch?v=AgLnKSSLjKw",
+      //   image: "https://img.youtube.com/vi/AgLnKSSLjKw/0.jpg",
+      //   color: "text-pink-500",
+      // },
+      // {
+      //   superTitle: "Live",
+      //   title: `Airshow - 4/24/2022 (Full Set)`,
+      //   body: `Airshow's 4/24/22 performance at Brooklyn Bowl in Nashville, TN supporting Pigeons Playing Ping Pong.`,
+      //   href: "https://www.youtube.com/watch?v=drCl8nTdSiY",
+      //   image: "https://img.youtube.com/vi/drCl8nTdSiY/0.jpg",
+      //   color: "text-indigo-500",
+      // },
     ],
     spotifyScreenshot: "/spotify.png",
     socialStats: [
       {
-        stat: "350+",
+        stat: "9.1k+",
         emphasis: "Monthly listeners",
         rest: "on Spotify",
       },
       {
-        stat: "2.8K+",
+        stat: "2K+",
         emphasis: "Followers",
         rest: "on Instagram",
       },
       {
-        stat: "2.9K+",
+        stat: "150+",
         emphasis: "Fans",
         rest: "on Facebook",
-      },
-      {
-        stat: "150+",
-        emphasis: "Subscribers",
-        rest: "on YouTube",
       },
     ],
     additionalResources: [
@@ -174,23 +177,23 @@ export const data: DataConfig = {
         superTitle: "Photos",
         title: "Official photos",
         body: "Officially licensed photos of the band to be used in marketing content.",
-        href: "https://drive.google.com/drive/u/1/folders/1b0M_p7Ma7_RwlqKIZzSiYJEYGHBGYeq9",
+        href: "#",
         image: "/epk/images/official-photos.jpeg",
         color: "text-indigo-500",
       },
       {
         superTitle: "Press",
         title: "Press releases and one-pagers",
-        body: "Press releases and one-pagers related to album releases and tour anouncements.",
-        href: "https://drive.google.com/drive/u/1/folders/1N98rtZOtRRleiFFPOW6FbO08z2SmgdQC",
-        image: "/epk/images/press.png",
+        body: "Press releases and one-pagers related to album releases and tour announcements.",
+        href: "#",
+        image: "/epk/images/press.jpg",
         color: "text-red-500",
       },
       {
         superTitle: "Live Performance",
         title: "Stage Plot, Rider, W-9",
-        body: "Documents relevant to hosting a Sicard Hollow live performance at your venue.",
-        href: "https://drive.google.com/drive/u/1/folders/1_a8Hlpv0GWl_XbSgVRC9nvlORAIimSCZ",
+        body: "Documents relevant to hosting a Clay Street Unit live performance at your venue.",
+        href: "#",
         image: "/epk/images/live-performance.jpg",
         color: "text-sicard-blue-300",
       },
@@ -198,8 +201,8 @@ export const data: DataConfig = {
     youtubeLink: "https://www.youtube.com/channel/UCH0GV4YdDN__fjF_i_bpvSw",
   },
   archive: {
-    cloudinary_root_folder: "airshow",
-    dbName: "airshow",
+    cloudinary_root_folder: "claystreetunit",
+    dbName: "claystreetunit",
     ogImageLogo: "logo-circle-white.png",
   },
 };

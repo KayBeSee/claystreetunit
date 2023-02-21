@@ -20,7 +20,7 @@ const nextConfig = {
     return [
       {
         source: '/music',
-        destination: `/music/brightest-of-days`,
+        destination: `/music/a-mighty-fine-evening`,
         permanent: false,
       },
     ];
