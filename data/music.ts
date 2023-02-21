@@ -58,7 +58,7 @@ export const music: Props = {
       backgroundColor: "bg-[#BA1F2E]",
       primaryText: "text-[#FAC39E]",
       secondaryText: "text-[#D4B494]",
-      listenNowBorder: "border-[#993436]",
+      listenNowBorder: "border-[#8A1722]",
     },
   },
 };
