@@ -6,7 +6,7 @@ import { NewsProps, PageWidthWrapper } from 'components';
 import AddNewsForm from 'components/AddNewsForm';
 import { useRouter } from 'next/router';
 
-const AddNewsPage = () => {
+const AddNewsPage = ({ config }) => {
   const router = useRouter();
 
   const savePost = async (post: NewsProps) => {

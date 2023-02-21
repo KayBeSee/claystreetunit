@@ -7,8 +7,7 @@
     "build": "next build",
     "vercel-build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
-    "prebuild": "tsc ./data/index.ts --baseUrl ."
+    "lint": "next lint"
   },
   "prisma": {
     "schema": "../../packages/archive/prisma/schema.prisma"

@@ -9,7 +9,7 @@ import {
 
 import { music } from "./music";
 
-import { DataConfig } from "types";
+import { DataConfig } from "@ontour/types";
 
 export const data: DataConfig = {
   artistName: "Airshow",
