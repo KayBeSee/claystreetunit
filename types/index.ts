@@ -1,5 +1,21 @@
 import { IconDefinition } from "@fortawesome/free-brands-svg-icons";
 
+export * from "./external";
+
+export interface ShowResponse {
+  id: string;
+  title: string;
+  datetime: string;
+  venue: {
+    name: string;
+    location: string; // city, state
+  };
+  lineup: string[];
+  offers: {
+    url: string;
+  }[];
+}
+
 interface StyleProps {
   backgroundImage?: string;
 }
