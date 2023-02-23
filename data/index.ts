@@ -24,7 +24,7 @@ export const data: DataConfig = {
     menu: [
       { slug: "/tour", text: "Tour" },
       { slug: `/music/${Object.keys(music)[0]}`, text: "Music" },
-      { slug: "/info", text: "Info" },
+      { slug: "/about", text: "About" },
       { slug: "/mailing-list", text: "Mailing List" },
       { slug: "#", text: "Store" },
     ],
@@ -42,7 +42,7 @@ export const data: DataConfig = {
       backgroundImage: "/page-backgrounds/tour.jpg",
     },
     bandsInTownApiEndpoint:
-      "https://rest.bandsintown.com/artists/id_15516947/events/?app_id=flatrockmgmt-44c07a11da396912929eb54883e70cfa",
+      "https://cdn.seated.com/api/tour/752c8ceb-1eda-4c65-a012-59e95205ab45?include=tour-events",
   },
   music: {
     style: {
