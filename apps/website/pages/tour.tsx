@@ -5,9 +5,10 @@ import { Copyright } from 'components';
 import { Title, Description } from 'utils/Meta';
 
 import { data } from '@ontour/data';
-import { DataConfig } from '@ontour/types';
+import { DataConfig, ShowResponse } from '@ontour/types';
 
 import * as ga from 'utils/gtag';
+import { fetchShowData } from 'utils/fetchShowData';
 
 export const getDate = (date) => {
   const dateObj = new Date(date);
@@ -44,13 +45,16 @@ interface Props {
 
 export default function Tour({ config }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [shows, setShows] = useState([]);
+  const [shows, setShows] = useState<ShowResponse[]>([]);
 
   useEffect(() => {
     const fetchTourDates = async () => {
       try {
-        const { data } = await axios.get(config.tour.bandsInTownApiEndpoint);
-        setShows(data);
+        const fetchedShows = await fetchShowData(
+          config.tour.bandsInTownApiEndpoint
+        );
+
+        setShows(fetchedShows);
       } catch (e) {
         console.log('e: ', e);
       }
@@ -93,9 +97,9 @@ export default function Tour({ config }: Props) {
               : shows.map((show) => {
                   const primaryText = show.title
                     ? show.title
-                    : `${show.venue.city}, ${show.venue.region}`;
+                    : show.venue.location;
                   const secondaryText = show.title
-                    ? `${show.venue.city}, ${show.venue.region}`
+                    ? show.venue.location
                     : show.venue.name;
                   const lineup =
                     show.lineup.length > 1 && !show.title
