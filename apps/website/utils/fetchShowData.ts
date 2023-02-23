@@ -21,21 +21,25 @@ export const fetchShowData = async (
 const formatSeatedApiResponse = (
   response: SeatedApiResponse
 ): ShowResponse[] => {
-  return response.included.map((item) => ({
-    id: item.id,
-    title: '',
-    datetime: item.attributes['starts-at'],
-    venue: {
-      name: item.attributes['venue-name'],
-      location: item.attributes['formatted-address'],
-    },
-    lineup: [],
-    offers: [
-      {
-        url: `https://link.seated.com/${item.id}`,
+  return response.included
+    .map((item) => ({
+      id: item.id,
+      title: '',
+      datetime: item.attributes['starts-at'],
+      venue: {
+        name: item.attributes['venue-name'],
+        location: item.attributes['formatted-address'],
       },
-    ],
-  }));
+      lineup: [],
+      offers: [
+        {
+          url: `https://link.seated.com/${item.id}`,
+        },
+      ],
+    }))
+    .sort((a, b) => {
+      return new Date(a.datetime).getTime() - new Date(b.datetime).getTime();
+    });
 };
 
 const formatBandsInTownApiResponse = (
