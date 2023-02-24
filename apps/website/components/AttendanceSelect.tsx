@@ -1,6 +1,4 @@
-import { Fragment, useState } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 
 const publishingOptions = [
@@ -16,10 +14,6 @@ const publishingOptions = [
     current: false,
   },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export function AttendanceSelect() {
   const [selected, setSelected] = useState(false);

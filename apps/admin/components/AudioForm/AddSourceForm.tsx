@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { XIcon, PlusIcon } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
+import { XMarkIcon, PlusIcon } from '@heroicons/react/24/solid';
 
 import { Input } from 'components';
 
@@ -99,7 +98,7 @@ export const AddSourceForm = ({ onSubmit }: Props) => {
                 'relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500'
               )}
             >
-              <XIcon
+              <XMarkIcon
                 className={clsx(
                   isError ? 'text-red-700' : 'text-gray-400',
                   'h-5 w-5'

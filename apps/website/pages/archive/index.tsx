@@ -8,7 +8,7 @@ import { data } from '@ontour/data';
 import { client } from 'middleware/database';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import { ChevronRightIcon } from '@heroicons/react/solid';
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import { DataConfig } from '@ontour/types';
 import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 

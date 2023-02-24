@@ -15,7 +15,7 @@ export const data: DataConfig = {
   legalEntity: "Clay Street Records",
   websiteUrl: "https://claystreetunit.com",
   admin: {
-    logoUrl: "/text-horizontal-black.png",
+    logoUrl: "/logo-text.png",
   },
   home: {
     logo: "/logo.png",

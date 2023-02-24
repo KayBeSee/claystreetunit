@@ -1,12 +1,7 @@
 import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import {
-  MenuIcon,
-  XCircleIcon,
-  ChevronRightIcon,
-} from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
 const SetlistIcon = () => (

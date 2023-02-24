@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon, CheckIcon, UploadIcon } from '@heroicons/react/solid';
+import { ChevronDownIcon, ArrowUpTrayIcon } from '@heroicons/react/24/solid';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -69,7 +69,7 @@ export function ContributeDropdown() {
                               active ? 'text-white' : 'text-emerald-500'
                             )}
                           >
-                            <UploadIcon
+                            <ArrowUpTrayIcon
                               className="h-5 w-5"
                               aria-hidden="true"
                             />

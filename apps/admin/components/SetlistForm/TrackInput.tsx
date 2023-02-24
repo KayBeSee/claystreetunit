@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Prisma, TrackFormInput } from '@ontour/archive';
 import { Combobox } from '@headlessui/react';
-import { ChevronRightIcon, CheckIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon, CheckIcon } from '@heroicons/react/24/outline';
 import deepCopy from 'utils/deepCopy';
 import { TrackNoteInput } from './TrackNoteInput';
 import NewSongModal from './NewSongModal';

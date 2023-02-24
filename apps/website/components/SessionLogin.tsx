@@ -2,7 +2,7 @@ import React from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import clsx from 'clsx';
 
-import { LinkIcon } from '@heroicons/react/outline';
+import { LinkIcon } from '@heroicons/react/24/outline';
 
 export const SessionLogin = ({ className }) => {
   const { data: session } = useSession();

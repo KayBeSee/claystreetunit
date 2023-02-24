@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   HomeIcon,
-  MenuIcon,
-  XIcon,
+  Bars3Icon,
+  XMarkIcon,
   NewspaperIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 import { signOut } from 'next-auth/react';
 import { DataConfig } from '@ontour/types';
 
@@ -91,7 +91,7 @@ export function Layout({ children, config }: Props) {
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon
+                        <XMarkIcon
                           className="h-6 w-6 text-white"
                           aria-hidden="true"
                         />
@@ -239,7 +239,7 @@ export function Layout({ children, config }: Props) {
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <main className="flex-1">

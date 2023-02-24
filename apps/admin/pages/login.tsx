@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { signIn, getCsrfToken } from 'next-auth/react';
+import data from '@ontour/data';
 
-export default function Login({ csrfToken }) {
+export default function Login({ csrfToken, logoUrl }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
@@ -23,13 +24,12 @@ export default function Login({ csrfToken }) {
   };
 
   return (
-    <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
+    <div className="min-h-full h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center relative h-36">
         <Image
           className="mx-auto h-12 w-auto"
-          src="/logo-circle-black.png"
-          width={250}
-          height={225}
+          src={logoUrl}
+          layout="fill"
           alt="Logo"
         />
       </div>
@@ -108,6 +108,7 @@ export default function Login({ csrfToken }) {
 export async function getServerSideProps(context) {
   return {
     props: {
+      logoUrl: data.admin.logoUrl,
       csrfToken: await getCsrfToken(context),
     },
   };

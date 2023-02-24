@@ -8,7 +8,7 @@ import {
   CalendarIcon,
   ChevronRightIcon,
   PlusCircleIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import { PageWidthWrapper } from 'components';
 
 const getDate = (date) => {

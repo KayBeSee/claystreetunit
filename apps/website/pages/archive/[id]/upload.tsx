@@ -76,7 +76,6 @@ const ShowUpload = ({ data: show }: Props) => {
   const EmptyStateWrapped = () => (
     <div className="mx-auto flex justify-center items-center py-8 w-full px-6">
       <PhotoEmptyState
-        show={{}}
         onChange={(files) => {
           Object.keys(files).forEach((i) => {
             const fileReader = new FileReader();

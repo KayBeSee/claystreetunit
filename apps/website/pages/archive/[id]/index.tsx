@@ -160,7 +160,6 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
             </div>
             <section className="mt-8 pb-16">
               <PhotoEmptyState
-                show={show}
                 onChange={(files) => {
                   Object.keys(files).forEach((i) => {
                     const fileReader = new FileReader();
@@ -282,7 +281,9 @@ export async function getStaticProps(context) {
       props: {
         show: JSON.parse(JSON.stringify(show)),
         config: data,
-        photos: resources,
+        photos: resources.filter(
+          (item) => item?.metadata?.status === 'published'
+        ),
       },
     };
   } catch (e) {
