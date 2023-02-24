@@ -282,7 +282,9 @@ export async function getStaticProps(context) {
       props: {
         show: JSON.parse(JSON.stringify(show)),
         config: data,
-        photos: resources,
+        photos: resources.filter(
+          (item) => item.metadata.status === 'published'
+        ),
       },
     };
   } catch (e) {

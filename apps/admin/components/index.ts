@@ -10,3 +10,4 @@ export * from './ImageEditor';
 export * from './Input';
 export * from './SetlistForm';
 export * from './FormSection';
+export * from './Slideover';

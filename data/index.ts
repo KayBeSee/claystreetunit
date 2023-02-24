@@ -16,7 +16,7 @@ export const data: DataConfig = {
   legalEntity: "Airshow, LLC",
   websiteUrl: "https://airshowband.com",
   admin: {
-    logoUrl: "/text-horizontal-black.png",
+    logoUrl: "/logo-text.png",
   },
   home: {
     logo: "/logo.png",
