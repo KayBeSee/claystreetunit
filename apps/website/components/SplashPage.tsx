@@ -20,7 +20,7 @@ export const SplashPage = ({ config, setIsOpen }: Props) => (
       muted={true}
       loop={true}
       playsInline={true}
-      poster="/placeholder.png"
+      poster="/placeholder.jpeg"
       id="bgvid"
     >
       <source
