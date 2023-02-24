@@ -21,7 +21,7 @@ export const data: DataConfig = {
     logo: "/logo.png",
     ogImage: "/logo-circle-black.png",
     splashVideoUrl:
-      "https://res.cloudinary.com/dyxybmew8/video/upload/q_auto,f_auto,c_fill/v1677278398/New_30_Second_Cut_2-24-_1_fd3o1k.mp4",
+      "https://res.cloudinary.com/dyxybmew8/video/upload/q_auto,f_auto,c_fill,sp_auto/v1677278398/New_30_Second_Cut_2-24-_1_fd3o1k.mp4",
     menu: [
       { slug: "/tour", text: "Tour" },
       { slug: `/music/${Object.keys(music)[0]}`, text: "Music" },
