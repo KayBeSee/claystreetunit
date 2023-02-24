@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { Transition, Dialog } from '@headlessui/react';
 
 import { SplashPage } from 'components';
@@ -24,9 +24,9 @@ export const Menu = ({ config }: Props) => {
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
-            <XIcon className="text-white" />
+            <XMarkIcon className="text-white" />
           ) : (
-            <MenuIcon className="text-white" />
+            <Bars3Icon className="text-white" />
           )}
         </button>
       ) : null}

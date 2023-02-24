@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
@@ -47,9 +47,9 @@ export const Navbar = ({ config }: Props) => {
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sicard-blue-500">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -186,7 +186,6 @@ export const Navbar = ({ config }: Props) => {
               <div className="mt-3 space-y-1">
                 <Disclosure.Button
                   as="button"
-                  onClick={() => signOut()}
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
                 >
                   Sign out

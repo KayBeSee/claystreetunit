@@ -1,21 +1,7 @@
 import React, { useEffect } from 'react';
-import { SearchIcon, PlusIcon } from '@heroicons/react/solid';
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { fetcher } from 'lib/fetcher';
 import { AudioSuggestion } from '@ontour/types';
-import { AudioSource } from '@ontour/archive';
-
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-];
 
 interface Props {
   date: string;
@@ -80,7 +66,7 @@ export const Suggestions = ({ date, onAdd }: Props) => {
                       target="_blank"
                       className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                     >
-                      <SearchIcon
+                      <MagnifyingGlassIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
                       />

@@ -41,7 +41,7 @@ export const data: DataConfig = {
   },
   music: {
     style: {
-      leftSideBackground: "/tree-texture-bg.jpg",
+      leftSideBackground: "/placeholder.png",
     },
     items: {
       ...music,

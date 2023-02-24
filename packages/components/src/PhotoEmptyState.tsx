@@ -1,18 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { PhotoIcon } from "@heroicons/react/24/outline";
-
-import { Button } from "./Button";
 
 interface Props {
-  show: any;
   onChange: (files: File[]) => void;
 }
 
-export const PhotoEmptyState = ({ show, onChange }: Props) => {
-  const router = useRouter();
-
+export const PhotoEmptyState = ({ onChange }: Props) => {
   return (
     <div className="w-full relative">
       <div className="opacity-10 md:opacity-100 -mt-10 md:mt-0 absolute right-0 md:right-0 top-10 md:-top-6">

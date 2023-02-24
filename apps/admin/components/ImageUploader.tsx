@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { XIcon } from '@heroicons/react/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import { LoadingSpinner } from '@ontour/components';
 import { DataConfig } from '@ontour/types';
@@ -75,7 +75,7 @@ export const ImageUploader = ({
                 onClick={() => onImageDelete()}
                 className="opacity-0 bg-red-500 p-2 rounded-full absolute top-0 right-0 -mt-2 -mr-2 group-hover:opacity-95"
               >
-                <XIcon className="h-4 w-4 text-white" />
+                <XMarkIcon className="h-4 w-4 text-white" />
               </button>
               <img src={currentImageUrl} className="max-h-96" />
             </div>

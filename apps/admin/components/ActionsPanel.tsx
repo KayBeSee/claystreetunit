@@ -1,11 +1,11 @@
 import {
-  CashIcon,
+  BanknotesIcon,
   ReceiptRefundIcon,
   NewspaperIcon,
   TicketIcon,
-  PhotographIcon,
+  PhotoIcon,
   UserGroupIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -38,7 +38,7 @@ const actions = [
     description: "This doesn't work yet...just filler to look good.",
   },
   {
-    icon: PhotographIcon,
+    icon: PhotoIcon,
     name: 'Manage media',
     href: '#',
     iconForeground: 'text-indigo-700',
@@ -46,7 +46,7 @@ const actions = [
     description: "This doesn't work yet...just filler to look good.",
   },
   {
-    icon: CashIcon,
+    icon: BanknotesIcon,
     name: 'Accounting',
     href: '#',
     iconForeground: 'text-yellow-700',

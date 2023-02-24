@@ -1,6 +1,6 @@
-import { StarIcon as StarIconOutline } from '@heroicons/react/outline';
-import { StarIcon as StarIconSolid } from '@heroicons/react/solid';
-import { Prisma, ShowWithSetlist } from '@ontour/archive';
+import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline';
+import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
+import { ShowWithSetlist } from '@ontour/archive';
 import { ResourceApiResponse } from 'cloudinary';
 
 import { fetcher } from 'lib/fetcher';

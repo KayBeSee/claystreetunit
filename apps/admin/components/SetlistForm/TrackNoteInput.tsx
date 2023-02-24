@@ -1,5 +1,5 @@
 import React from 'react';
-import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 interface Props {
   value: string;
@@ -19,7 +19,7 @@ export const TrackNoteInput = ({
   <div className="col-span-6 grid grid-cols-6 gap-y-1 items-center group">
     <div className="col-span-4">
       <div className="flex items-center my-1">
-        <PencilAltIcon className="h-5 w-5 text-gray-400 ml-2 mt-1 mr-1" />
+        <PencilIcon className="h-5 w-5 text-gray-400 ml-2 mt-1 mr-1" />
         <div className="ml-2 w-full">
           <div className="mt-1">
             <input

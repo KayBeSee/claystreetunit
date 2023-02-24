@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Venue, CreateShowFormInput } from '@ontour/archive';
 import { Combobox } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/outline';
+import { CheckIcon } from '@heroicons/react/24/outline';
 import deepCopy from 'utils/deepCopy';
 import { Input } from 'components';
 

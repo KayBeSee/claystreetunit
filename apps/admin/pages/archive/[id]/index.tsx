@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import Head from 'next/head';
 import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 
 import { data } from '@ontour/data';
@@ -13,10 +14,9 @@ import { PageWidthWrapper, Slideover } from 'components';
 import { SetlistView, LoadingSpinner } from '@ontour/components';
 import { fetcher } from 'lib/fetcher';
 import { getSlug } from 'utils/getSlug';
-import Head from 'next/head';
 import { PhotoSlideoverInfo } from 'components/PhotoSlideoverInfo';
-import { GlobeIcon, LockClosedIcon } from '@heroicons/react/outline';
-import { StarIcon } from '@heroicons/react/solid';
+import { GlobeAltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 
 const uploadFile = async (files, show) => {
   try {
@@ -278,7 +278,7 @@ const EditArchivePage = ({ photos, show }: Props) => {
                           {photo.metadata.status === 'submitted' ? (
                             <LockClosedIcon className="h-4 w-4 mr-1" />
                           ) : (
-                            <GlobeIcon className="h-4 w-4 mr-1" />
+                            <GlobeAltIcon className="h-4 w-4 mr-1" />
                           )}{' '}
                           <span className="capitalize">
                             {photo.metadata.status}

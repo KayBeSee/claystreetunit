@@ -1,5 +1,3 @@
-import { PhotographIcon } from '@heroicons/react/outline';
-
 export interface NewsProps {
   _id?: string;
   title: string;

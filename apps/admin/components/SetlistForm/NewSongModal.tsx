@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { ExclamationCircleIcon } from '@heroicons/react/outline';
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { Prisma } from '@ontour/archive';
 import { Input } from 'components';
 

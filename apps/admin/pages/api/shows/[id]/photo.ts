@@ -19,7 +19,6 @@ export default async function audioSourceHandler(
   switch (method) {
     case 'GET': {
       const showId = Array.isArray(id) ? id[0] : id;
-      console.log('showId: ', showId);
 
       const show = await ontour.show.findFirst({
         where: {
@@ -35,7 +34,6 @@ export default async function audioSourceHandler(
         api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
         api_secret: process.env.CLOUDINARY_SECRET,
       });
-      console.log('show: ', show);
 
       const { resources } = await cloudinary.api.resources_by_asset_folder(
         `airshow/shows/${getSlug(show)}`,

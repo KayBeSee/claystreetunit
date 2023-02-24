@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { format } from 'date-fns';
 import Link from 'next/link';
-import {
-  createShow,
-  getShows,
-  Show,
-  ontour,
-  ShowWithSetlist,
-} from '@ontour/archive';
+import { getShows, ShowWithSetlist } from '@ontour/archive';
 
-import { ChevronRightIcon, PlusCircleIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
 
 import { data } from '@ontour/data';
 
