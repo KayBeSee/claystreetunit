@@ -23,7 +23,7 @@ export default function MailingList({ config }: Props) {
       });
       setButtonText('Added!');
     } catch (e) {
-      setButtonText('Try again');
+      setButtonText(e.response.data);
     }
   };
 
