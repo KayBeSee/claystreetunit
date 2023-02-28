@@ -173,6 +173,7 @@ export async function getStaticProps(context) {
       setlist: {
         include: {
           tracks: {
+            orderBy: [{ position: 'asc' }],
             include: {
               song: true,
             },
