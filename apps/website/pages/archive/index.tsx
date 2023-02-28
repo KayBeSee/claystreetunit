@@ -168,6 +168,7 @@ Archive.getLayout = function getLayout(page: React.ReactElement) {
 export async function getStaticProps(context) {
   await client.connect();
   const items = await ontour.show.findMany({
+    orderBy: [{ date: 'desc' }],
     include: {
       setlist: {
         include: {

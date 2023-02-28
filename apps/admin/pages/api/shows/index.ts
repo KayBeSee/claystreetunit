@@ -11,7 +11,9 @@ export default async function showHandler(
 
   switch (method) {
     case 'GET': {
-      const shows = await ontour.show.findMany();
+      const shows = await ontour.show.findMany({
+        orderBy: [{ date: 'desc' }],
+      });
       res.json(shows);
       break;
     }
