@@ -54,6 +54,33 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    ({ matchUtilities, theme }) => {
+      matchUtilities(
+        // https://codepen.io/henry/pen/WNMVVKq?editors=1010
+        {
+          aspect: (value) => ({
+            '@supports (aspect-ratio: 1 / 1)': {
+              aspectRatio: value,
+            },
+            '@supports not (aspect-ratio: 1 / 1)': {
+              // https://github.com/takamoso/postcss-aspect-ratio-polyfill
+
+              '&::before': {
+                content: '""',
+                float: 'left',
+                paddingTop: `calc(100% / (${value}))`,
+              },
+              '&::after': {
+                clear: 'left',
+                content: '""',
+                display: 'block',
+              },
+            },
+          }),
+        },
+        { values: theme('aspectRatio') }
+      );
+    },
   ],
   corePlugins: {
     aspectRatio: false,

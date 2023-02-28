@@ -113,8 +113,8 @@ export default function SharedModal({
           {/* Buttons */}
           {loaded && (
             <div
-              className="relative max-h-full w-full"
-              style={{ aspectRatio: '3/2' }}
+              className="relative max-h-full w-full aspect-[3/2]"
+              // style={{ aspectRatio: '3/2' }}
             >
               {navigation && (
                 <>
@@ -194,8 +194,8 @@ export default function SharedModal({
             <div className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-black/60">
               <motion.div
                 initial={false}
-                className="mx-auto mt-6 mb-6 flex h-14"
-                style={{ aspectRatio: '3/2' }}
+                className="mx-auto mt-6 mb-6 flex h-14 aspect-[3/2]"
+                // style={{ aspectRatio: '3/2' }}
               >
                 <AnimatePresence initial={false}>
                   {filteredImages.map(({ public_id, format, id }) => (
