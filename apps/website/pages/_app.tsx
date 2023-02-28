@@ -98,12 +98,14 @@ export default function MyApp({ Component, pageProps }: Props) {
       <SessionProvider session={pageProps.session}>
         <PageWithMenu config={config}>
           <div className="overflow-y-scroll h-full">
-            <CornerRibbon
-              link={`/music/${latestReleaseTitle.slug}`}
-              className="bg-gradient-to-r from-sicard-gold-500 to-sicard-gold-700 text-xs"
-            >
-              Listen to "{latestReleaseTitle.name}"
-            </CornerRibbon>
+            {!router.asPath.includes('archive') ? (
+              <CornerRibbon
+                link={`/music/${latestReleaseTitle.slug}`}
+                className="bg-gradient-to-r from-sicard-gold-500 to-sicard-gold-700 text-xs"
+              >
+                Listen to "{latestReleaseTitle.name}"
+              </CornerRibbon>
+            ) : null}
             <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
           </div>
         </PageWithMenu>
