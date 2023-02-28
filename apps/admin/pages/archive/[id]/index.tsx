@@ -248,7 +248,6 @@ const EditArchivePage = ({ photos, show }: Props) => {
               <div className="relative w-full flex">
                 <ul className="w-full py-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                   {photoData.map((photo) => {
-                    console.log('rerender: ', photo.public_id);
                     return (
                       <li
                         className="relative"

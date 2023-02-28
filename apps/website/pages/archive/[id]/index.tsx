@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -25,8 +25,9 @@ import { useAppContext } from 'context/state';
 import { getSlug } from 'utils/getSlug';
 import getBase64ImageUrl, { ImageProps } from 'utils/generateBlurPlaceholder';
 import { DataConfig } from '@ontour/types';
-
-const REPLACE_ZERO = 0;
+import Link from 'next/link';
+import { useLastViewedPhoto } from 'utils/useLastViewedPhoto';
+import PhotoModal from 'components/PhotoModal';
 
 type ShowWithSetListAudio = Prisma.ShowGetPayload<{
   include: {
@@ -54,6 +55,11 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
   const { setState } = useAppContext();
   const router = useRouter();
 
+  const { photoId } = router.query;
+  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
+
+  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
+
   const ogObject = {
     date: show.date.toString(),
     venueName: show.venue.name,
@@ -63,6 +69,14 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
   };
 
   const queryParams = new URLSearchParams(ogObject);
+
+  useEffect(() => {
+    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
+    if (lastViewedPhoto && !photoId) {
+      lastViewedPhotoRef.current.scrollIntoView({ block: 'center' });
+      setLastViewedPhoto(null);
+    }
+  }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
 
   return (
     <>
@@ -103,6 +117,14 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
         />
       </Head>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-[1]">
+        {photoId && (
+          <PhotoModal
+            images={photos}
+            onClose={() => {
+              setLastViewedPhoto(photoId);
+            }}
+          />
+        )}
         <div className="text-white divide-y divide-slate-200">
           <div className="flex-col sm:flex-row md:items-center justify-between space-y-8 hidden md:flex">
             <h1 className="text-black font-semibold text-3xl py-8 font-serif">
@@ -180,9 +202,30 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               />
               <div className="py-12">
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                  {photos.map((photo) => {
-                    return <Photo src={photo.secure_url} />;
-                  })}
+                  {photos.map(
+                    ({ id, secure_url, public_id, format, blurDataUrl }) => {
+                      return (
+                        <Link
+                          key={id}
+                          href={`/archive/${show.id}/?photoId=${id}`}
+                          // href={{
+                          //   pathname: '/archive/[showId]/',
+                          //   query: { showId: show.id, photoId: id },
+                          // }}
+                          // as={`/archive/${show.id}/p/${id}`}
+                          ref={
+                            id === Number(lastViewedPhoto)
+                              ? lastViewedPhotoRef
+                              : null
+                          }
+                          shallow
+                          className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+                        >
+                          <Photo src={secure_url} />
+                        </Link>
+                      );
+                    }
+                  )}
                 </ul>
               </div>
             </section>
@@ -254,10 +297,14 @@ export async function getStaticProps(context) {
       { transformation: 'f_jpg,w_8,q_70' }
     );
 
+    const filteredResources = resources.filter(
+      (item) => item?.metadata?.status === 'published'
+    );
+
     let reducedResults: ImageProps[] = [];
 
     let i = 0;
-    for (let result of resources) {
+    for (let result of filteredResources) {
       reducedResults.push({
         id: i,
         height: result.height,
@@ -273,17 +320,16 @@ export async function getStaticProps(context) {
     });
     const imagesWithBlurDataUrls = await Promise.all(blurImagePromises);
 
-    for (let i = 0; i < resources.length; i++) {
-      resources[i].blurDataUrl = imagesWithBlurDataUrls[i];
+    for (let i = 0; i < filteredResources.length; i++) {
+      filteredResources[i].id = i;
+      filteredResources[i].blurDataUrl = imagesWithBlurDataUrls[i];
     }
 
     return {
       props: {
         show: JSON.parse(JSON.stringify(show)),
         config: data,
-        photos: resources.filter(
-          (item) => item?.metadata?.status === 'published'
-        ),
+        photos: filteredResources,
       },
     };
   } catch (e) {
