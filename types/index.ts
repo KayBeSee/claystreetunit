@@ -190,6 +190,11 @@ export interface DataConfig {
     cloudinary_root_folder: string;
     dbName: string;
     ogImageLogo: string;
+    navigation: {
+      name: string;
+      href: string;
+      comingSoon?: boolean;
+    }[];
   };
   admin: AdminConfig;
   error: ErrorConfig;
