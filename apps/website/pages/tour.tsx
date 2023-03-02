@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Copyright } from 'components';
 
 import { Title, Description } from 'utils/Meta';
@@ -126,22 +125,16 @@ export default function Tour({ config }: Props) {
                           </span>
                         ) : null}
                       </div>
-                      {show.offers[0] ? (
-                        <a
-                          href={show.offers[0].url}
-                          onClick={() => logTicketClickEvent(show)}
-                          target="_blank"
-                          rel="noreferrer"
-                          // passHref={true}
-                          className="rounded-md bg-sicard-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-sicard-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sicard-blue-600"
-                        >
-                          Tickets
-                        </a>
-                      ) : (
-                        <div className="rounded-md bg-sicard-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-sicard-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sicard-blue-600">
-                          Free show!
-                        </div>
-                      )}
+                      <a
+                        href={show.tickets.url}
+                        onClick={() => logTicketClickEvent(show)}
+                        target="_blank"
+                        rel="noreferrer"
+                        // passHref={true}
+                        className="rounded-md bg-sicard-blue-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-sicard-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sicard-blue-600"
+                      >
+                        {show.tickets.text}
+                      </a>
                     </li>
                   );
                 })}

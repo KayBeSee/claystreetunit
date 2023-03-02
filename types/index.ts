@@ -11,9 +11,10 @@ export interface ShowResponse {
     location: string; // city, state
   };
   lineup: string[];
-  offers: {
+  tickets: {
+    text: string;
     url: string;
-  }[];
+  };
 }
 
 interface StyleProps {

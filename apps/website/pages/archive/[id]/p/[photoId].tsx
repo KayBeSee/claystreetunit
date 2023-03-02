@@ -9,7 +9,11 @@ import Carousel from 'components/Carousel';
 import getBase64ImageUrl from 'utils/generateBlurPlaceholder';
 import data from '@ontour/data';
 
-const Home: NextPage = ({ currentPhoto }) => {
+interface Props {
+  currentPhoto: any;
+}
+
+const Home: NextPage = ({ currentPhoto }: Props) => {
   const router = useRouter();
   const { photoId } = router.query;
   let index = Number(photoId);
