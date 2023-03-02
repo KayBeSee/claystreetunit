@@ -31,11 +31,10 @@ const formatSeatedApiResponse = (
         location: item.attributes['formatted-address'],
       },
       lineup: [],
-      offers: [
-        {
-          url: `https://link.seated.com/${item.id}`,
-        },
-      ],
+      tickets: {
+        text: item.attributes['on-sale-date-name'],
+        url: `https://link.seated.com/${item.id}`,
+      },
     }))
     .sort((a, b) => {
       return new Date(a.datetime).getTime() - new Date(b.datetime).getTime();
@@ -54,6 +53,14 @@ const formatBandsInTownApiResponse = (
       location: `${item.venue.city}, ${item.venue.region}`,
     },
     lineup: item.lineup,
-    offers: item.offers,
+    tickets: item.offers.length
+      ? {
+          text: 'Tickets',
+          url: item.offers[0].url,
+        }
+      : {
+          text: 'Free show!',
+          url: item.url,
+        },
   }));
 };

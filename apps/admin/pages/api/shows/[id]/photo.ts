@@ -18,42 +18,46 @@ export default async function audioSourceHandler(
 
   switch (method) {
     case 'GET': {
-      const showId = Array.isArray(id) ? id[0] : id;
+      try {
+        const showId = Array.isArray(id) ? id[0] : id;
 
-      const show = await ontour.show.findFirst({
-        where: {
-          id: showId,
-        },
-        include: {
-          venue: true,
-        },
-      });
+        const show = await ontour.show.findFirst({
+          where: {
+            id: showId,
+          },
+          include: {
+            venue: true,
+          },
+        });
 
-      cloudinary.config({
-        cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_SECRET,
-      });
+        cloudinary.config({
+          cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+          api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+          api_secret: process.env.CLOUDINARY_SECRET,
+        });
 
-      const { resources } = await cloudinary.api.resources_by_asset_folder(
-        `airshow/shows/${getSlug(show)}`,
-        { transformation: 'f_jpg,w_8,q_70' }
-      );
+        const { resources } = await cloudinary.api.resources_by_asset_folder(
+          `airshow/shows/${getSlug(show)}`,
+          { transformation: 'f_jpg,w_8,q_70' }
+        );
 
-      return res.json(
-        resources.sort((a, b) => {
-          if (a.public_id === show.imagePublicId) {
-            return -1;
-          } else if (
-            a.metadata.status === 'published' &&
-            b.metadata.status !== 'published'
-          ) {
-            return -1;
-          }
+        return res.json(
+          resources.sort((a, b) => {
+            if (a.public_id === show.imagePublicId) {
+              return -1;
+            } else if (
+              a.metadata.status === 'published' &&
+              b.metadata.status !== 'published'
+            ) {
+              return -1;
+            }
 
-          return 1;
-        })
-      );
+            return 1;
+          })
+        );
+      } catch (e) {
+        return res.json([]);
+      }
     }
     case 'POST': {
       const request = JSON.parse(body);
@@ -70,7 +74,6 @@ export default async function audioSourceHandler(
     }
     case 'PUT': {
       const request = JSON.parse(body);
-      console.log('request: ', request);
 
       const response = await cloudinary.uploader.explicit(
         request.imagePublicId,
@@ -81,7 +84,6 @@ export default async function audioSourceHandler(
           },
         }
       );
-      console.log('response: ', response);
 
       res.json(response);
     }
