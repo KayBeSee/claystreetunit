@@ -17,6 +17,7 @@ export default async function audioSourceHandler(
 
   switch (method) {
     case 'GET': {
+      console.log('hits GET');
       const audioSources = await ontour.audioSource.findMany({
         where: { showId },
       });
@@ -26,17 +27,19 @@ export default async function audioSourceHandler(
           return await getDecoratedAudioSource(item);
         })
       );
+      console.log('decoratedAudioSources: ', decoratedAudioSources);
 
-      res.json(decoratedAudioSources);
+      return res.json(decoratedAudioSources);
     }
     case 'POST': {
+      console.log('hits POST');
       const audioSource = JSON.parse(body);
 
       // TODO: do some sort of verification using getDecoratedAudioSource before adding to db
       const createdAudioSource = await ontour.audioSource.create({
         data: { ...audioSource, showId },
       });
-      res.json(createdAudioSource);
+      return res.json(createdAudioSource);
     }
     default:
       res.setHeader('Allow', ['GET', 'POST']);
