@@ -12,7 +12,7 @@ handler.get(async (req, res) => {
     .collection('news')
     .findOne({ _id: new ObjectId(id) });
 
-  res.json(doc);
+  return res.json(doc);
 });
 
 handler.put(async (req, res) => {
@@ -22,7 +22,7 @@ handler.put(async (req, res) => {
     .collection('news')
     .updateOne({ _id: ObjectId(query.id) }, { $set: data });
 
-  res.json({ message: 'ok' });
+  return res.json({ message: 'ok' });
 });
 
 handler.delete(async (req, res) => {
@@ -31,7 +31,7 @@ handler.delete(async (req, res) => {
     .collection('news')
     .deleteOne({ _id: new ObjectId(id) });
 
-  res.json({ message: 'ok' });
+  return res.json({ message: 'ok' });
 });
 
 export default handler;

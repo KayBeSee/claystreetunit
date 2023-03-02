@@ -76,7 +76,6 @@ const EditArchivePage = ({ photos, show }: Props) => {
     error: photoError,
     mutate: mutatePhotos,
   } = fetcher<ResourceApiResponse['resources']>(`/api/shows/${query.id}/photo`);
-  console.log('photoData: ', photoData);
 
   const toggleFavorite = async (publicId: string) => {
     await fetch(`/api/shows/${show.id}/photo`, {

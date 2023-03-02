@@ -50,7 +50,7 @@ export default async function audioSourceHandler(
         (item) => !duplicateIdentifiers.includes(item.identifier)
       );
 
-      res.json(filteredSuggestions);
+      return res.json(filteredSuggestions);
     }
     default:
       res.setHeader('Allow', ['GET']);
