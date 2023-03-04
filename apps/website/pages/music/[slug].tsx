@@ -141,20 +141,22 @@ export default function Music({
                 </ol>
               </div>
             ) : null}
-            <div>
-              {album.otherImages.map((image) => (
-                <div className="relative" key={image}>
-                  <Image
-                    src={image}
-                    layout="intrinsic"
-                    objectFit="cover"
-                    width={1200}
-                    height={1200}
-                    alt={`Another image from ${album.name}`}
-                  />
-                </div>
-              ))}
-            </div>
+            {album.otherImages.length ? (
+              <div>
+                {album.otherImages.map((image) => (
+                  <div className="relative" key={image}>
+                    <Image
+                      src={image}
+                      layout="intrinsic"
+                      objectFit="cover"
+                      width={1200}
+                      height={1200}
+                      alt={`Another image from ${album.name}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <iframe
               style={{ borderRadius: '12px' }}
               src="https://open.spotify.com/embed/album/3HhQMg7ob3cp5NayDVmQsF?utm_source=generator"
