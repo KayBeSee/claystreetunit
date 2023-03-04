@@ -12,15 +12,8 @@ interface Props {
 export const Contact = ({ contacts, socialLinks }: Props) => (
   <section className="pt-16">
     <h2 className="font-serif mb-2 text-xl tracking-tight text-slate-900 font-bold">
-      Connect
+      Contact
     </h2>
-    <div className="font-sans mb-10 prose prose-slate text-slate-600 max-w-3xl">
-      <p>
-        If you are interested in booking a live show or other engagement, please
-        reach out to the folks below to get something setup!
-      </p>
-    </div>
-
     <ul className="grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2">
       {contacts.map(({ title, company, href, contacts, icon }) => (
         <li key={title} className="relative flex flex-row-reverse group">
