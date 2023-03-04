@@ -155,6 +155,16 @@ export default function Music({
                 </div>
               ))}
             </div>
+            <iframe
+              style={{ borderRadius: '12px' }}
+              src="https://open.spotify.com/embed/album/3HhQMg7ob3cp5NayDVmQsF?utm_source=generator"
+              width="100%"
+              height="152"
+              frameBorder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
           </div>
           <OtherAlbums
             albums={Object.values(config.music.items)}
