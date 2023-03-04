@@ -209,11 +209,13 @@ export default function PressKit({ config }: Props) {
                     {config.artistName}
                   </h1>
                 </div>
-                <div className="py-0 px-2">
-                  <div className="relative h-40 w-40">
-                    <Image src={config.epk.logo} layout="fill" priority />
+                {config.epk.logo ? (
+                  <div className="py-0 px-2">
+                    <div className="relative h-40 w-40">
+                      <Image src={config.epk.logo} layout="fill" priority />
+                    </div>
                   </div>
-                </div>
+                ) : null}
               </div>
             </header>
 
