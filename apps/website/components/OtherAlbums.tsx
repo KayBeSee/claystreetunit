@@ -12,6 +12,10 @@ interface Props {
 }
 
 const OtherAlbums = ({ currentSlug, artistName, albums, className }: Props) => {
+  if (Object.values(albums).filter((album) => album.slug !== currentSlug)) {
+    return;
+  }
+
   return (
     <section
       className={`${className} w-full md:max-w-prose space-y-6 mx-auto mt-10`}
