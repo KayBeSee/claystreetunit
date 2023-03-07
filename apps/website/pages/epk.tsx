@@ -10,6 +10,7 @@ import { getDate } from 'pages/tour';
 
 import { Button, Contact, Copyright } from 'components';
 import { Title, Description } from 'utils/Meta';
+import { fetchShowData } from 'utils/fetchShowData';
 
 interface CardGroupProps {
   children: any;
@@ -178,7 +179,7 @@ export default function PressKit({ config }: Props) {
   useEffect(() => {
     const fetchTourDates = async () => {
       try {
-        const { data } = await axios.get(config.tour.bandsInTownApiEndpoint);
+        const data = await fetchShowData(config.tour.bandsInTownApiEndpoint);
         setShows(data);
       } catch (e) {
         console.log('e: ', e);
@@ -209,11 +210,13 @@ export default function PressKit({ config }: Props) {
                     {config.artistName}
                   </h1>
                 </div>
-                <div className="py-0 px-2">
-                  <div className="relative h-40 w-40">
-                    <Image src={config.epk.logo} layout="fill" priority />
+                {config.epk.logo ? (
+                  <div className="py-0 px-2">
+                    <div className="relative h-40 w-40">
+                      <Image src={config.epk.logo} layout="fill" priority />
+                    </div>
                   </div>
-                </div>
+                ) : null}
               </div>
             </header>
 
@@ -251,14 +254,14 @@ export default function PressKit({ config }: Props) {
                                   {getDate(show.datetime)}
                                 </time>
                                 <span className="block sm:hidden text-xl font-serif text-slate-700">
-                                  {show.venue.city}, {show.venue.region}
+                                  {show.venue.location}
                                 </span>
                                 <span className="font-sans text-sm sm:text-xl text-slate-700">
                                   {show.venue.name}
                                 </span>
                               </div>
                               <span className="hidden sm:block text-md font-serif text-slate-700">
-                                {show.venue.city}, {show.venue.region}
+                                {show.venue.location}
                               </span>
                             </li>
                           ))
