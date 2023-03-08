@@ -29,7 +29,9 @@ const uploadFile = async (files, show) => {
       body: JSON.stringify({
         folder: folderPath,
       }),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .catch((e) => console.log('e: ', e));
     const { signature, timestamp } = resp;
 
     const response = await Promise.all(
@@ -76,7 +78,6 @@ const EditArchivePage = ({ photos, show }: Props) => {
     error: photoError,
     mutate: mutatePhotos,
   } = fetcher<ResourceApiResponse['resources']>(`/api/shows/${query.id}/photo`);
-  console.log('photoData: ', photoData);
 
   const toggleFavorite = async (publicId: string) => {
     await fetch(`/api/shows/${show.id}/photo`, {
@@ -231,15 +232,8 @@ const EditArchivePage = ({ photos, show }: Props) => {
                       accept="image/*;video/*;capture=camcorder"
                       className="sr-only"
                       onChange={(e) => {
-                        const files = e.target.files;
-                        Object.keys(Array.from(files)).forEach((i) => {
-                          const fileReader = new FileReader();
-                          fileReader.onload = (e) => {
-                            const content = e.target.result;
-                            uploadFile(content, show);
-                          };
-                          fileReader.readAsDataURL(files[i]);
-                        });
+                        const files = Array.from(e.target.files);
+                        uploadFile(files, show);
                       }}
                     />
                   </label>

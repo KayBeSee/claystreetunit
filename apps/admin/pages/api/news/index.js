@@ -12,14 +12,14 @@ handler.get(async (req, res) => {
     .sort({ datetime: -1 })
     .toArray();
 
-  res.json(doc);
+  return res.json(doc);
 });
 
 handler.post(async (req, res) => {
   const data = JSON.parse(req.body);
   const doc = await req.db.collection('news').insertOne(data);
 
-  res.json({ message: 'ok' });
+  return res.json({ message: 'ok' });
 });
 
 handler.put(async (req, res) => {
@@ -28,7 +28,7 @@ handler.put(async (req, res) => {
     .collection('news')
     .updateOne({ id: data.id }, { $set: data }, { upsert: true });
 
-  res.json({ message: 'ok' });
+  return res.json({ message: 'ok' });
 });
 
 export default handler;

@@ -1,73 +1,78 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import data from '@ontour/data';
+import { fetchShowData } from 'utils/fetchShowData';
+import { format } from 'date-fns';
 
-const SetlistIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    className="w-6 h-6 p-1 stroke-blue-600"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-    />
-  </svg>
-);
+const IconMap = {
+  SetlistsIcon: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className="w-6 h-6 p-1 stroke-blue-600"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+      />
+    </svg>
+  ),
 
-const SongsIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    className="w-6 h-6 p-1 stroke-violet-500"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
-    />
-  </svg>
-);
+  SongsIcon: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className="w-6 h-6 p-1 stroke-violet-500"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
+      />
+    </svg>
+  ),
 
-const VideoIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    className="w-6 h-6 p-1 stroke-rose-500"
-  >
-    <path
-      stroke-linecap="round"
-      d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
-    />
-  </svg>
-);
-
-const navigation = [
-  { name: 'Setlists', href: '#', icon: SetlistIcon, current: true },
-  { name: 'Songs', href: '#', icon: SongsIcon, current: false },
-  { name: 'Videos', href: '#', icon: VideoIcon, current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+  VideosIcon: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className="w-6 h-6 p-1 stroke-rose-500"
+    >
+      <path
+        stroke-linecap="round"
+        d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
+      />
+    </svg>
+  ),
+};
 
 export function PageWithSidebar({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [nextShow, setNextShow] = useState(null);
 
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    const fetchShows = async () => {
+      const fetchedShows = await fetchShowData(
+        data.tour.bandsInTownApiEndpoint
+      );
+      setNextShow(fetchedShows[0]);
+    };
+    fetchShows();
+  }, []);
 
   return (
     <>
@@ -182,13 +187,7 @@ export function PageWithSidebar({ children }) {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-              <div className="flex flex-shrink-0 items-center px-4">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt="Your Company"
-                />
-              </div>
+              <div className="flex flex-shrink-0 items-center px-4 h-8"></div>
               <nav className="mt-8 flex-1 bg-white px-10">
                 <div className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl">
                   <Image
@@ -201,20 +200,25 @@ export function PageWithSidebar({ children }) {
                 <div className="space-y-1 mt-6">
                   <h2 className="text-2xl font-bold text-slate-900">Airshow</h2>
                   <p className="mt-3 text-lg font-medium leading-6 text-slate-700">
-                    Nashville’s psychedelic punk-grass rockers.
+                    Nashville’s high-flying jamband.
                   </p>
                 </div>
                 <ul className="mt-10 space-y-8">
-                  {navigation.map((item) => (
-                    <a
-                      href="https://tailwindui.com/templates?ref=sidebar"
+                  {data.archive.navigation.map((item) => (
+                    <Link
+                      href={item.href}
                       className="group flex items-center lg:text-lg lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300"
                     >
                       <div className="mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-fuchsia-200 dark:group-hover:bg-fuchsia-600 dark:bg-slate-800 dark:highlight-white/5">
-                        <item.icon />
+                        {IconMap[`${item.name}Icon`]}
                       </div>
                       {item.name}
-                    </a>
+                      {item.comingSoon ? (
+                        <span className="rotate-[5deg] inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 -translate-y-2">
+                          Soon
+                        </span>
+                      ) : null}
+                    </Link>
                   ))}
                 </ul>
                 <div className="mt-14 space-y-3">
@@ -223,13 +227,15 @@ export function PageWithSidebar({ children }) {
                   </h3>
                   <div className="space-y-0">
                     <p className="text-slate-500 text-sm font-medium">
-                      Thursday, January 20th
+                      {nextShow?.datetime
+                        ? format(new Date(nextShow.datetime), 'EEEE, MMMM do')
+                        : null}
                     </p>
                     <p className="text-slate-800 font-serif text-lg font-semibold">
-                      The Shaka Stage Beer Garden
+                      {nextShow?.venue.location}
                     </p>
                     <p className="text-slate-500 text-sm font-medium">
-                      Hampstead, NC
+                      {nextShow?.venue.name}
                     </p>
                   </div>
                   <Link
@@ -240,22 +246,16 @@ export function PageWithSidebar({ children }) {
                     <ChevronRightIcon className="h-4 w-4 ml-3" />
                   </Link>
                 </div>
-                <div className="mt-14 space-y-3">
+                {/* <div className="mt-14 space-y-3">
                   <h3 className="font-serif text-lg font-semibold text-slate-800">
                     About
                   </h3>
                   <div className="space-y-0">
                     <p className="text-slate-500 text-sm font-medium">
-                      Nashville’s psychedelic punk-grass rockers, Sicard Hollow,
-                      grew up sick of any existing institution telling them who
-                      and what to be. Now, as they navigate adulthood, they’re
-                      equally tired of the music institutions telling them what
-                      their music should sound like—so they dunked it in
-                      patchouli and a skate-and-destroy ethos that brings an
-                      enduring sound into the modern age.
+                      // TODO: insert copy here
                     </p>
                   </div>
-                </div>
+                </div> */}
               </nav>
             </div>
             <div className="flex flex-shrink-0 border-t border-gray-200 p-4">

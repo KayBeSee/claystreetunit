@@ -11,7 +11,7 @@ export default async function venueHandler(
   switch (method) {
     case 'GET': {
       const venues = await ontour.venue.findMany();
-      res.json(venues);
+      return res.json(venues);
     }
   }
 }

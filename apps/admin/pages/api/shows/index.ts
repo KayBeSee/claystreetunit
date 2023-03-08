@@ -11,8 +11,10 @@ export default async function showHandler(
 
   switch (method) {
     case 'GET': {
-      const shows = await ontour.show.findMany();
-      res.json(shows);
+      const shows = await ontour.show.findMany({
+        orderBy: [{ date: 'desc' }],
+      });
+      return res.json(shows);
       break;
     }
     case 'POST': {
@@ -39,7 +41,7 @@ export default async function showHandler(
           },
         });
 
-        res.json(createdShow);
+        return res.json(createdShow);
         break;
       } catch (e) {
         console.log('error: ', e);

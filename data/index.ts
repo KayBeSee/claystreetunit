@@ -200,6 +200,22 @@ export const data: DataConfig = {
     cloudinary_root_folder: "airshow",
     dbName: "airshow",
     ogImageLogo: "logo-circle-white.png",
+    navigation: [
+      {
+        name: "Setlists",
+        href: `/archive`,
+      },
+      {
+        name: "Songs",
+        href: "#",
+        comingSoon: true,
+      },
+      {
+        name: "Videos",
+        href: "#",
+        comingSoon: true,
+      },
+    ],
   },
 };
 

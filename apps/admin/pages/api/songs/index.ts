@@ -11,7 +11,7 @@ export default async function songHandler(
   switch (method) {
     case 'GET': {
       const songs = await ontour.song.findMany();
-      res.json(songs);
+      return res.json(songs);
     }
   }
 }

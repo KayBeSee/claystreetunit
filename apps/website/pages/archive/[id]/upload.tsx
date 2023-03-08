@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ontour, Prisma } from '@ontour/archive';
 import { data } from '@ontour/data';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { getSlug } from 'utils/getSlug';
 import clsx from 'clsx';
 import { PageWithSidebar, ShowArchiveWrapper } from 'components';
+import axios from 'axios';
 
 type ShowWithVenue = Prisma.ShowGetPayload<{
   include: {
@@ -21,14 +22,19 @@ interface Props {
 }
 
 const ShowUpload = ({ data: show }: Props) => {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setError] = useState(false);
   const { state, setState } = useAppContext();
+  const router = useRouter();
+  const [isLoading, setLoadingProgress] = useState(
+    Array(state.files?.length).fill(0)
+  );
+  const [hasError, setError] = useState(false);
+
+  useEffect(() => {
+    setLoadingProgress(Array(state.files?.length).fill(0));
+  }, [state.files]);
 
   const uploadFile = async (files, show) => {
     try {
-      setIsLoading(true);
       setError(false);
 
       const folderPath = `${
@@ -44,7 +50,7 @@ const ShowUpload = ({ data: show }: Props) => {
       const { signature, timestamp } = resp;
 
       const response = await Promise.all(
-        files.map(async (file) => {
+        files.map(async (file, index) => {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('upload_preset', 'lmicqrpq');
@@ -54,9 +60,19 @@ const ShowUpload = ({ data: show }: Props) => {
           );
 
           const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload?api_key=${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}&timestamp=${timestamp}&signature=${signature}&folder=${folderPath}`;
-          const response = await fetch(url, {
+          const response = await axios(url, {
             method: 'post',
-            body: formData,
+            data: formData,
+            onUploadProgress: (progress) => {
+              const { loaded, total } = progress;
+
+              setLoadingProgress((prevState) => {
+                const updatedLoadingStats = [...prevState];
+                const updatedProgress = Math.floor((loaded * 100) / total);
+                updatedLoadingStats[index] = updatedProgress;
+                return updatedLoadingStats;
+              });
+            },
             // headers: { 'content-type': 'multipart/form-data' },
           });
           return response;
@@ -64,12 +80,10 @@ const ShowUpload = ({ data: show }: Props) => {
       );
 
       router.push(`/archive/${show.id}/thank-you`);
-      setState({ files: [] });
-      setIsLoading(false);
     } catch (e) {
-      setIsLoading(false);
-      setError(true);
       console.log('e: ', e);
+      // setLoadingProgress(false);
+      setError(true);
     }
   };
 
@@ -108,11 +122,12 @@ const ShowUpload = ({ data: show }: Props) => {
       </div>
       <div className="md:col-span-2 md:col-start-2">
         <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6">
-          {state.files.map((item) => {
+          {state.files.map((item, index) => {
             if (item) {
               return (
                 <li className="relative">
                   <Photo src={item} />
+                  Progress: {isLoading[index]}
                 </li>
               );
             }
@@ -121,7 +136,7 @@ const ShowUpload = ({ data: show }: Props) => {
       </div>
 
       <div className="py-6 space-y-1 md:col-span-2 px-4 md:col-start-2">
-        {isLoading ? (
+        {false ? (
           <div className="flex flex-col items-center justify-center w-full space-y-1">
             <LoadingSpinner />
             <p className="text-slate-400">Uploading photos...</p>

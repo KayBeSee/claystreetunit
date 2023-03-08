@@ -4,11 +4,7 @@ import { format } from 'date-fns';
 
 import { data } from '@ontour/data';
 
-import {
-  ontour,
-  CreateShowFormInput,
-  DecoratedAudioSource,
-} from '@ontour/archive';
+import { CreateShowFormInput, DecoratedAudioSource } from '@ontour/archive';
 
 import { LoadingSpinner } from '@ontour/components';
 
@@ -121,21 +117,7 @@ const AudioPage = () => {
   );
 };
 
-export async function getStaticPaths() {
-  const shows = await ontour.show.findMany();
-  const formattedSlugs = shows.map((show) => ({
-    params: {
-      id: show.id,
-    },
-  }));
-
-  return {
-    paths: formattedSlugs,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   return {
     props: {
       config: data,

@@ -20,7 +20,7 @@ export default async function audioSourceHandler(
           id: audioId,
         },
       });
-      res.json(audioSources);
+      return res.json(audioSources);
     }
     default:
       res.setHeader('Allow', ['DELETE']);
