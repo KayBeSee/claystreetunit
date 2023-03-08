@@ -200,6 +200,7 @@ export const data: DataConfig = {
     cloudinary_root_folder: "airshow",
     dbName: "airshow",
     ogImageLogo: "logo-circle-white.png",
+    vercelDeployHookUrl: "",
     navigation: [
       {
         name: "Setlists",

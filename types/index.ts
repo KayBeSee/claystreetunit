@@ -191,6 +191,7 @@ export interface DataConfig {
     cloudinary_root_folder: string;
     dbName: string;
     ogImageLogo: string;
+    vercelDeployHookUrl: string;
     navigation: {
       name: string;
       href: string;
