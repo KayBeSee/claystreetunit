@@ -73,6 +73,10 @@ export const data: DataConfig = {
     },
   },
   info: {
+    og: {
+      title: "About",
+      description: `${artistName}'s biography, photos, and contact information `,
+    },
     style: {
       backgroundImage: "/page-backgrounds/info.jpg",
     },

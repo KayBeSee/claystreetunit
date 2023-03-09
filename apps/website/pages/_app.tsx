@@ -49,9 +49,13 @@ export default function MyApp({ Component, pageProps }: Props) {
 
   const router = useRouter();
 
-  const queryParams = new URLSearchParams({
-    ...config[router.asPath.slice(1)].og,
-  });
+  const queryParams = new URLSearchParams(
+    !!config[router.asPath.slice(1)]
+      ? {
+          ...config[router.asPath.slice(1)].og,
+        }
+      : {}
+  );
 
   useEffect(() => {
     const handleRouteChange = (url) => {
