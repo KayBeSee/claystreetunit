@@ -121,7 +121,7 @@ export default function MyApp({ Component, pageProps }: Props) {
       />
       <SessionProvider session={pageProps.session}>
         <PageWithMenu config={config}>
-          <div className="h-full">
+          <div className="h-screen overflow-y-auto">
             {!router.asPath.includes('archive') ? (
               <CornerRibbon
                 link={`/music/${latestReleaseTitle.slug}`}
