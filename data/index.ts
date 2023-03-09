@@ -29,7 +29,24 @@ export const data: DataConfig = {
     logo: "/logo.png",
     ogImage: "/logo-circle-black.png",
     splashVideoUrl: "",
-    menu: [{ slug: "/archive", text: "Archive" }],
+    menu: [
+      {
+        slug: "/tour",
+        text: "Tour",
+      },
+      {
+        slug: `/music/${Object.keys(music)[0]}`,
+        text: "Music",
+      },
+      {
+        slug: "/info",
+        text: "Info",
+      },
+      {
+        slug: "/blog",
+        text: "Blog",
+      },
+    ],
     og: {
       title: `${artistName}`,
       description: `Official website for ${artistName}`,
