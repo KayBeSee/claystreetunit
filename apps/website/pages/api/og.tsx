@@ -58,7 +58,7 @@ export default async function handler(req: NextRequest) {
             tw="absolute inset-0"
           />
 
-          <div tw="flex flex-col px-4 py-10 w-full h-screen justify-between">
+          <div tw="flex flex-col px-8 py-10 w-full h-screen justify-between">
             <div tw="flex justify-between w-full">
               <img
                 src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.openGraph.textLogo}`}
