@@ -57,10 +57,7 @@ export default function Music({
           key="og:image"
         />
       </Head>
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 h-screen overflow-y-auto"
-        ref={layoutRef}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2" ref={layoutRef}>
         <div
           className="flex items-center justify-center relative px-4 py-3"
           ref={leftLayoutRef}

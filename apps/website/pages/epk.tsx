@@ -193,9 +193,9 @@ export default function PressKit({ config }: Props) {
       <Title>{config.epk.og.title}</Title>
       <Description>{config.epk.og.description}</Description>
       <div
-        className={`${config.epk.style.background} pt-10 pb-12 bg-fixed bg-no-repeat bg-cover bg-center w-screen relative px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8`}
+        className={`${config.epk.style.background} pt-10 pb-20 bg-fixed bg-no-repeat bg-cover bg-center w-screen relative px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8`}
       >
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8 pb-">
           <div className="max-w-4xl flex flex-col mx-auto justify-center pt-10">
             <header className="flex flex-col sm:flex-row">
               <div className="flex items-center space-between max-w-3xl w-full">
