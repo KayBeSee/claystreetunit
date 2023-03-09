@@ -71,16 +71,19 @@ export default function Tour({ config }: Props) {
         style={{ '--image-url': `url(${config.tour.style.backgroundImage})` }}
         className="sm:hidden bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),var(--image-url)] sm:bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center w-screen relative pt-20 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
       >
-        <h2 className="md:hidden text-center text-5xl tracking-tight font-extrabold text-white pt-10 pb-16 sm:text-4xl font-serif">
+        <h3 className="sm:hidden text-center text-gray-300 tracking-wide uppercase text-base font-semibold">
+          {config.artistName}
+        </h3>
+        <h2 className="sm:hidden text-center text-5xl tracking-tight font-extrabold text-white pt-2 pb-16 sm:text-4xl font-serif">
           Tour Dates
         </h2>
       </div>
 
       <div
         style={{ backgroundImage: `url(${config.tour.style.backgroundImage})` }}
-        className="bg-fixed bg-no-repeat bg-cover bg-center w-screen relative sm:pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
+        className="bg-fixed bg-no-repeat bg-cover bg-center w-screen relative sm:py-16 pb-0 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
       >
-        <div className="max-w-prose mx-auto flex flex-col bg-white bg-opacity- md:rounded-lg shadow-lg overflow-hidden pt-8 pb-8 px-4 sm:px-6">
+        <div className="max-w-prose mx-auto flex flex-col bg-white sm:rounded-lg shadow-lg overflow-hidden pt-8 px-4 sm:px-6">
           <div className="text-center md:py-8">
             <h2 className="hidden md:block text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl font-serif">
               Tour Dates

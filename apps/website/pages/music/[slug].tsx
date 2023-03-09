@@ -85,7 +85,7 @@ export default function Music({
         </div>
         <div
           className={`${album.pageStyle.backgroundColor} 
-            'flex flex-col items-center md:overflow-y-scroll pb-20 md:h-screen`}
+            'flex flex-col items-center md:overflow-y-scroll md:h-screen`}
           ref={rightLayoutRef}
         >
           <div className="w-full mx-auto px-4 py-6 space-y-10 md:space-y-20 max-w-prose mt-20 flex flex-col items-center justify-center">

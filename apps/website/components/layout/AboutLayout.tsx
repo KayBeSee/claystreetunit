@@ -31,7 +31,7 @@ export function AboutLayout({ children, config }: Props) {
         className="bg-fixed bg-no-repeat bg-cover bg-center h-screen w-screen relative sm:pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 sm:overflow-y-scroll"
         style={{ backgroundImage: `url(${config.info.style.backgroundImage})` }}
       >
-        <div className="flex flex-col sm:rounded-lg shadow-lg bg-white max-w-4xl mx-auto overflow-hidden sm:pt-16 pb-12 px-0 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:rounded-lg shadow-lg bg-white max-w-4xl mx-auto overflow-hidden sm:pt-16 pb-0 px-0 sm:px-6 lg:px-8">
           <div className="text-lg max-w-prose mx-auto px-8">
             <Prose className="prose-h1:hidden sm:prose-h1:block prose-h3:hidden sm:prose-h3:block prose-h1:text-center prose-p:text-gray-500 prose-p: prose-h4:text-xl prose-h4:leading-8 prose-h4:mb-8 prose-h4:-mx-2 prose-h4:font-normal prose-h4:text-gray-500 prose-h3:text-blue-600 prose-h3:text-center prose-h3:tracking-wide prose-h3:uppercase prose-h3:text-base prose-h3:font-semibold prose-a:text-sicard-blue-700 prose-a:no-underline hover:prose-a:border-b hover:prose-a:border-sicard-blue-600 hover:prose-a:text-sicard-blue-600">
               {children}
