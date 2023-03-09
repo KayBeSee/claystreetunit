@@ -28,6 +28,7 @@
     "@plaiceholder/next": "^2.5.0",
     "@vercel/og": "^0.1.0",
     "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
     "cloudinary": "^1.33.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
