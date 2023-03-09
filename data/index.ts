@@ -11,18 +11,29 @@ import { music } from "./music";
 
 import { DataConfig } from "@ontour/types";
 
+const artistName = "Airshow";
+
 export const data: DataConfig = {
-  artistName: "Airshow",
+  artistName: artistName,
   legalEntity: "Airshow, LLC",
   websiteUrl: "https://airshowband.com",
   admin: {
     logoUrl: "/logo-text.png",
+  },
+  openGraph: {
+    textLogo: "/logo.png",
+    imageLogo: "/logo-circle-black.png",
+    backgroundImage: "/placeholder.png",
   },
   home: {
     logo: "/logo.png",
     ogImage: "/logo-circle-black.png",
     splashVideoUrl: "",
     menu: [{ slug: "/archive", text: "Archive" }],
+    og: {
+      title: `${artistName}`,
+      description: `Official website for ${artistName}`,
+    },
   },
   analytics: {
     googleAnalyticsCode: "",
@@ -38,6 +49,10 @@ export const data: DataConfig = {
     },
     bandsInTownApiEndpoint:
       "https://rest.bandsintown.com/artists/Sicard%20Hollow/events/?app_id=97354cdc66f0eae293b7746bc4c4a070",
+    og: {
+      title: `Tour`,
+      description: `${artistName} tour dates and shows`,
+    },
   },
   music: {
     style: {
@@ -52,6 +67,10 @@ export const data: DataConfig = {
       backgroundImage: "/page-backgrounds/news.jpg",
     },
     dbName: "airshow",
+    og: {
+      title: `News`,
+      description: `${artistName} news, announcements, and more`,
+    },
   },
   info: {
     style: {
@@ -109,8 +128,16 @@ export const data: DataConfig = {
     style: {
       backgroundImage: "/page-backgrounds/mailing-list.jpg",
     },
+    og: {
+      title: `Mailing List`,
+      description: `Sign up for ${artistName}'s mailing list`,
+    },
   },
   epk: {
+    og: {
+      title: `EPK`,
+      description: `${artistName}'s electronic press kit and press materials`,
+    },
     style: {
       background: "bg-[#F1F6FA]",
     },

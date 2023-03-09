@@ -49,6 +49,10 @@ export default function MyApp({ Component, pageProps }: Props) {
 
   const router = useRouter();
 
+  const queryParams = new URLSearchParams({
+    ...config[router.asPath.slice(1)].og,
+  });
+
   useEffect(() => {
     const handleRouteChange = (url) => {
       if (process.env.NODE_ENV === 'production') {
@@ -74,6 +78,22 @@ export default function MyApp({ Component, pageProps }: Props) {
           property="og:image"
           content={ogImage(config.home.ogImage)}
           key="og:image"
+        />
+        <meta
+          property="og:image"
+          key="og:image"
+          name="og:image"
+          content={
+            // Because OG images must have a absolute URL, we use the
+            // `VERCEL_URL` environment variable to get the deployment’s URL.
+            // More info:
+            // https://vercel.com/docs/concepts/projects/environment-variables
+            `${
+              process.env.NEXT_PUBLIC_VERCEL_URL
+                ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
+                : ''
+            }/api/og?${queryParams}`
+          }
         />
       </Head>
       <Script

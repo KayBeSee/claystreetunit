@@ -1,8 +1,6 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
-import { format } from 'date-fns';
 import { data } from '@ontour/data';
-import { getImageUrlFromPublicId } from 'utils/getImageUrlFromPublicId';
 
 export const config = {
   runtime: 'experimental-edge',
@@ -28,16 +26,8 @@ const ralewayMediumLoader = fetch(
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = req.nextUrl;
-    const date = searchParams.get('date');
-    const venueName = searchParams.get('venueName');
-    const venueCity = searchParams.get('venueCity');
-    const venueState = searchParams.get('venueState');
-    const imagePublicId = searchParams.get('imagePublicId');
-
-    const imgSrc =
-      getImageUrlFromPublicId(imagePublicId) ||
-      'https://res.cloudinary.com/dyxybmew8/image/upload/q_10/airshow/shows/may-05-2022-hifi-clyde%27s-chattanooga-tn/fsumwwchsq1wdoeyzkh7.jpg';
-    // `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
+    const title = searchParams.get('title');
+    const description = searchParams.get('description');
 
     const ralewayBold = await ralewayBoldLoader;
     const ralewayMedium = await ralewayMediumLoader;
@@ -45,7 +35,6 @@ export default async function handler(req: NextRequest) {
     return new ImageResponse(
       (
         <div
-          tw="bg-slate-800"
           style={{
             height: '100%',
             width: '100%',
@@ -54,6 +43,8 @@ export default async function handler(req: NextRequest) {
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
+            backgroundImage:
+              'linear-gradient(to bottom right, #374151, #111827)',
           }}
         >
           <img
@@ -63,57 +54,25 @@ export default async function handler(req: NextRequest) {
               objectFit: 'cover',
               objectPosition: 'center',
             }}
-            src={imgSrc}
+            src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.openGraph.backgroundImage}`}
             tw="absolute inset-0"
           />
 
-          <div tw="flex flex-col px-4 py-6 w-full h-screen justify-between">
+          <div tw="flex flex-col px-4 py-10 w-full h-screen justify-between">
             <div tw="flex justify-between w-full">
-              <div tw="flex flex-col">
-                <time
-                  tw="font-sans text-4xl text-slate-300 mb-2"
-                  style={{ fontFamily: '"Raleway"' }}
-                >
-                  {format(new Date(date), 'MMMM d, y')}
-                </time>
-                <span
-                  style={{ fontFamily: '"Raleway-Bold"' }}
-                  tw={`${getFontSize(venueName.length)}
-                    font-serif text-slate-200 mb-2`}
-                >
-                  {venueName}
-                </span>
-                <span
-                  tw="font-sans text-lg text-slate-200 text-4xl"
-                  style={{ fontFamily: '"Raleway"' }}
-                >
-                  {venueCity}, {venueState}
-                </span>
-              </div>
-            </div>
-            <div tw="flex w-full justify-between">
-              <div tw="flex text-white bg-sky-700/80 py-4 px-4 text-5xl rounded-3xl items-center justify-center">
-                View the setlist, audio, & photos
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="3"
-                  stroke="currentColor"
-                  style={{ width: 36, height: 36, marginLeft: 8, marginTop: 8 }}
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </div>
               <img
-                src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.archive.ogImageLogo}`}
-                style={{ width: 100, height: 100 }}
-                tw="flex opacity-75"
+                src={`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/${data.openGraph.textLogo}`}
+                style={{ width: 700, height: 200 }}
+                tw="flex opacity-100 my-10"
               />
+            </div>
+            <div tw="flex flex-col w-full py-2">
+              <div tw="flex text-white py-2 px-4 text-8xl rounded-3xl items-center justify-center">
+                {title}
+              </div>
+              <div tw="flex text-gray-300 py-2 px-4 text-4xl rounded-3xl items-center justify-center">
+                {description}
+              </div>
             </div>
           </div>
         </div>
