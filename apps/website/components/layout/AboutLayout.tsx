@@ -11,8 +11,8 @@ interface Props {
 export function AboutLayout({ children, config }: Props) {
   return (
     <>
-      <Title>Info</Title>
-      <Description>{`Artist information about ${config.artistName} including bio, booking contacts, management contacts, and social media.`}</Description>
+      <Title>{config.info.og.title}</Title>
+      <Description>{config.info.og.description}</Description>
       <div
         className="bg-fixed bg-no-repeat bg-cover bg-center h-screen w-screen relative pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 overflow-y-scroll"
         style={{ backgroundImage: `url(${config.info.style.backgroundImage})` }}

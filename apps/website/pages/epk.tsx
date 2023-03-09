@@ -190,10 +190,8 @@ export default function PressKit({ config }: Props) {
 
   return (
     <div>
-      <Title>EPK</Title>
-      <Description>
-        {`The electronic press kit (EPK) for ${config.artistName}.`}
-      </Description>
+      <Title>{config.epk.og.title}</Title>
+      <Description>{config.epk.og.description}</Description>
       <div
         className={`${config.epk.style.background} pt-10 pb-12 overflow-y-scroll bg-fixed bg-no-repeat bg-cover bg-center h-screen w-screen relative px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8`}
       >

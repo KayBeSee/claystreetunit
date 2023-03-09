@@ -65,8 +65,8 @@ export default function News({ data, config }: Props) {
 
   return (
     <div>
-      <Title>News</Title>
-      <Description>{`News about ${config.artistName}`}</Description>
+      <Title>{config.news.og.title}</Title>
+      <Description>{config.news.og.description}</Description>
 
       <div
         className="bg-fixed overflow-y-scroll bg-no-repeat bg-cover bg-center h-screen w-screen relative pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"

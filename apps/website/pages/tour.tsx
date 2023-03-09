@@ -64,8 +64,8 @@ export default function Tour({ config }: Props) {
 
   return (
     <div>
-      <Title>Tour</Title>
-      <Description>{`Tour dates for ${config.artistName}'s upcoming concerts and shows.`}</Description>
+      <Title>{config.tour.og.title}</Title>
+      <Description>{config.tour.og.description}</Description>
       <div
         className="bg-fixed bg-no-repeat overflow-y-scroll bg-cover bg-center h-screen w-screen relative pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
         style={{ backgroundImage: `url(${config.tour.style.backgroundImage})` }}
