@@ -71,7 +71,7 @@ export default function Tour({ config }: Props) {
         style={{ '--image-url': `url(${config.tour.style.backgroundImage})` }}
         className="sm:hidden bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),var(--image-url)] sm:bg-[image:var(--image-url)] bg-no-repeat overflow-y-scroll bg-cover bg-center w-screen relative pt-20 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
       >
-        <h2 className="md:hidden text-center text-3xl tracking-tight font-extrabold text-white pt-10 pb-16 sm:text-4xl font-serif">
+        <h2 className="md:hidden text-center text-5xl tracking-tight font-extrabold text-white pt-10 pb-16 sm:text-4xl font-serif">
           Tour Dates
         </h2>
       </div>

@@ -22,7 +22,7 @@ export function AboutLayout({ children, config }: Props) {
         <h3 className="sm:hidden text-center text-blue-400 tracking-wide uppercase text-base font-semibold">
           Introducing
         </h3>
-        <h2 className="sm:hidden text-center text-3xl tracking-tight font-extrabold text-white pt-2 pb-16 sm:text-4xl font-serif">
+        <h2 className="sm:hidden text-center text-5xl tracking-tight font-extrabold text-white pt-2 pb-16 sm:text-4xl font-serif">
           {config.artistName}
         </h2>
       </div>
