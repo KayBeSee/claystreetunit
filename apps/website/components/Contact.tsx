@@ -11,7 +11,7 @@ interface Props {
 
 export const Contact = ({ contacts, socialLinks }: Props) => (
   <section className="pt-16">
-    <h2 className="font-serif mb-2 text-xl tracking-tight text-slate-900 font-bold">
+    <h2 className="font-serif mb-10 text-xl tracking-tight text-slate-900 font-bold">
       Contact
     </h2>
     <ul className="grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2">

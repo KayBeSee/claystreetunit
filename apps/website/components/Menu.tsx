@@ -20,7 +20,7 @@ export const Menu = ({ config }: Props) => {
     <>
       {pathname !== '/' ? (
         <button
-          className="absolute inset-4 w-8 h-8 z-10 mix-blend-difference"
+          className="fixed inset-4 w-8 h-8 z-10 mix-blend-difference"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (

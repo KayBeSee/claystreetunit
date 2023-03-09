@@ -12,7 +12,7 @@ interface Props {
 }
 
 const OtherAlbums = ({ currentSlug, artistName, albums, className }: Props) => {
-  if (Object.values(albums).filter((album) => album.slug !== currentSlug)) {
+  if (!Object.values(albums).filter((album) => album.slug !== currentSlug)) {
     return;
   }
 
