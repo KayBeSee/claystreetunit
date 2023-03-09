@@ -63,7 +63,7 @@ export default function Tour({ config }: Props) {
   });
 
   return (
-    <div className="overflow-y-auto">
+    <>
       <Title>{config.tour.og.title}</Title>
       <Description>{config.tour.og.description}</Description>
       <div
@@ -154,7 +154,7 @@ export default function Tour({ config }: Props) {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
