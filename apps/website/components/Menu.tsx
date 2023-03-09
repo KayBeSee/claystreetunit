@@ -20,7 +20,7 @@ export const Menu = ({ config }: Props) => {
     <>
       {pathname !== '/' ? (
         <button
-          className="fixed inset-4 w-8 h-8 z-10 mix-blend-difference"
+          className="fixed inset-4 w-8 h-8 z-50 mix-blend-difference"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
@@ -31,12 +31,7 @@ export const Menu = ({ config }: Props) => {
         </button>
       ) : null}
       <Transition show={isOpen} unmount={false} as={Fragment}>
-        <Dialog
-          unmount={false}
-          onClose={() => setIsOpen(false)}
-          as="div"
-          className="z-40"
-        >
+        <Dialog unmount={false} onClose={() => setIsOpen(false)} as="div">
           <Transition.Child
             enter="transition-opacity duration-500"
             enterFrom="opacity-0"
@@ -47,6 +42,18 @@ export const Menu = ({ config }: Props) => {
             unmount={false}
           >
             <Dialog.Panel className="w-full h-full">
+              {pathname !== '/' ? (
+                <button
+                  className="absolute inset-4 w-8 h-8 z-50 mix-blend-difference"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {isOpen ? (
+                    <XMarkIcon className="text-white" />
+                  ) : (
+                    <Bars3Icon className="text-white" />
+                  )}
+                </button>
+              ) : null}
               <SplashPage config={config} setIsOpen={setIsOpen} />
             </Dialog.Panel>
           </Transition.Child>
