@@ -63,7 +63,7 @@ export default function Tour({ config }: Props) {
   });
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Title>{config.tour.og.title}</Title>
       <Description>{config.tour.og.description}</Description>
       <div
@@ -80,8 +80,9 @@ export default function Tour({ config }: Props) {
       </div>
 
       <div
-        style={{ backgroundImage: `url(${config.tour.style.backgroundImage})` }}
-        className="bg-fixed bg-no-repeat bg-cover bg-center w-screen relative sm:py-16 pb-0 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
+        // @ts-ignore
+        style={{ '--image-url': `url(${config.tour.style.backgroundImage})` }}
+        className="sm:bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),var(--image-url)] flex-grow bg-fixed bg-no-repeat bg-cover bg-center w-screen relative sm:py-16 pb-0 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
       >
         <div className="max-w-prose mx-auto flex flex-col bg-white sm:rounded-lg shadow-lg overflow-hidden pt-8 px-4 sm:px-6">
           <div className="text-center md:py-8">
@@ -157,7 +158,7 @@ export default function Tour({ config }: Props) {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
