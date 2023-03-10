@@ -46,7 +46,7 @@ const ListenNow = ({ ...album }: Album) => {
                 key={service}
               >
                 <StreamLogo
-                  className={`${album.pageStyle.streamServiceColor} w-40 h-16 md:w-28 md:h-12 hover:fill-white hover:scale-110 transition duration-300 cursor-pointer`}
+                  className={`${album.pageStyle.streamServiceColor} w-40 h-16 md:w-28 md:h-12 hover:${album.pageStyle.streamServiceColor}/50 hover:scale-110 transition duration-300 cursor-pointer`}
                 />
               </a>
             );

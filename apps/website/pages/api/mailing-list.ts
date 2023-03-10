@@ -1,13 +1,13 @@
-// @ts-nocheck
 import nextConnect from 'next-connect';
 import middleware from 'middleware/database';
 import { ontour } from '@ontour/archive';
+import { ApiRequest, ApiResponse } from '@ontour/types';
 
 const handler = nextConnect();
 
 handler.use(middleware);
 
-handler.post(async (req, res) => {
+handler.post<ApiRequest, ApiResponse>(async (req, res) => {
   try {
     const data = JSON.parse(JSON.stringify(req.body));
     if (!data.email) {

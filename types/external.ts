@@ -1,3 +1,5 @@
+import { Db } from "mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 export interface BandsInTownApiResponse {
   offers: [
     {
@@ -82,3 +84,9 @@ interface SeatedShowApiResponse {
   id: string;
   type: string;
 }
+
+export interface ApiRequest extends NextApiRequest {
+  db: Db;
+}
+
+export type ApiResponse = NextApiResponse;
