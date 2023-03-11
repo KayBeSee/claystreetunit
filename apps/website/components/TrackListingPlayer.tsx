@@ -63,11 +63,16 @@ export const TrackListingPlayer = ({ album }: Props) => {
     <div
       className={`${album.pageStyle.albumCoverBorderColor} prose font-serif px-6 py-5 w-full rounded-2xl`}
     >
-      <h3 className={`${album.pageStyle.primaryText}`}>Track Listing</h3>
+      <h3 className={`${album.pageStyle.primaryText} -mb-0.5`}>
+        Track Listing
+      </h3>
+      <p className={`${album.pageStyle.primaryText} opacity-70 text-sm`}>
+        Click tracks for preview
+      </p>
       <ol
         className={clsx(
           album.pageStyle.primaryText,
-          'list-none columns-1 md:columns-2 list-inside'
+          'list-none columns-1 md:columns-2 list-inside pl-0'
         )}
       >
         {album.trackList.map((item, i) => (
