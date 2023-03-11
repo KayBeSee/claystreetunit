@@ -21,8 +21,8 @@ export const data: DataConfig = {
   },
   openGraph: {
     textLogo: "/logo.png",
-    imageLogo: "/logo-circle-black.png",
-    backgroundImage: "/placeholder.png",
+    imageLogo: "/logo.png",
+    backgroundImage: "/placeholder.jpeg",
   },
   home: {
     logo: "/logo.png",
