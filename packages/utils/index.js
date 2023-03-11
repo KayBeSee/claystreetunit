@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const SPOTIFY_TOKEN =
-  "BQAfbcMavNoWfKVsTSqlyjD4lAxC0v0Z1E6JlLuwTBrbGdudaN83DGrnIoJckvT2kYjc1RNE9H1XsadKN4FQnYXZIuoeN8tiRPLUJAnt6-io-DsXh9exhSmkMc5RK0-kaRYoI5Zd_iVWNO5B3aRMK_c2KDsB_8BDOTsEbI9sp3-tBRiP";
+  "BQDZ6bHzdKBVve32DEg3QzMEGyH0b-5e15spTZKi_CHPPb6xeiyChKJes1ZztGweBm2w2bByJX2jP012dd-4eqNcQZ2a5CUR-m4PzhzDtfd2_nmNihwb9YsOuumAlgYxo63RJ9dCPb3cn0ikw8pnv4rhch6m6FiS6EIQK4eNqR6ImJdb";
 
 const main = async () => {
   const identifier = process.argv[2];
