@@ -8,7 +8,7 @@ type ShowWithVenue = Prisma.ShowGetPayload<{
 }>;
 
 export const getSlug = (show: ShowWithVenue) => {
-  return `${format(show.date, 'MMMM-LL-yyyy')}-${show.venue.name
+  return `${format(new Date(show.date), 'MMMM-LL-yyyy')}-${show.venue.name
     .replace(/\s+/g, '-')
     .toLowerCase()}-${show.venue.city
     .replace(/\s+/g, '-')

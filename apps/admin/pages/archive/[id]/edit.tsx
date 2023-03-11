@@ -55,7 +55,9 @@ const EditArchivePage = () => {
 };
 
 export async function getStaticPaths() {
-  const shows = await ontour.show.findMany();
+  const shows = await ontour.show.findMany({
+    orderBy: [{ date: 'desc' }],
+  });
   const formattedSlugs = shows.map((show) => ({
     params: {
       id: show.id,

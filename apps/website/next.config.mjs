@@ -11,7 +11,7 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     newNextLinkBehavior: true,
-    scrollRestoration: true,
+    scrollRestoration: false,
   },
   images: {
     domains: ['res.cloudinary.com'],

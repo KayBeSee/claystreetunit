@@ -112,7 +112,7 @@ const ArchiveItem = ({ show, photos, config }: Props) => {
               process.env.NEXT_PUBLIC_VERCEL_URL
                 ? 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
                 : ''
-            }/api/og?${queryParams}`
+            }/api/og-archive?${queryParams}`
           }
         />
       </Head>
@@ -274,6 +274,7 @@ export async function getStaticProps(context) {
       setlist: {
         include: {
           tracks: {
+            orderBy: [{ position: 'asc' }],
             include: {
               song: true,
             },

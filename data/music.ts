@@ -12,10 +12,22 @@ export const music: Props = {
     type: "album",
     albumCoverUrl: "/album-covers/a-mighty-fine-evening.png",
     trackList: [
-      "1200 Miles",
-      "Tired of Being Tired",
-      "Cost of Living",
-      "Weight of the World",
+      {
+        name: "1200 Miles",
+        url: "https://p.scdn.co/mp3-preview/646541a592fe86c89055704f8db277eaea6889df?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Tired of Being Tired",
+        url: "https://p.scdn.co/mp3-preview/bba9727d6732333e9ab0ed2a681d8512b1cdd2e4?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Cost of Living",
+        url: "https://p.scdn.co/mp3-preview/078422782139d702fc326d3bf1fb6c9d2f169fb2?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Weight of the World",
+        url: "https://p.scdn.co/mp3-preview/3b7b52ba5238a86a4c8395b0661b76726fe45598?cid=774b29d4f13844c495f206cafdad9c86",
+      },
     ],
     description: `This is filler text if we want to put a description of the record here. Don't leave your records in the sun. They'll warp and won't be any good for anyone. Don't leave your records in the sun. They get all wavy and they just won't run. They just won't play, just won't play, just won't play. Just won't play, just won't play, just won't play. Just won't play, just won't play, just won't play. Just won't play, just won't play no more`,
     otherImages: [],

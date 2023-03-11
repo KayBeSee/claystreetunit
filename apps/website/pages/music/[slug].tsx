@@ -14,7 +14,7 @@ import OtherAlbums from 'components/OtherAlbums';
 
 import { data } from '@ontour/data';
 import { Album, DataConfig } from '@ontour/types';
-import { Copyright } from 'components';
+import { Copyright, TrackListingPlayer } from 'components';
 
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -57,10 +57,7 @@ export default function Music({
           key="og:image"
         />
       </Head>
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 h-screen overflow-y-auto"
-        ref={layoutRef}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2" ref={layoutRef}>
         <div
           className="flex items-center justify-center relative px-4 py-3"
           ref={leftLayoutRef}
@@ -88,7 +85,7 @@ export default function Music({
         </div>
         <div
           className={`${album.pageStyle.backgroundColor} 
-            'flex flex-col items-center md:overflow-y-scroll pb-20 md:h-screen`}
+            'flex flex-col items-center md:overflow-y-scroll md:h-screen`}
           ref={rightLayoutRef}
         >
           <div className="w-full mx-auto px-4 py-6 space-y-10 md:space-y-20 max-w-prose mt-20 flex flex-col items-center justify-center">
@@ -122,24 +119,7 @@ export default function Music({
               </div>
             ) : null}
             {album.trackList.length > 0 ? (
-              <div
-                className={`${album.pageStyle.albumCoverBorderColor} prose font-serif px-4 py-4 w-full`}
-              >
-                <h3 className={`${album.pageStyle.primaryText}`}>
-                  Track Listing
-                </h3>
-                <ol
-                  className={clsx(
-                    album.pageStyle.primaryText,
-                    `marker:${album.pageStyle.primaryText}`,
-                    'list-decimal columns-1 md:columns-2'
-                  )}
-                >
-                  {album.trackList.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ol>
-              </div>
+              <TrackListingPlayer album={album} />
             ) : null}
             {album.otherImages.length ? (
               <div>
@@ -157,16 +137,6 @@ export default function Music({
                 ))}
               </div>
             ) : null}
-            <iframe
-              style={{ borderRadius: '12px' }}
-              src="https://open.spotify.com/embed/album/3HhQMg7ob3cp5NayDVmQsF?utm_source=generator"
-              width="100%"
-              height="152"
-              frameBorder="0"
-              allowFullScreen
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            ></iframe>
           </div>
           <OtherAlbums
             albums={Object.values(config.music.items)}

@@ -2,6 +2,10 @@ import { IconDefinition } from "@fortawesome/free-brands-svg-icons";
 
 export * from "./external";
 
+interface BaseConfig {
+  og: OpenGraphConfig;
+}
+
 export interface ShowResponse {
   id: string;
   title: string;
@@ -32,7 +36,10 @@ export interface Album {
   year: number;
   type: "album" | "single";
   albumCoverUrl: string;
-  trackList: string[];
+  trackList: {
+    name: string;
+    url: string;
+  }[];
   description: string;
   otherImages: string[];
   youtubeVideoId?: string;
@@ -52,14 +59,14 @@ export interface Album {
   };
 }
 
-export interface TourConfig {
+export interface TourConfig extends BaseConfig {
   style: {
     backgroundImage: string;
   };
   bandsInTownApiEndpoint: string;
 }
 
-export interface NewsConfig {
+export interface NewsConfig extends BaseConfig {
   style: {
     backgroundImage: string;
   };
@@ -99,7 +106,7 @@ export interface AudioSuggestion {
   imageUrl: string;
 }
 
-export interface InfoConfig {
+export interface InfoConfig extends BaseConfig {
   contacts: Agency[];
   social: SocialMediaItem[];
   style: {
@@ -108,7 +115,7 @@ export interface InfoConfig {
   testimonials: TestimonialConfig[];
 }
 
-export interface MailingListConfig {
+export interface MailingListConfig extends BaseConfig {
   style: StyleProps;
 }
 
@@ -136,7 +143,7 @@ interface EpkAdditionalResource {
   color: string;
 }
 
-export interface EpkConfig {
+export interface EpkConfig extends BaseConfig {
   style: {
     background: string;
   };
@@ -155,7 +162,7 @@ interface MenuItem {
   text: string;
 }
 
-interface HomeConfig {
+interface HomeConfig extends BaseConfig {
   logo: string;
   ogImage: string;
   splashVideoUrl: string;
@@ -166,12 +173,34 @@ interface AdminConfig {
   logoUrl: string;
 }
 
+interface OpenGraphConfig {
+  title: string;
+  description: string;
+}
+
+interface ArchiveConfig {
+  cloudinary_root_folder: string;
+  dbName: string;
+  ogImageLogo: string;
+  vercelDeployHookUrl: string;
+  navigation: {
+    name: string;
+    href: string;
+    comingSoon?: boolean;
+  }[];
+}
+
 export interface DataConfig {
   artistName: string;
   legalEntity: string;
   websiteUrl: string;
   analytics: {
     googleAnalyticsCode: string;
+  };
+  openGraph: {
+    textLogo: string;
+    imageLogo: string;
+    backgroundImage?: string;
   };
   home: HomeConfig;
   tour: TourConfig;
@@ -187,11 +216,7 @@ export interface DataConfig {
   info: InfoConfig;
   mailingList: MailingListConfig;
   epk: EpkConfig;
-  archive: {
-    cloudinary_root_folder: string;
-    dbName: string;
-    ogImageLogo: string;
-  };
+  archive: ArchiveConfig;
   admin: AdminConfig;
   error: ErrorConfig;
 }

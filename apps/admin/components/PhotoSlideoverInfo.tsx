@@ -22,7 +22,6 @@ export const PhotoSlideoverInfo = ({
   const [photo, setPhoto] = useState(initialPhoto);
 
   const togglePublish = () => {
-    console.log('clicked!');
     const newStatus =
       photo.metadata.status === 'submitted' ||
       photo.metadata.status === 'rejected'

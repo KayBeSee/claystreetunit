@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const CornerRibbon = ({ link, className = '', children }: Props) => (
-  <div className="absolute right-0 top-0 h-64 w-64 overflow-hidden pointer-events-none">
+  <div className="fixed right-0 top-0 h-64 w-64 overflow-hidden pointer-events-none z-[1]">
     <Link
       href={link}
       className={clsx(

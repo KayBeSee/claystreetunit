@@ -10,12 +10,19 @@ import { music } from "./music";
 
 import { DataConfig } from "@ontour/types";
 
+const artistName = "Clay Street Unit";
+
 export const data: DataConfig = {
-  artistName: "Clay Street Unit",
+  artistName: artistName,
   legalEntity: "Clay Street Records",
   websiteUrl: "https://claystreetunit.com",
   admin: {
     logoUrl: "/logo-text.png",
+  },
+  openGraph: {
+    textLogo: "/logo.png",
+    imageLogo: "/logo-circle-black.png",
+    backgroundImage: "/placeholder.png",
   },
   home: {
     logo: "/logo.png",
@@ -29,6 +36,10 @@ export const data: DataConfig = {
       { slug: "/mailing-list", text: "Mailing List" },
       { slug: "#", text: "Store" },
     ],
+    og: {
+      title: `${artistName}`,
+      description: `Official website for ${artistName}`,
+    },
   },
   analytics: {
     googleAnalyticsCode: "",
@@ -44,6 +55,10 @@ export const data: DataConfig = {
     },
     bandsInTownApiEndpoint:
       "https://cdn.seated.com/api/tour/752c8ceb-1eda-4c65-a012-59e95205ab45?include=tour-events",
+    og: {
+      title: `Tour`,
+      description: `${artistName} tour dates and shows`,
+    },
   },
   music: {
     style: {
@@ -58,8 +73,16 @@ export const data: DataConfig = {
       backgroundImage: "/page-backgrounds/news.jpg",
     },
     dbName: "claystreetunit",
+    og: {
+      title: `News`,
+      description: `${artistName} news, announcements, and more`,
+    },
   },
   info: {
+    og: {
+      title: "About",
+      description: `${artistName}'s biography, photos, and contact information `,
+    },
     style: {
       backgroundImage: "/page-backgrounds/info.jpg",
     },
@@ -118,8 +141,16 @@ export const data: DataConfig = {
     style: {
       backgroundImage: "/page-backgrounds/mailing-list.jpg",
     },
+    og: {
+      title: `Mailing List`,
+      description: `Sign up for ${artistName}'s mailing list`,
+    },
   },
   epk: {
+    og: {
+      title: `EPK`,
+      description: `${artistName}'s electronic press kit and press materials`,
+    },
     style: {
       background: "bg-[#F1F6FA]",
     },
@@ -204,6 +235,23 @@ export const data: DataConfig = {
     cloudinary_root_folder: "claystreetunit",
     dbName: "claystreetunit",
     ogImageLogo: "logo-circle-white.png",
+    vercelDeployHookUrl: "",
+    navigation: [
+      {
+        name: "Setlists",
+        href: `/archive`,
+      },
+      {
+        name: "Songs",
+        href: "#",
+        comingSoon: true,
+      },
+      {
+        name: "Videos",
+        href: "#",
+        comingSoon: true,
+      },
+    ],
   },
 };
 

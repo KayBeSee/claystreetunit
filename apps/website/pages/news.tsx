@@ -64,17 +64,30 @@ export default function News({ data, config }: Props) {
   };
 
   return (
-    <div>
-      <Title>News</Title>
-      <Description>{`News about ${config.artistName}`}</Description>
+    <>
+      <Title>{config.news.og.title}</Title>
+      <Description>{config.news.og.description}</Description>
 
       <div
-        className="bg-fixed overflow-y-scroll bg-no-repeat bg-cover bg-center h-screen w-screen relative pt-16 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
-        style={{ backgroundImage: `url(${config.news.style.backgroundImage})` }}
+        // @ts-ignore
+        style={{ '--image-url': `url(${config.news.style.backgroundImage})` }}
+        className="sm:hidden bg-[linear-gradient(to_right_bottom,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),var(--image-url)] sm:bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center w-screen relative pt-20 pb-20 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
       >
-        <div className="relative max-w-7xl mx-auto flex flex-col bg-white/95 bg-opacity- rounded-lg shadow-lg overflow-hidden pt-10 pb-8 px-4 sm:px-6 lg:pb-8 lg:px-8">
+        <h3 className="sm:hidden text-center text-gray-300 tracking-wide uppercase text-base font-semibold">
+          {config.artistName}
+        </h3>
+        <h2 className="sm:hidden text-center text-5xl tracking-tight font-extrabold text-white pt-2 pb-16 sm:text-4xl font-serif">
+          News
+        </h2>
+      </div>
+
+      <div
+        style={{ backgroundImage: `url(${config.news.style.backgroundImage})` }}
+        className="bg-fixed bg-no-repeat bg-cover bg-center w-screen relative sm:py-16 pb-0 px-0 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"
+      >
+        <div className="relative max-w-7xl mx-auto flex flex-col bg-white/95 bg-opacity- sm:rounded-lg shadow-lg overflow-hidden pt-10 pb-0 px-4 sm:px-6 lg:pb-8 lg:px-8">
           <div>
-            <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+            <h2 className="hidden sm:block text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
               {config.artistName} News
             </h2>
             <div className="mt-3 sm:mt-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:items-center">
@@ -177,7 +190,7 @@ export default function News({ data, config }: Props) {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

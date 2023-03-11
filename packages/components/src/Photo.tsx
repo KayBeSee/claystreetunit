@@ -13,13 +13,13 @@ export const Photo = ({ src, onClick }: Props) => {
         src={src}
         layout="fill"
       />
-      {/* <button
+      <button
         type="button"
         className="absolute inset-0 focus:outline-none"
         onClick={onClick}
       >
         <span className="sr-only">View details for IMG_5214.HEIC</span>
-      </button> */}
+      </button>
     </div>
   );
 };

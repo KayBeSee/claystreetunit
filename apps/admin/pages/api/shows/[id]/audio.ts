@@ -27,7 +27,7 @@ export default async function audioSourceHandler(
         })
       );
 
-      res.json(decoratedAudioSources);
+      return res.json(decoratedAudioSources);
     }
     case 'POST': {
       const audioSource = JSON.parse(body);
@@ -36,7 +36,7 @@ export default async function audioSourceHandler(
       const createdAudioSource = await ontour.audioSource.create({
         data: { ...audioSource, showId },
       });
-      res.json(createdAudioSource);
+      return res.json(createdAudioSource);
     }
     default:
       res.setHeader('Allow', ['GET', 'POST']);

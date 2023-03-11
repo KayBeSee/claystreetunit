@@ -70,7 +70,7 @@ export default async function audioSourceHandler(
           imagePublicId: request.imagePublicId,
         },
       });
-      res.json(updatedShow);
+      return res.json(updatedShow);
     }
     case 'PUT': {
       const request = JSON.parse(body);
@@ -85,7 +85,7 @@ export default async function audioSourceHandler(
         }
       );
 
-      res.json(response);
+      return res.json(response);
     }
     default:
       res.setHeader('Allow', ['GET', 'POST', 'PUT']);

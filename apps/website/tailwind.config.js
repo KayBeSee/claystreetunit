@@ -1,11 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-// const { data } = require('./data/index.js');
-
-// const safelist = Object.values(data.music.items).map(
-//   (item) => `marker:${item.pageStyle.primaryText}`
-// );
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,7 +8,6 @@ module.exports = {
     '../../data/**.ts',
     '../../packages/components/**/*.{js,ts,jsx,tsx}',
   ],
-  // safelist: safelist,
   theme: {
     extend: {
       colors: {
@@ -54,6 +47,33 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    ({ matchUtilities, theme }) => {
+      matchUtilities(
+        // https://codepen.io/henry/pen/WNMVVKq?editors=1010
+        {
+          aspect: (value) => ({
+            '@supports (aspect-ratio: 1 / 1)': {
+              aspectRatio: value,
+            },
+            '@supports not (aspect-ratio: 1 / 1)': {
+              // https://github.com/takamoso/postcss-aspect-ratio-polyfill
+
+              '&::before': {
+                content: '""',
+                float: 'left',
+                paddingTop: `calc(100% / (${value}))`,
+              },
+              '&::after': {
+                clear: 'left',
+                content: '""',
+                display: 'block',
+              },
+            },
+          }),
+        },
+        { values: theme('aspectRatio') }
+      );
+    },
   ],
   corePlugins: {
     aspectRatio: false,

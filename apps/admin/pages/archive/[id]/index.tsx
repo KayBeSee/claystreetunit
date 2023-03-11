@@ -6,6 +6,9 @@ import Head from 'next/head';
 import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
 
 import { data } from '@ontour/data';
+import axios from 'axios';
+import { GlobeAltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 
 import { ontour, Prisma, ShowWithSetlist } from '@ontour/archive';
 import { Photo, StreamLogo } from '@ontour/components';
@@ -15,45 +18,6 @@ import { SetlistView, LoadingSpinner } from '@ontour/components';
 import { fetcher } from 'lib/fetcher';
 import { getSlug } from 'utils/getSlug';
 import { PhotoSlideoverInfo } from 'components/PhotoSlideoverInfo';
-import { GlobeAltIcon, LockClosedIcon } from '@heroicons/react/24/outline';
-import { StarIcon } from '@heroicons/react/24/solid';
-
-const uploadFile = async (files, show) => {
-  try {
-    const folderPath = `${data.archive.cloudinary_root_folder}/shows/${getSlug(
-      show
-    )}`;
-
-    const resp = await fetch('/api/cloudinary', {
-      method: 'post',
-      body: JSON.stringify({
-        folder: folderPath,
-      }),
-    }).then((response) => response.json());
-    const { signature, timestamp } = resp;
-
-    const response = await Promise.all(
-      files.map(async (file) => {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'lmicqrpq');
-        formData.append(
-          'folder',
-          `${data.archive.cloudinary_root_folder}/shows`
-        );
-
-        const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload?api_key=${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}&timestamp=${timestamp}&signature=${signature}&folder=${folderPath}`;
-        const response = await fetch(url, {
-          method: 'post',
-          body: formData,
-        });
-        return response;
-      })
-    );
-  } catch (e) {
-    console.log('e: ', e);
-  }
-};
 
 interface Props {
   show: Prisma.ShowGetPayload<{ include: { venue: true } }>;
@@ -63,6 +27,8 @@ interface Props {
 const EditArchivePage = ({ photos, show }: Props) => {
   const [slideoverOpen, setSlideoverOpen] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(null);
+  const [uploadingFiles, setUploadingFiles] = useState([]);
+  const [loadingProgress, setLoadingProgress] = useState([]);
 
   const { query } = useRouter();
   const {
@@ -76,7 +42,6 @@ const EditArchivePage = ({ photos, show }: Props) => {
     error: photoError,
     mutate: mutatePhotos,
   } = fetcher<ResourceApiResponse['resources']>(`/api/shows/${query.id}/photo`);
-  console.log('photoData: ', photoData);
 
   const toggleFavorite = async (publicId: string) => {
     await fetch(`/api/shows/${show.id}/photo`, {
@@ -116,6 +81,10 @@ const EditArchivePage = ({ photos, show }: Props) => {
     // @ts-ignore
     mutatePhotos(updatedPhotos);
   };
+
+  useEffect(() => {
+    mutatePhotos();
+  }, [loadingProgress]);
 
   if (showError) {
     console.log('showError: ', showError);
@@ -230,16 +199,55 @@ const EditArchivePage = ({ photos, show }: Props) => {
                       multiple
                       accept="image/*;video/*;capture=camcorder"
                       className="sr-only"
-                      onChange={(e) => {
-                        const files = e.target.files;
-                        Object.keys(Array.from(files)).forEach((i) => {
-                          const fileReader = new FileReader();
-                          fileReader.onload = (e) => {
-                            const content = e.target.result;
-                            uploadFile(content, show);
-                          };
-                          fileReader.readAsDataURL(files[i]);
-                        });
+                      onChange={async (e) => {
+                        const files = Array.from(e.target.files);
+                        setUploadingFiles(files);
+
+                        const folderPath = `${
+                          data.archive.cloudinary_root_folder
+                        }/shows/${getSlug(show)}`;
+
+                        const resp = await fetch('/api/cloudinary', {
+                          method: 'post',
+                          body: JSON.stringify({
+                            folder: folderPath,
+                          }),
+                        })
+                          .then((response) => response.json())
+                          .catch((e) => console.log('e: ', e));
+                        const { signature, timestamp } = resp;
+
+                        const response = await Promise.all(
+                          files.map(async (file, index) => {
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            formData.append('upload_preset', 'lmicqrpq');
+                            formData.append(
+                              'folder',
+                              `${data.archive.cloudinary_root_folder}/shows`
+                            );
+
+                            const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload?api_key=${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}&timestamp=${timestamp}&signature=${signature}&folder=${folderPath}`;
+                            const response = await axios(url, {
+                              method: 'post',
+                              data: formData,
+                              onUploadProgress: (progress) => {
+                                const { loaded, total } = progress;
+
+                                setLoadingProgress((prevState) => {
+                                  const updatedLoadingStats = [...prevState];
+                                  const updatedProgress = Math.floor(
+                                    (loaded * 100) / total
+                                  );
+                                  updatedLoadingStats[index] = updatedProgress;
+                                  return updatedLoadingStats;
+                                });
+                              },
+                              // headers: { 'content-type': 'multipart/form-data' },
+                            });
+                            return response;
+                          })
+                        );
                       }}
                     />
                   </label>
@@ -247,45 +255,57 @@ const EditArchivePage = ({ photos, show }: Props) => {
               </div>
               <div className="relative w-full flex">
                 <ul className="w-full py-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                  {photoData.map((photo) => {
-                    return (
-                      <li
-                        className="relative"
-                        key={`${photo.display_name}-${showData.imagePublicId}`}
-                      >
-                        <Photo
-                          src={photo.secure_url}
-                          onClick={() => {
-                            setSlideoverOpen(true);
-                            setCurrentPhoto(photo);
-                          }}
-                        />
-                        {showData.imagePublicId === photo.public_id ? (
-                          <StarIcon className="h-8 w-8 absolute inset-1 fill-yellow-300" />
-                        ) : null}
-                        {/* <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900 capitalize">
+                  <>
+                    {uploadingFiles.map((item, index) => {
+                      if (loadingProgress[index] < 100) {
+                        return (
+                          <li className="relative">
+                            <Photo src={item} />
+                            Progress: {loadingProgress[index]}
+                          </li>
+                        );
+                      }
+                    })}
+                    {photoData.map((photo) => {
+                      return (
+                        <li
+                          className="relative"
+                          key={`${photo.display_name}-${showData.imagePublicId}`}
+                        >
+                          <Photo
+                            src={photo.secure_url}
+                            onClick={() => {
+                              setSlideoverOpen(true);
+                              setCurrentPhoto(photo);
+                            }}
+                          />
+                          {showData.imagePublicId === photo.public_id ? (
+                            <StarIcon className="h-8 w-8 absolute inset-1 fill-yellow-300" />
+                          ) : null}
+                          {/* <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900 capitalize">
                           {showData.imagePublicId === photo.public_id
                             ? 'Featured'
                             : ''}
                         </p> */}
-                        <p className="pointer-events-none text-sm font-medium text-gray-500 capitalize mt-2 flex items-center">
-                          {showData.imagePublicId === photo.public_id ? (
-                            <span className="mr-2 flex">
-                              <StarIcon className="h-4 w-4 mr-1" /> Featured
+                          <p className="pointer-events-none text-sm font-medium text-gray-500 capitalize mt-2 flex items-center">
+                            {showData.imagePublicId === photo.public_id ? (
+                              <span className="mr-2 flex">
+                                <StarIcon className="h-4 w-4 mr-1" /> Featured
+                              </span>
+                            ) : null}
+                            {photo.metadata.status === 'submitted' ? (
+                              <LockClosedIcon className="h-4 w-4 mr-1" />
+                            ) : (
+                              <GlobeAltIcon className="h-4 w-4 mr-1" />
+                            )}{' '}
+                            <span className="capitalize">
+                              {photo.metadata.status}
                             </span>
-                          ) : null}
-                          {photo.metadata.status === 'submitted' ? (
-                            <LockClosedIcon className="h-4 w-4 mr-1" />
-                          ) : (
-                            <GlobeAltIcon className="h-4 w-4 mr-1" />
-                          )}{' '}
-                          <span className="capitalize">
-                            {photo.metadata.status}
-                          </span>
-                        </p>
-                      </li>
-                    );
-                  })}
+                          </p>
+                        </li>
+                      );
+                    })}
+                  </>
                 </ul>
               </div>
             </div>
@@ -361,28 +381,6 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-// export async function getStaticPaths() {
-//   const shows = await ontour.show.findMany();
-//   const formattedSlugs = shows.map((show) => ({
-//     params: {
-//       id: show.id,
-//     },
-//   }));
-
-//   return {
-//     paths: formattedSlugs,
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps(context) {
-//   return {
-//     props: {
-//       config,
-//     },
-//   };
-// }
 
 EditArchivePage.auth = true;
 
