@@ -29,11 +29,11 @@ export const music: Props = {
     },
     pageStyle: {
       streamServiceColor: "fill-[#93c5fd]",
-      albumCoverBorderColor: "bg-[#64211A]",
+      albumCoverBorderColor: "bg-[#702018]",
       backgroundColor: "bg-[#87332E]",
       primaryText: "text-[#EBEBEB]",
       secondaryText: "text-[#D4B494]",
-      listenNowBorder: "border-[#64211A]",
+      listenNowBorder: "border-[#702018]",
     },
   },
   // ["tired-of-being-tired"]: {
