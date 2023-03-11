@@ -36,7 +36,10 @@ export interface Album {
   year: number;
   type: "album" | "single";
   albumCoverUrl: string;
-  trackList: string[];
+  trackList: {
+    name: string;
+    url: string;
+  }[];
   description: string;
   otherImages: string[];
   youtubeVideoId?: string;

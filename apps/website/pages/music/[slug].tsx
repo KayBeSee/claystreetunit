@@ -14,7 +14,7 @@ import OtherAlbums from 'components/OtherAlbums';
 
 import { data } from '@ontour/data';
 import { Album, DataConfig } from '@ontour/types';
-import { Copyright } from 'components';
+import { Copyright, TrackListingPlayer } from 'components';
 
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -119,24 +119,7 @@ export default function Music({
               </div>
             ) : null}
             {album.trackList.length > 0 ? (
-              <div
-                className={`${album.pageStyle.albumCoverBorderColor} prose font-serif px-4 py-4 w-full`}
-              >
-                <h3 className={`${album.pageStyle.primaryText}`}>
-                  Track Listing
-                </h3>
-                <ol
-                  className={clsx(
-                    album.pageStyle.primaryText,
-                    `marker:${album.pageStyle.primaryText}`,
-                    'list-decimal columns-1 md:columns-2'
-                  )}
-                >
-                  {album.trackList.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ol>
-              </div>
+              <TrackListingPlayer album={album} />
             ) : null}
             <div>
               {album.otherImages.map((image) => (

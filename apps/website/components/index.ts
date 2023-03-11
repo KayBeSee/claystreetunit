@@ -9,3 +9,4 @@ export * from './SplashPage';
 export * from './SocialLinks';
 export * from './Contact';
 export * from './PressTestimonial';
+export * from './TrackListingPlayer';

@@ -12,13 +12,26 @@ export const music: Props = {
     type: "album",
     albumCoverUrl: "/album-covers/shimmer.jpeg",
     trackList: [
-      "Fly Away",
-      "Another Time",
-      "Skydiver",
-      "Western Song",
-      "Taking Over",
-      "Crosstie Serenade",
-      "Burning the Hardwood Floor",
+      {
+        name: "Lockwood",
+        url: "https://p.scdn.co/mp3-preview/5a9f991765271358b845382936f1584df9de2039",
+      },
+      {
+        name: "Upsidedown Town",
+        url: "https://p.scdn.co/mp3-preview/280b75e1b13eb14eed6356a6e64fbeebeee3c129",
+      },
+      {
+        name: "Savage Road",
+        url: "https://p.scdn.co/mp3-preview/7e56bab63b4f1487ee3282cafce19e55825ba53c",
+      },
+      {
+        name: "Boneless",
+        url: "https://p.scdn.co/mp3-preview/1a8b67b61068661eda82d1248d231db739d20e23",
+      },
+      {
+        name: "Changed Man",
+        url: "https://p.scdn.co/mp3-preview/5d703d100de2e88ec80726e5a93983f9a0506a89",
+      },
     ],
     description: `Airshow recorded ‘Shimmer’ at The Studio Nashville in Nashville, TN at a two-day recording session in November of 2020. The band worked closely with engineer Dan Davis to finish the seven-song album, Airshow’s longest studio effort to date.
 \n
@@ -46,10 +59,22 @@ export const music: Props = {
     type: "album",
     albumCoverUrl: "/album-covers/anubis.jpeg",
     trackList: [
-      "Coming Home",
-      "Ruby",
-      "Dirt Devil",
-      "The Riddle of the Sphinx",
+      {
+        name: "Coming Home",
+        url: "https://p.scdn.co/mp3-preview/c52d366667f40f2978c720266d61a20ff9fb3a31?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Ruby",
+        url: "https://p.scdn.co/mp3-preview/6cd5943816146f37cdd624e2eedee298611338fc?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Dirt Devil",
+        url: "https://p.scdn.co/mp3-preview/9a58ce17aef92d1691b0ff62b278a27d3eff53fb?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "The Riddle of the Sphinx",
+        url: "https://p.scdn.co/mp3-preview/8164fbaa599e75c3de7018fd7e4ad85df7f043cb?cid=774b29d4f13844c495f206cafdad9c86",
+      },
     ],
     description: ``,
     otherImages: [],
@@ -75,12 +100,22 @@ export const music: Props = {
     type: "album",
     albumCoverUrl: "/album-covers/up-in-the-clouds.jpeg",
     trackList: [
-      "Up in the Clouds",
-      "Spider Bite",
-      "Edge of Silence",
-      "Rising Sun",
-      "Fear",
-      "Secret Place",
+      {
+        name: "Coming Home",
+        url: "https://p.scdn.co/mp3-preview/c52d366667f40f2978c720266d61a20ff9fb3a31?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Ruby",
+        url: "https://p.scdn.co/mp3-preview/6cd5943816146f37cdd624e2eedee298611338fc?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Dirt Devil",
+        url: "https://p.scdn.co/mp3-preview/9a58ce17aef92d1691b0ff62b278a27d3eff53fb?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "The Riddle of the Sphinx",
+        url: "https://p.scdn.co/mp3-preview/8164fbaa599e75c3de7018fd7e4ad85df7f043cb?cid=774b29d4f13844c495f206cafdad9c86",
+      },
     ],
     description: "",
     otherImages: [],
@@ -107,11 +142,26 @@ export const music: Props = {
     type: "album",
     albumCoverUrl: "/album-covers/lightbulb.jpeg",
     trackList: [
-      "Lightbulb",
-      "Hurts Me Too",
-      "Traveling Through",
-      "Nursery Rhyme",
-      "Oh King",
+      {
+        name: "Lightbulb",
+        url: "https://p.scdn.co/mp3-preview/77b9e2c48b25915bd51095f0b1b2034c154c55a1?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Hurts Me Too",
+        url: "https://p.scdn.co/mp3-preview/a687a79e47eba58796a00d74bd620ccb7057566b?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Traveling Through",
+        url: "https://p.scdn.co/mp3-preview/811771e41607b33657c85bfb4156e74abacd4a27?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Nursery Rhyme",
+        url: "https://p.scdn.co/mp3-preview/f8392af2f494902e4f67b266da892c3d354936be?cid=774b29d4f13844c495f206cafdad9c86",
+      },
+      {
+        name: "Oh King",
+        url: "https://p.scdn.co/mp3-preview/c9dc80efdd7e4ed140d768eb19922ad5702adc90?cid=774b29d4f13844c495f206cafdad9c86",
+      },
     ],
     description: "",
     otherImages: [],
