@@ -33,7 +33,7 @@ const OtherAlbums = ({ currentSlug, artistName, albums, className }: Props) => {
           .map((album) => (
             <li
               key={album.name}
-              className="snap-start flex flex-col hover:cursor-pointer hover:brightness-50"
+              className="snap-start flex flex-col hover:cursor-pointer hover:brightness-110"
             >
               <Link href={`/music/${album.slug}`}>
                 <div className="relative h-48 w-48">
