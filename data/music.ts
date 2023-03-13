@@ -31,6 +31,7 @@ export const music: Props = {
     ],
     description: `Clay Street Unit’s Debut EP “A Mighty Fine Evening” has been a few years in the making as Sam was working on these songs while the band solidified it’s current lineup, drawing on his experience moving out to Denver in his early 20’s and Colorado starting to feel more and more like home. \nThe songs took off from there and once the full group was able to work out the instrumentation, these first 4 tracks fell into place blending an emphasis on songwriting and a balanced, full band sound. \nThe group is currently working on their first full length record with more details coming soon!`,
     otherImages: [],
+    showSpotifyEmbed: "3HhQMg7ob3cp5NayDVmQsF",
     streamingLinks: {
       spotify: "https://open.spotify.com/album/3HhQMg7ob3cp5NayDVmQsF",
       apple:
