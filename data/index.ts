@@ -163,8 +163,6 @@ export const data: DataConfig = {
       background: "bg-[#F1F6FA]",
     },
     logo: "/logo-circle-black.png",
-    subtitle:
-      "Anything and everything there is to know about the high-flying, bluegrass-influenced jamband from Nashville, TN.",
     description: `Airshow is a high-flying, bluegrass-influenced jamband that’s sure to soar to the top of every music fans priority list this year. Having originally formed in Reading, PA, childhood best friends, Steve Gallagher (guitar/vocals) and Cody Chelius (mandolin/vocals), spread their wings and migrated to Nashville, TN in 2015. There they met Bill Baker (bass/vocals) and John Rodrigue (drums/vocals) and immediately started their ascension towards the top of Nashville’s jamband scene— and they won’t be landing anytime soon.
       \nFlash forward to 2022 and Airshow is poised for liftoff. Having released two studio albums, ‘Shimmer’ (2021) and ‘Up in the Clouds’ (2019), as well as two EPs, ‘Anubis’ (2020) and ‘Lightbulb’ (2017), this fleet has enough studio material to keep your ears occupied for a 747 trip from JFK to O’Hare. After extensively touring the Northeast and Southeast, the band has their navigation set for everywhere in 2022. Keep your eyes peeled for the one and only Airshow in your town soon!`,
     videos: [

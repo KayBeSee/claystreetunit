@@ -148,7 +148,6 @@ export interface EpkConfig extends BaseConfig {
     background: string;
   };
   logo: string;
-  subtitle: string;
   description: string;
   videos: VideoItem[];
   spotifyScreenshot: string;
