@@ -43,6 +43,7 @@ export interface Album {
   description: string;
   otherImages: string[];
   youtubeVideoId?: string;
+  showSpotifyEmbed?: string;
   streamingLinks: {
     spotify?: string;
     apple?: string;
