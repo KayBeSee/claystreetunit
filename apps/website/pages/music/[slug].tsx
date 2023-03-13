@@ -73,7 +73,7 @@ export default function Music({
           />
 
           <div
-            className={`${album.pageStyle.albumCoverBorderColor} rounded-lg shadow p-2 translate-y-20 md:translate-y-0`}
+            className={`${album.pageStyle.albumCoverBorderColor} rounded-lg shadow p-2 translate-y-20 md:translate-y-0 flex`}
           >
             <Image
               src={album.albumCoverUrl}

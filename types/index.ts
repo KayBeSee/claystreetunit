@@ -148,7 +148,6 @@ export interface EpkConfig extends BaseConfig {
     background: string;
   };
   logo: string;
-  subtitle: string;
   description: string;
   videos: VideoItem[];
   spotifyScreenshot: string;
@@ -181,8 +180,10 @@ interface OpenGraphConfig {
 interface ArchiveConfig {
   cloudinary_root_folder: string;
   dbName: string;
+  archive_org_identifier: string;
   ogImageLogo: string;
   vercelDeployHookUrl: string;
+  sidebarDescription: string;
   navigation: {
     name: string;
     href: string;

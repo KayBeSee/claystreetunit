@@ -72,7 +72,7 @@ export const TrackListingPlayer = ({ album }: Props) => {
       <ol
         className={clsx(
           album.pageStyle.primaryText,
-          'list-none columns-1 md:columns-2 list-inside pl-0'
+          'list-none columns-1 md:columns-2 list-inside pl-0 not-prose'
         )}
       >
         {album.trackList.map((item, i) => (

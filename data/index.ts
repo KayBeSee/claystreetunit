@@ -155,8 +155,6 @@ export const data: DataConfig = {
       background: "bg-[#F1F6FA]",
     },
     logo: "/logo-circle-black.png",
-    subtitle:
-      "Anything and everything there is to know about the high-flying, bluegrass-influenced jamband from Nashville, TN.",
     description: `Based out of Denver, CO, Clay Street Unit is a seven piece group rooted deep in homegrown southern folk/country and branches into the bluegrass sound that’s heard throughout the Appalachian hills.
     \nForming in early 2021, the band just recently released their first EP and is working on developing and pushing their own unique sound, with a high energy, fresh take on the tradition of American folk and country music that is sure to keep you moving.`,
     videos: [
@@ -235,7 +233,9 @@ export const data: DataConfig = {
     cloudinary_root_folder: "claystreetunit",
     dbName: "claystreetunit",
     ogImageLogo: "logo-circle-white.png",
+    archive_org_identifier: "",
     vercelDeployHookUrl: "",
+    sidebarDescription: "High flying jamband from Nashville",
     navigation: [
       {
         name: "Setlists",

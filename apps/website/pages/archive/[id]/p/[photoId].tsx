@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
 
   const { resources } = await cloudinary.api.resources_by_asset_folder(
-    `airshow/shows/${getSlug(show)}`,
+    `${data.archive.cloudinary_root_folder}/shows/${getSlug(show)}`,
     { transformation: 'f_jpg,w_8,q_70' }
   );
 
@@ -120,7 +120,7 @@ export async function getStaticPaths() {
     const currentShow = shows[j];
     try {
       const { resources } = await cloudinary.api.resources_by_asset_folder(
-        `airshow/shows/${getSlug(currentShow)}`,
+        `${data.archive.cloudinary_root_folder}/shows/${getSlug(currentShow)}`,
         { transformation: 'f_jpg,w_8,q_70' }
       );
 
