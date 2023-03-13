@@ -42,7 +42,7 @@ export const data: DataConfig = {
     },
   },
   analytics: {
-    googleAnalyticsCode: "",
+    googleAnalyticsCode: "G-L9VGT8FXFF",
   },
   error: {
     style: {
