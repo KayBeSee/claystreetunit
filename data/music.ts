@@ -29,7 +29,7 @@ export const music: Props = {
         url: "https://p.scdn.co/mp3-preview/3b7b52ba5238a86a4c8395b0661b76726fe45598?cid=774b29d4f13844c495f206cafdad9c86",
       },
     ],
-    description: `This is filler text if we want to put a description of the record here. Don't leave your records in the sun. They'll warp and won't be any good for anyone. Don't leave your records in the sun. They get all wavy and they just won't run. They just won't play, just won't play, just won't play. Just won't play, just won't play, just won't play. Just won't play, just won't play, just won't play. Just won't play, just won't play no more`,
+    description: `Clay Street Unit’s Debut EP “A Mighty Fine Evening” has been a few years in the making as Sam was working on these songs while the band solidified it’s current lineup, drawing on his experience moving out to Denver in his early 20’s and Colorado starting to feel more and more like home. \nThe songs took off from there and once the full group was able to work out the instrumentation, these first 4 tracks fell into place blending an emphasis on songwriting and a balanced, full band sound. \nThe group is currently working on their first full length record with more details coming soon!`,
     otherImages: [],
     streamingLinks: {
       spotify: "https://open.spotify.com/album/3HhQMg7ob3cp5NayDVmQsF",
@@ -40,7 +40,7 @@ export const music: Props = {
         "https://music.youtube.com/playlist?list=OLAK5uy_kqfqpp40ssYy-fw6aAhEkWg7_JMk_l4cY",
     },
     pageStyle: {
-      streamServiceColor: "fill-[#93c5fd]",
+      streamServiceColor: "fill-[#D2BDBB]",
       albumCoverBorderColor: "bg-[#702018]",
       backgroundColor: "bg-[#87332E]",
       primaryText: "text-[#EBEBEB]",
