@@ -17,11 +17,14 @@ export default function MailingList({ config }: Props) {
 
   const tryApi = async () => {
     try {
-      setButtonText('Adding...');
+      window.open(
+        `https://www.bandsintown.com/artist-subscribe/15516947?newsletter_email=${email}`
+      );
+      // setButtonText('Adding...');
       await axios.post(`/api/mailing-list`, {
         email: email,
       });
-      setButtonText('Added!');
+      // setButtonText('Added!');
     } catch (e) {
       setButtonText(e.response.data);
     }
