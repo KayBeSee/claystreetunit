@@ -183,6 +183,7 @@ interface ArchiveConfig {
   archive_org_identifier: string;
   ogImageLogo: string;
   vercelDeployHookUrl: string;
+  sidebarDescription: string;
   navigation: {
     name: string;
     href: string;

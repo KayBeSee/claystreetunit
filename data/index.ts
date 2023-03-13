@@ -248,6 +248,7 @@ export const data: DataConfig = {
     archive_org_identifier: "TheTalismen",
     ogImageLogo: "logo-circle-white.png",
     vercelDeployHookUrl: "",
+    sidebarDescription: "High flying jamband from Nashville",
     navigation: [
       {
         name: "Setlists",

@@ -198,9 +198,11 @@ export function PageWithSidebar({ children }) {
                   />
                 </div>
                 <div className="space-y-1 mt-6">
-                  <h2 className="text-2xl font-bold text-slate-900">Airshow</h2>
+                  <h2 className="text-2xl font-bold text-slate-900">
+                    {data.artistName}
+                  </h2>
                   <p className="mt-3 text-lg font-medium leading-6 text-slate-700">
-                    Nashville’s high-flying jamband.
+                    {data.archive.sidebarDescription}
                   </p>
                 </div>
                 <ul className="mt-10 space-y-8">
