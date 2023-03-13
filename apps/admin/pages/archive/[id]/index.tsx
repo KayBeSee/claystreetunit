@@ -347,7 +347,7 @@ export async function getServerSideProps(context) {
 
   try {
     const { resources } = await cloudinary.api.resources_by_asset_folder(
-      `airshow/shows/${getSlug(show)}`,
+      `${data.archive.cloudinary_root_folder}/shows/${getSlug(show)}`,
       { transformation: 'f_jpg,w_8,q_70' }
     );
 

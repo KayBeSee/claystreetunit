@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { v2 as cloudinary, ResourceApiResponse } from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 import { getSlug } from 'utils/getSlug';
 
 import { ontour } from '@ontour/archive';
+
+import { data } from '@ontour/data';
 
 export default async function audioSourceHandler(
   req: NextApiRequest,
@@ -37,7 +39,7 @@ export default async function audioSourceHandler(
         });
 
         const { resources } = await cloudinary.api.resources_by_asset_folder(
-          `airshow/shows/${getSlug(show)}`,
+          `${data.archive.cloudinary_root_folder}/shows/${getSlug(show)}`,
           { transformation: 'f_jpg,w_8,q_70' }
         );
 

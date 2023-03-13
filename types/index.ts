@@ -180,6 +180,7 @@ interface OpenGraphConfig {
 interface ArchiveConfig {
   cloudinary_root_folder: string;
   dbName: string;
+  archive_org_identifier: string;
   ogImageLogo: string;
   vercelDeployHookUrl: string;
   navigation: {

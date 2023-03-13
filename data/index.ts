@@ -245,6 +245,7 @@ export const data: DataConfig = {
   archive: {
     cloudinary_root_folder: "airshow",
     dbName: "airshow",
+    archive_org_identifier: "TheTalismen",
     ogImageLogo: "logo-circle-white.png",
     vercelDeployHookUrl: "",
     navigation: [

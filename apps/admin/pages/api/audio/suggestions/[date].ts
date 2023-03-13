@@ -3,13 +3,14 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { ontour } from '@ontour/archive';
 import { AudioSuggestion } from '@ontour/types';
 import { format } from 'date-fns';
+import { data } from '@ontour/data';
 
 const getArchiveOrgSuggestions = async (
   date: string
 ): Promise<AudioSuggestion[]> => {
   // TODO: dynamic creator field to scale to other artists
   const formattedDate = format(new Date(date), 'yyyy-LL-dd'); // date: 2022-10-08
-  const url = `https://archive.org/advancedsearch.php?q=creator%3A%28airshow%29+AND+date%3A${formattedDate}&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=identifier&fl%5B%5D=publisher&fl%5B%5D=source&fl%5B%5D=title&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=50&page=1&output=json`;
+  const url = `https://archive.org/advancedsearch.php?q=creator%3A%28${data.archive.archive_org_identifier}%29+AND+date%3A${formattedDate}&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=identifier&fl%5B%5D=publisher&fl%5B%5D=source&fl%5B%5D=title&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=50&page=1&output=json`;
   const {
     response: { docs },
   } = await fetch(url).then((resp) => resp.json());

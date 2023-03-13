@@ -36,8 +36,7 @@ export default async function handler(req: NextRequest) {
 
     const imgSrc =
       getImageUrlFromPublicId(imagePublicId) ||
-      'https://res.cloudinary.com/dyxybmew8/image/upload/q_10/airshow/shows/may-05-2022-hifi-clyde%27s-chattanooga-tn/fsumwwchsq1wdoeyzkh7.jpg';
-    // `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
+      `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${data.info.style.backgroundImage}`;
 
     const ralewayBold = await ralewayBoldLoader;
     const ralewayMedium = await ralewayMediumLoader;
