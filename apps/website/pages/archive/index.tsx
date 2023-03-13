@@ -90,9 +90,9 @@ const Archive = ({ data, config }: Props) => {
           {config.archive.navigation.map((item) => (
             <Link
               href={item.href}
-              className="group flex items-center lg:text-lg lg:leading-6 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300"
+              className="group flex items-center lg:text-lg lg:leading-6 font-medium text-slate-700 hover:text-slate-900"
             >
-              <div className="mr-2 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-fuchsia-200 dark:group-hover:bg-fuchsia-600 dark:bg-slate-800 dark:highlight-white/5">
+              <div className="mr-2 rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 group-hover:shadow-fuchsia-200">
                 {IconMap[`${item.name}Icon`]}
               </div>
               {item.name}
